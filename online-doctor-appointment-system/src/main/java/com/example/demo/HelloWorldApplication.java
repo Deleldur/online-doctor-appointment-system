@@ -37,7 +37,7 @@ public class HelloWorldApplication {
 
 			log.info("bean was executed!");
 
-			// DELETE ALL
+			// DELETE ALL USERS
 			repository.deleteAll();
 
 			// SAVE USER
