@@ -20,12 +20,12 @@ import com.github.lalyos.jfiglet.FigletFont;
 
 @EnableScheduling
 @SpringBootApplication
-public class HelloWorldApplication {
+public class App {
 
-	private static final Logger log = LoggerFactory.getLogger(HelloWorldApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(App.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(HelloWorldApplication.class, args);
+		SpringApplication.run(App.class, args);
 		log.info("Hello World!");
 		AsciiArtCreator.getAsciiArt("only admin");
 	}
