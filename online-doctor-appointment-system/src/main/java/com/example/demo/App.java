@@ -13,9 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.example.demo.domain.Product;
-import com.example.demo.repo.ProductRepository;
-import com.example.demo.repo.ProductRepository_mongoTemplate;
+import com.example.demo.domain.Patient;
+import com.example.demo.repo.PatientRepository;
 import com.github.lalyos.jfiglet.FigletFont;
 
 @EnableScheduling
@@ -26,12 +25,11 @@ public class App {
 
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
-		log.info("Hello World!");
-		AsciiArtCreator.getAsciiArt("only admin");
+
 	}
 
 	@Bean
-	public CommandLineRunner demo(ProductRepository repository, ProductRepository_mongoTemplate mtemplate) {
+	public CommandLineRunner demo(PatientRepository repository) {
 
 		return (args) -> {
 
@@ -41,56 +39,31 @@ public class App {
 			repository.deleteAll();
 
 			// SAVE USER
-			Product user1 = new Product().setName("Manja juice").setPrice(50.00d).setDescription("very nice")
-					.setVerified(true).setExpiry(new Date());
-
+			Patient user1 = new Patient().setFirstName("Mikael").setLastName("Sten").setAddress("Östersund")
+					.setVerified(true).setPhoneNumber("0707-397535");
+			Patient user2 = new Patient().setFirstName("Anders").setLastName("Nilsson").setAddress("Hammarby")
+					.setVerified(true).setPhoneNumber("555-564-5645");
 			repository.save(user1);
-			repository.save(new Product().setName("Manja juice").setPrice(12.90d).setDescription("very nice")
-					.setVerified(true).setExpiry(new Date()));
-			repository.save(new Product().setName("Banana juice").setPrice(20.00d).setDescription("very nice")
-					.setVerified(true).setExpiry(new Date()));
-			repository.save(new Product().setName("Apple juice").setPrice(15.00d).setDescription("very nice")
-					.setVerified(true).setExpiry(new Date()));
-			repository.save(new Product().setName("grape juice").setPrice(14.00d).setDescription("very nice")
-					.setVerified(true).setExpiry(new Date()));
+			repository.save(user2);
 
-			// GET ALL USER
+			// GET ALL PATIENTS
 			int counter = 0;
-			for (Product product : repository.findAll()) {
+			for (Patient patient : repository.getAllPatients()) {
 				++counter;
-				log.info(counter + ". " + product);
+				log.info(counter + ". " + patient);
 			}
 
 			// FIND USER BY ID
 			try {
-				Product product = repository.findById(user1.getId()).get();
-				log.info("user: {}", product);
-
-				List<Product> products = mtemplate.findAllProducts_aggregation();
-				log.info("user: {}", products);
-
-				List<Product> users2 = mtemplate.findAllUnValidatedProductsWithNames_aggregation(Arrays.asList("John"));
-				log.info("user: {}", users2);
+				List<Patient> patient = repository.findByPhoneNumber("555-564-5645");
+//				log.info("user: {}", patient);
+				System.out.println("First name: " + patient);
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		};
+		
+		
 	}
-}
-
-class AsciiArtCreator {
-
-	public static String getAsciiArt(String text){
-		try {
-			FigletFont.convertOneLine(text);
-		}
-		catch ( IOException e ) {
-			e.printStackTrace();
-			return "Could not get ASCII art";
-		}
-		return text;
-	}
-
 }
