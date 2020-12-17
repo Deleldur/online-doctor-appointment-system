@@ -9,87 +9,79 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-	@Document //@Document("patient")
-	public class Patient {
-		
-		@Id
-		private String id;
-		
-		@NotNull
-		private String firstName, lastName, address, email, phoneNumber;
-		
-		@Min(0)
-		private boolean Verified;
-		
+@Document //@Document("products")
+public class Patient {
+	
+	@Id
+	private String id;
+	
+	@NotNull
+	private String name;
+	
+	@Min(0)
+	private double price;
+	private String description;
+	private boolean Verified;
+	
+	private Date expiry;
+	
+	public Patient() {
+		super();
+	}
 
-		public Patient() {
-			super();
-		}
-			
-		public String getId() {
-			return id;
-		}
+	public String getId() {
+		return id;
+	}
 
-		public Patient setId(String id) {
-			this.id = id;
-			return  this;
-		}
+	public Patient setId(String id) {
+		this.id = id;
+		return  this;
+	}
 
-		public String getFirstName() {
-			return firstName;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public Patient setFirstName(String firstName) {
-			this.firstName = firstName;
-			return this;
-		}
+	public Patient setName(String name) {
+		this.name = name;
+		return  this;
+	}
 
-		public String getLastName() {
-			return lastName;
-		}
+	public double getPrice() {
+		return price;
+	}
 
-		public Patient setLastName(String lastName) {
-			this.lastName = lastName;
-			return this;
-		}
+	public Patient setPrice(double price) {
+		this.price = price;
+		return  this;
+	}
 
-		public String getAddress() {
-			return address;
-		}
+	public String getDescription() {
+		return description;
+	}
 
-		public Patient setAddress(String address) {
-			this.address = address;
-			return this;
-		}
+	public Patient setDescription(String description) {
+		this.description = description;
+		return  this;
+	}
 
-		public String getEmail() {
-			return email;
-		}
+	public boolean isVerified() {
+		return Verified;
+	}
 
-		public Patient setEmail(String email) {
-			this.email = email;
-			return this;
-		}
+	public Patient setVerified(boolean verified) {
+		Verified = verified;
+		return  this;
+	}
 
-		public String getPhoneNumber() {
-			return phoneNumber;
-		}
+	public Date getExpiry() {
+		return expiry;
+	}
 
-		public Patient setPhoneNumber(String phoneNumber) {
-			this.phoneNumber = phoneNumber;
-			return this;
-		}
-		public boolean isVerified() {
-			return Verified;
-		}
+	public Patient setExpiry(Date expiry) {
+		this.expiry = expiry;
+		return  this;
+	}
 
-		public Patient setVerified(boolean verified) {
-			Verified = verified;
-			return  this;
-		}
-		
+
 }
-
-
-
-
