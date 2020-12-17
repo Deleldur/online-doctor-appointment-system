@@ -55,9 +55,10 @@ public class App {
 
 			// FIND USER BY ID
 			try {
-				List<Patient> patient = repository.findByPhoneNumber("555-564-5645");
+				List<Patient> findPhoneNumber = repository.findByPhoneNumber("555-564-5645");
+				List<Patient> find = repository.findByFirstName("555-564-5645");
 //				log.info("user: {}", patient);
-				System.out.println("First name: " + patient);
+				System.out.println("First name: " + findPhoneNumber);
 
 			} catch (Exception e) {
 				e.printStackTrace();
