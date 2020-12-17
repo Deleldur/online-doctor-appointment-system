@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document //@Document("products")
-public class Product {
+@Document //@Document("patient")
+public class Patient {
 	
 	@Id
 	private String id;
@@ -25,7 +25,7 @@ public class Product {
 	
 	private Date expiry;
 	
-	public Product() {
+	public Patient() {
 		super();
 	}
 
@@ -33,7 +33,7 @@ public class Product {
 		return id;
 	}
 
-	public Product setId(String id) {
+	public Patient setId(String id) {
 		this.id = id;
 		return  this;
 	}
@@ -42,7 +42,7 @@ public class Product {
 		return name;
 	}
 
-	public Product setName(String name) {
+	public Patient setName(String name) {
 		this.name = name;
 		return  this;
 	}
@@ -51,7 +51,7 @@ public class Product {
 		return price;
 	}
 
-	public Product setPrice(double price) {
+	public Patient setPrice(double price) {
 		this.price = price;
 		return  this;
 	}
@@ -60,7 +60,7 @@ public class Product {
 		return description;
 	}
 
-	public Product setDescription(String description) {
+	public Patient setDescription(String description) {
 		this.description = description;
 		return  this;
 	}
@@ -69,7 +69,7 @@ public class Product {
 		return Verified;
 	}
 
-	public Product setVerified(boolean verified) {
+	public Patient setVerified(boolean verified) {
 		Verified = verified;
 		return  this;
 	}
@@ -78,7 +78,7 @@ public class Product {
 		return expiry;
 	}
 
-	public Product setExpiry(Date expiry) {
+	public Patient setExpiry(Date expiry) {
 		this.expiry = expiry;
 		return  this;
 	}

@@ -13,63 +13,63 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.example.demo.domain.Product;
-import com.example.demo.repo.ProductRepository;
-import com.example.demo.repo.ProductRepository_mongoTemplate;
+import com.example.demo.domain.Patient;
+import com.example.demo.repo.PatientRepository;
+import com.example.demo.repo.PatientRepository_mongoTemplate;
 import com.github.lalyos.jfiglet.FigletFont;
 
 @EnableScheduling
 @SpringBootApplication
-public class HelloWorldApplication {
+public class HelloPatientApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(HelloWorldApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(HelloPatientApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(HelloWorldApplication.class, args);
+		SpringApplication.run(HelloPatientApplication.class, args);
 		log.info("Hello World!");
 		AsciiArtCreator.getAsciiArt("only admin");
 	}
 
 	@Bean
-	public CommandLineRunner demo(ProductRepository repository, ProductRepository_mongoTemplate mtemplate) {
+	public CommandLineRunner demo(PatientRepository repository, PatientRepository_mongoTemplate mtemplate) {
 
 		return (args) -> {
 
 			log.info("bean was executed!");
 
 			// DELETE ALL
-			repository.deleteAll();
+//			repository.deleteAll();
 
 			// SAVE USER
-			Product user1 = new Product().setName("Manja juice").setPrice(50.00d).setDescription("very nice")
+			Patient user1 = new Patient().setName("Manja juice").setPrice(50.00d).setDescription("very nice")
 					.setVerified(true).setExpiry(new Date());
 
 			repository.save(user1);
-			repository.save(new Product().setName("Manja juice").setPrice(12.90d).setDescription("very nice")
+			repository.save(new Patient().setName("Manja juice").setPrice(12.90d).setDescription("very nice")
 					.setVerified(true).setExpiry(new Date()));
-			repository.save(new Product().setName("Banana juice").setPrice(20.00d).setDescription("very nice")
+			repository.save(new Patient().setName("Banana juice").setPrice(20.00d).setDescription("very nice")
 					.setVerified(true).setExpiry(new Date()));
-			repository.save(new Product().setName("Apple juice").setPrice(15.00d).setDescription("very nice")
+			repository.save(new Patient().setName("Apple juice").setPrice(15.00d).setDescription("very nice")
 					.setVerified(true).setExpiry(new Date()));
-			repository.save(new Product().setName("grape juice").setPrice(14.00d).setDescription("very nice")
+			repository.save(new Patient().setName("grape juice").setPrice(14.00d).setDescription("very nice")
 					.setVerified(true).setExpiry(new Date()));
 
 			// GET ALL USER
 			int counter = 0;
-			for (Product product : repository.findAll()) {
+			for (Patient patient : repository.findAll()) {
 				++counter;
-				log.info(counter + ". " + product);
+				log.info(counter + ". " + patient);
 			}
 
 			// FIND USER BY ID
 			try {
-				Product product = repository.findById(user1.getId()).get();
-				log.info("user: {}", product);
+				Patient patient = repository.findById(user1.getId()).get();
+				log.info("user: {}", patient);
 
-				List<Product> products = mtemplate.findAllProducts_aggregation();
-				log.info("user: {}", products);
+				List<Patient> patients = mtemplate.findAllPatients_aggregation();
+				log.info("user: {}", patients);
 
-				List<Product> users2 = mtemplate.findAllUnValidatedProductsWithNames_aggregation(Arrays.asList("John"));
+				List<Patient> users2 = mtemplate.findAllUnValidatedPatientsWithNames_aggregation(Arrays.asList("John"));
 				log.info("user: {}", users2);
 
 			} catch (Exception e) {

@@ -31,16 +31,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.Product;
-import com.example.demo.service.ProductService;
+import com.example.demo.domain.Patient;
+import com.example.demo.service.PatientService;
 
-@RequestMapping(value = "/api/v1/products")
+@RequestMapping(value = "/api/v1/patients")
 @RestController
 @Validated
-public class ProductsController_validated {
+public class PatientsController_validated {
 
 	@Autowired
-	private ProductService productService;
+	private PatientService patientService;
 
 	
 	/*
@@ -61,52 +61,52 @@ public class ProductsController_validated {
 	
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
 	@GetMapping(value = "/")
-	public List<Product> getAllProducts() {
-		return productService.getAllProducts();
+	public List<Patient> getAllPatients() {
+		return patientService.getAllPatients();
 	}
 	
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@GetMapping(value = "/getProductByName2")
-	public List<Product> getAllProducts2(@Valid @Size(min = 1, max = 50) @RequestParam String regexp) {
-		return productService.getProductByName2(regexp);
+	@GetMapping(value = "/getPatientByName2")
+	public List<Patient> getAllPatients2(@Valid @Size(min = 1, max = 50) @RequestParam String regexp) {
+		return patientService.getPatientByName2(regexp);
 	}
 
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@GetMapping(value = "/findProductByName2")
-	private List<Product> findProductByName2(@Valid @Size(min = 1, max = 50) @RequestParam String name) {
-		return productService.findProductByName2(name);
+	@GetMapping(value = "/findPatientByName2")
+	private List<Patient> findPatientByName2(@Valid @Size(min = 1, max = 50) @RequestParam String name) {
+		return patientService.findPatientByName2(name);
 	}
 
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@RequestMapping(value = "/getProductById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Product getProductById(@Valid @Size(min = 1, max = 50) @RequestParam String id) {
-		return productService.getProductById(id);
+	@RequestMapping(value = "/getPatientById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Patient getPatientById(@Valid @Size(min = 1, max = 50) @RequestParam String id) {
+		return patientService.getPatientById(id);
 	}
 
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@RequestMapping(value = "/getProductById2/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Product getProductById2(@Valid @Size(min = 1, max = 50) @PathVariable("id") String id) {
-		return productService.getProductById(id);
+	@RequestMapping(value = "/getPatientById2/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Patient getPatientById2(@Valid @Size(min = 1, max = 50) @PathVariable("id") String id) {
+		return patientService.getPatientById(id);
 	}
 
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@RequestMapping(value = "/getProductById3/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Product getProductById3(@Valid @Size(min = 1, max = 50) @PathVariable("id") String id, HttpServletRequest req) {
+	@RequestMapping(value = "/getPatientById3/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Patient getPatientById3(@Valid @Size(min = 1, max = 50) @PathVariable("id") String id, HttpServletRequest req) {
 //		req.getHeaderNames().asIterator().forEachRemaining(System.out::println);
 //		req.getHeaders("user-agent").asIterator().forEachRemaining(System.out::println);
-		return productService.getProductById(id);
+		return patientService.getPatientById(id);
 	}
 
 	
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@GetMapping("/getAllProducts_paged")
-	public ResponseEntity<Map<String, Object>> getAllProducts_paged(@RequestParam(required = false) String title,
+	@GetMapping("/getAllPatients_paged")
+	public ResponseEntity<Map<String, Object>> getAllPatients_paged(@RequestParam(required = false) String title,
 			@Valid @Min(0) @RequestParam(defaultValue = "0") int page, @Valid @Min(0) @Max(value = 100, message = "Please provide value within range of 0 to 100") @RequestParam(defaultValue = "3") int size) {
 
 		Pageable pageable = PageRequest.of(page, size);
 
 		//CONVERT LIST TO PAGE
-		Page<Product> result = new PageImpl<>(productService.getAllProducts_paged(pageable));
+		Page<Patient> result = new PageImpl<>(patientService.getAllPatients_paged(pageable));
 
 		Map<String, Object> response = new HashMap<>();
 		response.put("result", result);
@@ -134,16 +134,16 @@ public class ProductsController_validated {
 	*/
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@PostMapping(value = "/createProduct")
-	public Product createProduct(@Valid @RequestBody Product newProduct) {
-		return productService.createProduct(newProduct);
+	@PostMapping(value = "/createPatient")
+	public Patient createPatient(@Valid @RequestBody Patient newPatient) {
+		return patientService.createPatient(newPatient);
 	}
 
 
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@DeleteMapping(value = "/deleteProduct")
-	public boolean deleteProduct(@Valid @Size(min = 1, max = 50) @RequestParam String id) {
-		return productService.deleteProduct(id);
+	@DeleteMapping(value = "/deletePatient")
+	public boolean deletePatient(@Valid @Size(min = 1, max = 50) @RequestParam String id) {
+		return patientService.deletePatient(id);
 	}
 
 

@@ -18,65 +18,65 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.domain.Product;
+import com.example.demo.domain.Patient;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 
 @Transactional
 @Repository()
-public class ProductRepository_mongoTemplate {
+public class PatientRepository_mongoTemplate {
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
-	public List<Product> findAllProducts(){
+	public List<Patient> findAllPatients(){
 		Query query = new Query();
 		query.addCriteria(Criteria.where("id").exists(true));
-		return mongoTemplate.find(query, Product.class);
+		return mongoTemplate.find(query, Patient.class);
 	}
 
 
-	public List<Product> findProductByName_regex(String regexp){
+	public List<Patient> findPatientByName_regex(String regexp){
 		Query query = new Query();
 		query.addCriteria(Criteria.where("name").regex(regexp));
-		return mongoTemplate.find(query, Product.class);
+		return mongoTemplate.find(query, Patient.class);
 	}
 
-	public List<Product> findProductByName(String name){
+	public List<Patient> findPatientByName(String name){
 		Query query = new Query();
 		query.addCriteria(Criteria.where("name").is(name));
-		return mongoTemplate.find(query, Product.class);
+		return mongoTemplate.find(query, Patient.class);
 	}
 
-	public Product updateProduct(Product product){
+	public Patient updatePatient(Patient patient){
 		Query query = new Query();
-		query.addCriteria(Criteria.where("id").is(product.getId()));
+		query.addCriteria(Criteria.where("id").is(patient.getId()));
 
 		Update update = new Update();
-		update.set("name", product.getName());
-		update.set("price", product.getPrice());
+		update.set("name", patient.getName());
+		update.set("price", patient.getPrice());
 
-		return mongoTemplate.findAndModify(query, update, Product.class);
+		return mongoTemplate.findAndModify(query, update, Patient.class);
 	}
 
-	public void deleteProductById(String id) {
+	public void deletePatientById(String id) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("id").is(id));
-		mongoTemplate.remove(query, Product.class);
+		mongoTemplate.remove(query, Patient.class);
 	}
 
-	public List<Product> findAllProductsWithinPriceRange(){
+	public List<Patient> findAllPatientsWithinPriceRange(){
 		Query query = new Query();
 		query.fields().exclude("id").exclude("name"); //exclude form from result
 		query.addCriteria(Criteria.where("price").gt(18).lt(100));
-		return mongoTemplate.find(query, Product.class);
+		return mongoTemplate.find(query, Patient.class);
 	}
 
 
-	public List<Product> findAllProductsWithinPriceRange2(){
+	public List<Patient> findAllPatientsWithinPriceRange2(){
 		Query query = new Query();
 		query.fields().include("id").include("name"); //include in result
 		query.addCriteria(Criteria.where("price").gt(18).lt(100));
-		return mongoTemplate.find(query, Product.class);
+		return mongoTemplate.find(query, Patient.class);
 	}
 
 
@@ -92,7 +92,7 @@ public class ProductRepository_mongoTemplate {
 	 * 
 	 * https://docs.mongodb.com/manual/aggregation/
 	 */
-	public List<Product> findAllProducts_aggregation() {
+	public List<Patient> findAllPatients_aggregation() {
 
 		MatchOperation msgMatch = Aggregation.match(new Criteria("name").regex("John")); //$match
 
@@ -107,11 +107,11 @@ public class ProductRepository_mongoTemplate {
 		
 		Aggregation aggregation = Aggregation.newAggregation(msgMatch,  proj, priceSort, limit); //groupByCity, groupByCity_avg,
 
-		return mongoTemplate.aggregate(aggregation, "user", Product.class).getMappedResults();
+		return mongoTemplate.aggregate(aggregation, "user", Patient.class).getMappedResults();
 	}
 
 
-	public List<Product> findAllUnValidatedProductsWithNames_aggregation(final List<String> names) {
+	public List<Patient> findAllUnValidatedPatientsWithNames_aggregation(final List<String> names) {
 
 		final Aggregation aggregation = newAggregation(
 				match(Criteria
@@ -123,7 +123,7 @@ public class ProductRepository_mongoTemplate {
 
 				);
 
-		AggregationResults<Product> aggregationResults = mongoTemplate.aggregate(aggregation, "user", Product.class);
+		AggregationResults<Patient> aggregationResults = mongoTemplate.aggregate(aggregation, "user", Patient.class);
 
 		return aggregationResults.getMappedResults();  //.getUniqueMappedResult();
 	}

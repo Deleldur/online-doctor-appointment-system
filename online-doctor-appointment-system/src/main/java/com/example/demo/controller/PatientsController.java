@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.Product;
-import com.example.demo.service.ProductService;
+import com.example.demo.domain.Patient;
+import com.example.demo.service.PatientService;
 
-@RequestMapping(value = "/api/v1/products")
+@RequestMapping(value = "/api/v1/patients")
 @RestController
-public class ProductsController {
+public class PatientsController {
 
 	@Autowired
-	private ProductService productService;
+	private PatientService patientService;
 
 	
 
@@ -36,9 +36,9 @@ public class ProductsController {
 	
 
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@PutMapping(value = "/updateProduct")
-	public Product updateProduct(@RequestBody Product userUpdate) {
-		return productService.updateProduct(userUpdate);
+	@PutMapping(value = "/updatePatient")
+	public Patient updatePatient(@RequestBody Patient userUpdate) {
+		return patientService.updatePatient(userUpdate);
 	}
 
 
