@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.example.demo.domain.Patient;
+import com.example.demo.domain.User;
 import com.example.demo.repo.PatientRepository;
 import com.github.lalyos.jfiglet.FigletFont;
 
@@ -39,13 +40,16 @@ public class App {
 			repository.deleteAll();
 
 			// SAVE USER
-			Patient user1 = new Patient().setFirstName("Mikael").setLastName("Sten").setAddress("Östersund")
-					.setVerified(true).setPhoneNumber("0707-397535");
-			Patient user2 = new Patient().setFirstName("Anders").setLastName("Nilsson").setAddress("Hammarby")
-					.setVerified(true).setPhoneNumber("555-564-5645");
-			repository.save(user1);
-			repository.save(user2);
+//			Patient patient1 = new Patient().setFirstName("Mikael").setLastName("Sten").setAddress("Östersund").setPhoneNumber("555-555-5555").setVerified(true);
+//			Patient patient2 = new Patient().setFirstName("Anders").setLastName("Nilsson").setAddress("Mora").setPhoneNumber("555-666-5555").setVerified(true);
 
+
+			Patient patient1 = new Patient("Mikael", "Sten", "Östersund", "555-555-5555", true);
+			Patient patient2 = new Patient("Anders", "Nilsson", "Mora", "111-111-1111", true);
+			repository.save(patient1);
+			repository.save(patient2);
+
+			
 			// GET ALL PATIENTS
 			int counter = 0;
 			for (Patient patient : repository.getAllPatients()) {
@@ -55,7 +59,7 @@ public class App {
 
 			// FIND USER BY ID
 			try {
-				List<Patient> findPhoneNumber = repository.findByPhoneNumber("555-564-5645");
+				List<Patient> findPhoneNumber = repository.findByPhoneNumber("555-555-5555");
 				List<Patient> findByFirstName = repository.findByFirstName("Mikael");
 //				log.info("user: {}", patient);
 				System.out.println("First phone number: " + findPhoneNumber);

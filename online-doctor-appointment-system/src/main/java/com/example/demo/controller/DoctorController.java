@@ -34,10 +34,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.domain.Patient;
 import com.example.demo.service.PatientService;
 
-@RequestMapping(value = "/api/v1/patient")
+@RequestMapping(value = "/api/v1/doctor")
 @RestController
 @Validated
-public class PatientsController {
+public class DoctorController {
 
 	@Autowired
 	private PatientService patientService;
