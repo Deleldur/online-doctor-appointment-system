@@ -1,0 +1,78 @@
+MONGODB MODEL
+
+USER COLLECTION
+
+	PATIENT DOCUMENT
+	{
+		id: 
+		firstName: "",
+		lastName: "",
+		phone: "",
+		address: "",
+		email: "",
+		feedback: [ // Array of feedback (each feedback is connected to a specific appointment and doctor)
+			{
+				appointmentId: "",
+				feedbackText: "",
+				doctorId: "",
+			}
+		]
+	}
+	
+	
+	DOCTOR DOCUMENT
+	{
+		id: 
+		firstName: "",
+		lastName: "",
+		phone: "",
+		email: "",
+		address: 
+			{
+			street: "",
+			city: "",
+			zipCode: ""	
+		}
+		ailmentSpecialist:  [ailmentId, ailmentId, ailmentId] // array with the ailments the doctor specializes in (or which field he/she works in)
+		isAdmin: true/false
+	}
+
+	ADMIN DOCUMENT
+	{
+		id: 
+		firstName: "",
+		lastName: "",
+		phone: "",
+		email: "",
+		address: 
+			{
+			street: "",
+			city: "",
+			zipCode: ""	
+		}
+		isAdmin: true/false
+	
+	}
+
+
+APPOINTMENTS COLLECTION
+
+APPOINTMENTS
+{
+	id: ,
+	doctorId: "",
+	patientId: "",
+	date: "",
+	active: true/false
+}
+
+
+AILMENTS COLLECTION (?)
+
+AILMENTS
+{
+	id: ,
+	ailmentType: ""
+	
+}
+
