@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>spring-boot-hello-world-api-simple-with-basic-auth-and-role</artifactId>
+	<artifactId>online-doctor-appointment-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-hello-world-api-simple-with-basic-auth-and-role</name>
-	<description>Demo project for Spring Boot</description>
+	<name>online-doctor-appointment-system</name>
+	<description>online-doctor-appointment-system</description>
 
 
 	
