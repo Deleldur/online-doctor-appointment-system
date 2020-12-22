@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.domain.Patient;
 import com.example.demo.service.PatientService;
 
-@RequestMapping(value = "/api/v1/doctor")
+@RequestMapping(value = "/doctor")
 @RestController
 @Validated
 public class DoctorController {
