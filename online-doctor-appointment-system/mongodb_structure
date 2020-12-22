@@ -52,7 +52,7 @@ USER COLLECTION
 		],
 		
 		ailmentSpecialist:  [ailmentId, ailmentId, ailmentId], // array with the ailments the doctor specializes in (or which field he/she works in)
-		isAdmin: true/false
+		isAdmin: true/false // If an "överläkare" should be able to add a doctor for example.
 	}
 
 	ADMIN DOCUMENT
@@ -68,7 +68,7 @@ USER COLLECTION
 			city: "",
 			zipCode: ""	
 		},
-		isAdmin: true/false
+		isAdmin: true/false // Set to false to remove admin rights
 	
 	}
 
