@@ -27,10 +27,9 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.inMemoryAuthentication()
 		.withUser("admin").password("{noop}" + "password").authorities(new SimpleGrantedAuthority("ADMIN"))
 		.and()
-		.withUser("user").password("{noop}" + "password").authorities(new SimpleGrantedAuthority("USER"))
-		
+		.withUser("test@test.com").password("{noop}" + "password").authorities(new SimpleGrantedAuthority("USER"))
 		//ADD NEW USERS HERE ...
-		
+
 		;
 	}
 	
@@ -42,7 +41,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf().disable()
 		.authorizeRequests()
 		//.antMatchers("/me**").permitAll() 
-		.antMatchers("/**").permitAll()
+		//.antMatchers("/**").permitAll()
 		//.antMatchers("/api/v1/**").authenticated()
 		//.antMatchers("/api/v1/admin/**").access("hasAnyAuthority('ADMIN') or hasAnyRole('ADMIN')") //HARDCODED FILTER BUT CAN BE SPECIFIED AS AN ANNOTATION ON THE ENDPOINT DIRECTLY WITH @SECURE @PREAUTHORIZIED ETC... (ENSURE TO COMMENT THIS OUT IF GOING WITTH THE ANNOTATIONS INSTEAD )
 		//.antMatchers("/api/v1/user/**").access("hasAnyAuthority('ADMIN') or hasAnyRole('ADMIN')") //HARDCODED FILTER BUT CAN BE SPECIFIED AS AN ANNOTATION ON THE ENDPOINT DIRECTLY WITH @SECURE @PREAUTHORIZIED ETC... (ENSURE TO COMMENT THIS OUT IF GOING WITTH THE ANNOTATIONS INSTEAD )
@@ -54,7 +53,6 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		.permitAll()
 		.and()
 		.httpBasic(); 
-		
 	}
 
     @Bean

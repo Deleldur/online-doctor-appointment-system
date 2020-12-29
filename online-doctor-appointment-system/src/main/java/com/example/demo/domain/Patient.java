@@ -1,30 +1,42 @@
 package com.example.demo.domain;
 
-import javax.validation.constraints.NotNull;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document //@Document("patient")
 //public class Patient extends User {
 public class Patient extends User {	
 
 	private boolean verified;
-	
+	private Date appointment;
 	public Patient() {
 		super();
 	}
 	
 
-	public Patient(String firstName, String lastName, String address, String phoneNumber,
+	public Patient(String firstName, String lastName, Map<String, String> address, String phoneNumber, String email, 
 			boolean verified) {
-		super(firstName, lastName, address, phoneNumber);
+		super(firstName, lastName, address, phoneNumber, email);
 		this.verified = verified;
 	}
 
 
 	public boolean isVerified() {
 		return verified;
+	}
+
+
+	public Date getAppointment() {
+		return appointment;
+	}
+
+
+	public void setAppointment(Date appointment) {
+		this.appointment = appointment;
 	}
 
 

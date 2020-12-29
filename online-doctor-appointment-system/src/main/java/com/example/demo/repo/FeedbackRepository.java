@@ -6,13 +6,14 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import com.example.demo.domain.Doctor;
+import com.example.demo.domain.Feedback;
+
 
 @Repository
-public interface DoctorRepository extends MongoRepository<Doctor, String>{
+public interface FeedbackRepository extends MongoRepository<Feedback, String>{
 	
 	
-	default List<Doctor> getAllDoctors() {
+	default List<Feedback> getAllFeedback() {
 		return   StreamSupport.stream(findAll().spliterator(), false).collect(Collectors.toList());
 	}
 
