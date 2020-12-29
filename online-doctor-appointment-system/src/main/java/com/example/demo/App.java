@@ -12,9 +12,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import com.example.demo.domain.Appointment;
 import com.example.demo.domain.Doctor;
 import com.example.demo.domain.Patient;
 import com.example.demo.domain.Feedback;
+import com.example.demo.repo.AppointmentRepository;
 import com.example.demo.repo.DoctorRepository;
 import com.example.demo.repo.FeedbackRepository;
 import com.example.demo.repo.PatientRepository;
@@ -32,7 +34,6 @@ public class App {
 	    address1.put("streetAddress", "Hammarvägen 12");
 	    address1.put("city", "Östersund");
 	    address1.put("zipCode", "831 35");
-	    
 	}
 	
 	// Hard coded feedback fields from patient -> doctor
@@ -103,8 +104,6 @@ public class App {
 				e.printStackTrace();
 			}
 		};
-		
-		
 	}
 	
 	@Bean
@@ -116,6 +115,16 @@ public class App {
 			feedbackRepository.deleteAll();
 			Feedback feedback = new Feedback("doctor Id", "patient Id", "Appointment Id", "Feedback message");
 			feedbackRepository.save(feedback);
+		};
+	}
+	
+	@Bean
+	public CommandLineRunner appointmentDummy(AppointmentRepository appointmentRepository) {
+		return (args) -> {
+			appointmentRepository.deleteAll();
+//			String doctorId, String patientId, Boolean active, String bookingDate, String bookingTime
+			Appointment appointment = new Appointment("DoctorID", "PatientID", true, "2020-12-31", "23:30");
+			appointmentRepository.save(appointment);
 		};
 	}
 }

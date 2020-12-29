@@ -56,6 +56,4 @@ public class Feedback {
 	public void setFeedbackMessage(String feedbackMessage) {
 		this.feedbackMessage = feedbackMessage;
 	}
-	
-	
 }

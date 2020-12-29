@@ -1,11 +1,8 @@
 package com.example.demo.domain;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document //@Document("patient")
 //public class Patient extends User {
