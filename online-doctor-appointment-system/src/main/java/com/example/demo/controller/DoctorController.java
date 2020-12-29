@@ -30,7 +30,7 @@ public class DoctorController {
 	
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
 	@PostMapping(value="/ailment")
-	public List<Doctor> getDoctorsWithAilmentSpeciality(String ailment) {
+	public List<Doctor> findDoctorByAilment(String ailment) {
 		return doctorService.findDoctorByAilment(ailment);
 	}
 	
@@ -39,8 +39,6 @@ public class DoctorController {
 	public String test() {
 		return "test";
 	}
-
-
 }
 
 
