@@ -4,8 +4,7 @@ import java.util.Date;
 import java.util.Map;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document //@Document("patient")
-//public class Patient extends User {
+@Document
 public class Patient extends User {	
 
 	private boolean verified;

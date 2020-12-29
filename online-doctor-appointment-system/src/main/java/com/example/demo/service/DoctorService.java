@@ -7,4 +7,5 @@ import com.example.demo.domain.Doctor;
 public interface DoctorService {
 
 	List<Doctor> getAllDoctors();
+	List<Doctor> findDoctorByAilment(String ailment);
 }

@@ -1,29 +1,31 @@
 package com.example.demo.domain;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Doctor extends User{
 
-	private String ailmentSpecialist;
-	
+	private List<String> ailmentList;
+//	5feb037c596b8a4448dc33eb
 
 
 	public Doctor() {
 		super();
 	}
 
-	public Doctor(String firstName, String lastName, Map<String, String> address, String phoneNumber, String email) {
+	public Doctor(String firstName, String lastName, Map<String, String> address, String phoneNumber, String email, List<String> ailmentList) {
 		super(firstName, lastName, address, phoneNumber, email);
-
+		this.ailmentList = ailmentList;
 	}
 
-	public String getAilmentSpecialist() {
-		return ailmentSpecialist;
+	public List<String> getAilmentList() {
+		return ailmentList;
 	}
 
-	public void setAilmentSpecialist(String ailmentSpecialist) {
-		this.ailmentSpecialist = ailmentSpecialist;
+	public void setAilmentList(List<String> ailmentList) {
+		this.ailmentList = ailmentList;
 	}
+
 }

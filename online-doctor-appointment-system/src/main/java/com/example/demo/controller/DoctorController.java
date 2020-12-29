@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +26,12 @@ public class DoctorController {
 	@GetMapping(value = "/")
 	public List<Doctor> getAllDoctors() {
 		return doctorService.getAllDoctors();
+	}
+	
+	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
+	@PostMapping(value="/ailment")
+	public List<Doctor> getDoctorsWithAilmentSpeciality(String ailment) {
+		return doctorService.findDoctorByAilment(ailment);
 	}
 	
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")

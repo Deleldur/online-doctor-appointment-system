@@ -25,4 +25,10 @@ public class DoctorServiceImpl implements DoctorService {
 	public List<Doctor> getAllDoctors() {
 		return doctorRepository.findAll();
 	}
+	
+	@Override
+	public List<Doctor> findDoctorByAilment(String ailment) {
+		
+		return doctorRepository.findDoctorByAilment(ailment);
+	}
 }
