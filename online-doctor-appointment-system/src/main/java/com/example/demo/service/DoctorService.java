@@ -8,4 +8,6 @@ public interface DoctorService {
 
 	List<Doctor> getAllDoctors();
 	List<Doctor> findDoctorByAilment(String ailment);
+	List<Doctor> findDoctorByLocation(String location);
+	List<Doctor> findDoctorAndLocation(String firstName, String location);
 }

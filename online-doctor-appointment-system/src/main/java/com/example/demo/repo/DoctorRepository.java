@@ -20,4 +20,11 @@ public interface DoctorRepository extends MongoRepository<Doctor, String>{
 	
 	@Query("{ 'ailmentList' : ?0}") //NOSQL QUERY
 	List<Doctor> findDoctorByAilment(@Param("ailment") String ailment);
+	
+	@Query("{ 'address.city' : ?0}")
+	List<Doctor> findDoctorByLocation(String location);
+	
+	@Query("{ 'firstName': ?0, 'address.city' : ?1}")
+	List<Doctor> findDoctorAndLocation(String firstName, String location);
+	
 }

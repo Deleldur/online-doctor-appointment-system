@@ -71,11 +71,11 @@ public class App {
 		return (args) -> {
 			
 			doctorRepository.deleteAll();
-			Doctor doctor1 = new Doctor("Tommy", "Hansen", address1, "888-888-8888", "doctor@doctor.com", Arrays.asList("Acne", 
-																														"Allergies"));
-			Doctor doctor2 = new Doctor("Marie", "Larsson", address2, "888-888-9999", "marie@doctor.com", Arrays.asList("Cancer",
-																														"Diabetes", 
-																														"Hearing"));
+			Doctor doctor1 = new Doctor("Tommy", "Hansen", address1, "888-888-8888", "doctor@doctor.com", Arrays.asList("acne", 
+																														"allergies"));
+			Doctor doctor2 = new Doctor("Marie", "Larsson", address2, "888-888-9999", "marie@doctor.com", Arrays.asList("acne",
+																														"diabetes", 
+																														"hearing"));
 			doctorRepository.save(doctor1);
 			doctorRepository.save(doctor2);
 			

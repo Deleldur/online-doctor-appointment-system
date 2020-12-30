@@ -28,7 +28,20 @@ public class DoctorServiceImpl implements DoctorService {
 	
 	@Override
 	public List<Doctor> findDoctorByAilment(String ailment) {
-		
-		return doctorRepository.findDoctorByAilment(ailment);
+		return doctorRepository.findDoctorByAilment(ailment.toLowerCase());
 	}
+	
+	@Override
+	public List<Doctor> findDoctorByLocation(String location) {
+		// Converts the first letter in a search to an upper case letter (example östersund becomes Östersund)
+		String firstLetterByUpperCase = location.substring(0, 1).toUpperCase() + location.substring(1);
+		return doctorRepository.findDoctorByLocation(firstLetterByUpperCase);
+	}
+	
+	@Override
+	public List<Doctor> findDoctorAndLocation(String firstName, String location) {
+		return doctorRepository.findDoctorAndLocation(firstName, location);
+	}
+
+
 }

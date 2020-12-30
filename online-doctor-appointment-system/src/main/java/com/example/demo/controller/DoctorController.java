@@ -29,15 +29,21 @@ public class DoctorController {
 	}
 	
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@PostMapping(value="/ailment")
+	@PostMapping(value="/")
 	public List<Doctor> findDoctorByAilment(String ailment) {
 		return doctorService.findDoctorByAilment(ailment);
 	}
 	
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@GetMapping(value = "/test")
-	public String test() {
-		return "test";
+	@PostMapping(value="/location")
+	public List<Doctor> findDoctorByLocation(String location) {
+		return doctorService.findDoctorByLocation(location);
+	}
+	
+	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
+	@PostMapping(value="/test")
+	public List<Doctor> findDoctorAndLocation(String firstName, String location) {
+		return doctorService.findDoctorAndLocation(firstName, location);
 	}
 }
 
