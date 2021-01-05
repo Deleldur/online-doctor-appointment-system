@@ -1,6 +1,7 @@
 package com.example.demo.repo;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -12,6 +13,7 @@ import com.example.demo.domain.Doctor;
 
 @Repository
 public interface DoctorRepository extends MongoRepository<Doctor, String>{
+	
 	
 	
 	default List<Doctor> getAllDoctors() {

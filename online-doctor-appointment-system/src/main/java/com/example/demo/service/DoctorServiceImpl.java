@@ -1,14 +1,17 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Doctor;
 import com.example.demo.repo.DoctorRepository;
+
 
 
 @Service
@@ -22,7 +25,7 @@ public class DoctorServiceImpl implements DoctorService {
 
 	
 	@Override
-	public List<Doctor> getAllDoctors() {
+	public List<Doctor> getAllDoctors() { 
 		return doctorRepository.findAll();
 	}
 	
@@ -37,11 +40,17 @@ public class DoctorServiceImpl implements DoctorService {
 		String firstLetterByUpperCase = location.substring(0, 1).toUpperCase() + location.substring(1);
 		return doctorRepository.findDoctorByLocation(firstLetterByUpperCase);
 	}
-	
+	@Override
+	public Doctor updateDoctorProfile(Doctor orgDoctor, Doctor newDoctor) {
+		orgDoctor.setEmail(newDoctor.getEmail());
+		orgDoctor.setLastName(newDoctor.getLastName());
+		orgDoctor.setFirstName(newDoctor.getFirstName());
+        final Doctor updatedDoctor = doctorRepository.save(orgDoctor);
+
+		return updatedDoctor;
+	}
 	@Override
 	public List<Doctor> findDoctorAndLocation(String firstName, String location) {
 		return doctorRepository.findDoctorAndLocation(firstName, location);
 	}
-
-
 }
