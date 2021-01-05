@@ -1,0 +1,136 @@
+Online Doctor Appointment System API:s
+[text within brackets means user input data] 
+
+
+LOGIN	patient & doctor
+authenticateUser()
+	IN	arguments:
+		• [email address /userName]
+		• [password]
+	OUT	response:
+		• OK 	logged in
+		• NOK	error message
+
+
+PATIENT
+patientOverview()
+	IN	arguments:
+		• userID	(UUID ?)
+	OUT	response:
+		• profile data
+		• <appointment list>		(replaces viewAllAppointments() ??)
+
+initiateAppointment()		(i.e. search for ~)
+	IN	arguments:
+		• userID
+		• [doctor]
+		• [location]
+		• [problem/ailment]
+	OUT	response:
+		• OK	<suggestion list>
+				- timeSlot
+				- doctor
+				- location
+		• NOK	error message ??
+
+requestAppointment()
+	IN	arguments:
+		• userID
+		• doctor
+		• timeSlot (date + time)
+	OUT	response:
+		• OK	confirmation
+		• NOK	error message
+
+viewAllAppointments()		(not needed if the appointment list is included in the patientOverview() end-point method )
+	IN	arguments:
+		• userID
+	OUT	response:
+		• <appointment list>
+			- timeSLot
+			- doctor
+			- location
+			- problem/ailment
+
+giveFeedback()
+	IN	arguments:
+		• appointmentID
+		• feedback
+	OUT	response:
+		• OK	confirmation
+		• NOK	error message
+
+
+DOCTOR
+doctorOverview()			(renamed from viewProfile()…)
+	IN	arguments:
+		• userID
+	OUT	response:
+		• profile data
+
+updateProfile()
+	IN	arguments:
+		• userID
+		• (updated) profile data
+	OUT	response:
+		• OK	confirmation
+		• NOK	error message
+
+viewAllAppointmentRequests()
+	IN	arguments:
+		• doctorID
+	OUT	response:
+		• <appointment list>
+			- timeSlot
+			- patient
+			- problem/ailment
+
+viewAppointment()
+	IN	arguments:
+		• appointmentID
+	OUT	response:
+		• patient data
+		• appointment data
+
+confirmAppointmentRequest()
+	IN	arguments:
+		• appointmentID
+	OUT	response:
+		• OK	confirmation
+		• OK	notification via email to patient
+		• NOK	error message
+
+updateAppointment()
+	IN	arguments:
+		• appointmentID
+		• (updated) appointment data
+	OUT	response:
+		• OK	confirmation
+		• OK	notification via email to patient
+		• NOK	error message
+
+viewAllAppointments()
+	IN	arguments:
+		• doctorID
+	OUT	response:
+		• <appointment list>
+			- timeSlot
+			- patient
+			- problem/ailment
+			- ??
+
+viewFeedback()
+	IN	arguments:
+		• appointmentID
+	OUT	response:
+		• feedback data
+
+generateReport()
+	IN	arguments:
+		• doctorID
+		• date (month)
+	OUT	response:
+		• exported text-based file (pdf, xls)
+		• exported graphical file (pdf, xls) ?
+		
+
