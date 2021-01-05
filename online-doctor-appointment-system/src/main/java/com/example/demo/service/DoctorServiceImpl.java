@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.domain.Doctor;
 import com.example.demo.repo.DoctorRepository;
 
-
-
 @Service
 public class DoctorServiceImpl implements DoctorService {
 	

@@ -22,13 +22,13 @@ public class PatientsController {
 
 	
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@CrossOrigin(origins = { "http://localhost:3000"})
+	@CrossOrigin(origins = { "http://localhost:8080"})
 	@GetMapping(value = "/")
 	public List<Patient> getAllPatients() {
 		return patientService.getAllPatients();
 	}
 	
-	//@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
+//	@PreAuthorize("hasAuthority('DOCTOR') OR hasAuthority('ADMIN')")
 	@GetMapping(value = "/test")
 	public String test() {
 		return "test";
