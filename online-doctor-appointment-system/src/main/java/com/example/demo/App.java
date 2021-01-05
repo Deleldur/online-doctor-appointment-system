@@ -127,17 +127,17 @@ public class App {
 		};
 	}
 	
-	@Bean
-	public CommandLineRunner feedbackDemo(FeedbackRepository feedbackRepository) {
-		
-		// String doctorId, String patientId, String appointmentId, String feedbackMessage
-		return (args) -> {
-			
-			feedbackRepository.deleteAll();
-			Feedback feedback = new Feedback("doctor Id", "patient Id", "Appointment Id", "Feedback message");
-			feedbackRepository.save(feedback);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner feedbackDemo(FeedbackRepository feedbackRepository) {
+//		
+//		// String doctorId, String patientId, String appointmentId, String feedbackMessage
+//		return (args) -> {
+//			
+//			feedbackRepository.deleteAll();
+//			Feedback feedback = new Feedback("doctor Id", "patient Id", "Appointment Id", "Feedback message");
+//			feedbackRepository.save(feedback);
+//		};
+//	}
 	
 	@Bean
 	public CommandLineRunner appointmentDummy(AppointmentRepository appointmentRepository) {
@@ -145,7 +145,9 @@ public class App {
 			appointmentRepository.deleteAll();
 //			String doctorId, String patientId, Boolean active, String bookingDate, String bookingTime
 			Appointment appointment = new Appointment("DoctorID", "PatientID", true, "2020-12-31", "23:30");
+			Appointment appointment2 = new Appointment("1234", "f123124", true, "2021-03-15", "12:30");
 			appointmentRepository.save(appointment);
+			appointmentRepository.save(appointment2);
 		};
 	}
 }
