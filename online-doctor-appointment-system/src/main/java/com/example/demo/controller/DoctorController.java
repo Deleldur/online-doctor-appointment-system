@@ -61,6 +61,13 @@ public class DoctorController {
 		return "updateProfile(): Updated profile info:" + "\n id: "+ id + "\n info: " + info + "\n name: " + name + "\n tel: " + tel + "\n loc: " + loc;
 	}
 
+	@PostMapping(value = "/profile/update")
+	public String updateProfile(@RequestBody String id) {
+//		OUT	response:
+//			• OK	confirmation
+//			• NOK	error message
+		return "updateProfile(): Updated profile info:" + "\n"+ id;
+	}
 
 	@GetMapping(value = "/appointment/list_requests")
 	public String viewAllAppointmentRequests(String doctorID) {
