@@ -28,6 +28,10 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		.withUser("admin").password("{noop}" + "password").authorities(new SimpleGrantedAuthority("ADMIN"))
 		.and()
 		.withUser("user").password("{noop}" + "password").authorities(new SimpleGrantedAuthority("USER"))
+		.and()
+		.withUser("pat").password("{noop}" + "password").authorities(new SimpleGrantedAuthority("PATIENT"))
+		.and()
+		.withUser("doc").password("{noop}" + "password").authorities(new SimpleGrantedAuthority("DOCTOR"))
 		
 		//ADD NEW USERS HERE ...
 		
