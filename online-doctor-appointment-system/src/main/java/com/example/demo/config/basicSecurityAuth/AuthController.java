@@ -17,55 +17,59 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping(value = "/api/v1/auth")
+@RequestMapping(value = "/")
 @RestController
 public class AuthController {
-
+    @GetMapping(path = "/basicauth")
+    public AuthenticationBean helloWorldBean() {
+        //throw new RuntimeException("Some Error has Happened! Contact Support at ***-***");
+        return new AuthenticationBean("You are authenticated");
+    }   
 	//http://localhost:8080/api/v1/auth/logout (use this to log user out)
-	
-	//http://localhost:8080/api/v1/auth/me
-	@GetMapping(path = "/me", produces = "application/json")
-	public Principal me(HttpServletRequest request, Principal principal) {
-		return principal; 
-	}
-
-	//http://localhost:8080/api/v1/auth/me/roles
-	@GetMapping(path = "/me/roles", produces = "application/json")
-	public List<String> me2(HttpServletRequest request, Principal principal) {
-		SecurityContext securityContext = SecurityContextHolder.getContext();
-		System.out.println(securityContext.getAuthentication().getPrincipal());
-		return securityContext.getAuthentication().getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());//.getName();
-	}
-
-
-	//http://localhost:8080/api/v1/auth/checkUsername?username=admin
-	@GetMapping(path = "/checkUsername", produces = "application/json")
-	@PreAuthorize("#username == authentication.principal.username")
-	public boolean checkUserNameIsSameAsPrincipalUser(HttpServletRequest request, Principal principal, @RequestParam String username) {
-		System.out.println("checkUserNameIsSameAsPrincipalUser: " + username);
-		return true; 
-	}
-
-	
-	//http://localhost:8080/api/v1/auth/checkUserRoleIsAdmin
-	@GetMapping(path = "/checkUserRoleIsAdmin", produces = "application/json")
-	public boolean checkUserRole(HttpServletRequest request, Principal principal) {	
-		
-		SecurityContext context = SecurityContextHolder.getContext();
-        if (context == null)
-            return false;
-
-        Authentication authentication = context.getAuthentication();
-        if (authentication == null)
-            return false;
-
-        for (GrantedAuthority auth : authentication.getAuthorities()) {
-        	System.out.println(auth.getAuthority());
-            if ("ADMIN".equals(auth.getAuthority()))
-                return true;
-        }
-
-        return false;
-	}
+//	
+//	//http://localhost:8080/api/v1/auth/me
+//	@GetMapping(path = "/me", produces = "application/json")
+//	public Principal me(HttpServletRequest request, Principal principal) {
+//		return principal; 
+//	}
+//
+//	//http://localhost:8080/api/v1/auth/me/roles
+//	@GetMapping(path = "/me/roles", produces = "application/json")
+//	public List<String> me2(HttpServletRequest request, Principal principal) {
+//		SecurityContext securityContext = SecurityContextHolder.getContext();
+//		System.out.println(securityContext.getAuthentication().getPrincipal());
+//		return securityContext.getAuthentication().getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());//.getName();
+//	}
+//
+//
+//	//http://localhost:8080/api/v1/auth/checkUsername?username=admin
+//	@GetMapping(path = "/checkUsername", produces = "application/json")
+//	@PreAuthorize("#username == authentication.principal.username")
+//	public boolean checkUserNameIsSameAsPrincipalUser(HttpServletRequest request, Principal principal, @RequestParam String username) {
+//		System.out.println("checkUserNameIsSameAsPrincipalUser: " + username);
+//		return true; 
+//	}
+//
+//	
+//	//http://localhost:8080/api/v1/auth/checkUserRoleIsAdmin
+//	@GetMapping(path = "/checkUserRoleIsAdmin", produces = "application/json")
+//	public boolean checkUserRole(HttpServletRequest request, Principal principal) {	
+//		
+//		SecurityContext context = SecurityContextHolder.getContext();
+//        if (context == null)
+//            return false;
+//
+//        Authentication authentication = context.getAuthentication();
+//        if (authentication == null)
+//            return false;
+//
+//        for (GrantedAuthority auth : authentication.getAuthorities()) {
+//        	System.out.println(auth.getAuthority());
+//            if ("ADMIN".equals(auth.getAuthority()))
+//                return true;
+//        }
+//
+//        return false;
+//	}
 
 }

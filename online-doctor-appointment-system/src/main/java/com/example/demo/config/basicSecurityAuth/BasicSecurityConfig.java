@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -53,14 +54,15 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf().disable()
 		.authorizeRequests()
 		//.antMatchers("/me**").permitAll() 
-		.antMatchers("/**").permitAll()
+//		.antMatchers("/**").permitAll()
+		   .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
 		//.antMatchers("/api/v1/**").authenticated()
 		//.antMatchers("/api/v1/admin/**").access("hasAnyAuthority('ADMIN') or hasAnyRole('ADMIN')") //HARDCODED FILTER BUT CAN BE SPECIFIED AS AN ANNOTATION ON THE ENDPOINT DIRECTLY WITH @SECURE @PREAUTHORIZIED ETC... (ENSURE TO COMMENT THIS OUT IF GOING WITTH THE ANNOTATIONS INSTEAD )
 		//.antMatchers("/api/v1/user/**").access("hasAnyAuthority('ADMIN') or hasAnyRole('ADMIN')") //HARDCODED FILTER BUT CAN BE SPECIFIED AS AN ANNOTATION ON THE ENDPOINT DIRECTLY WITH @SECURE @PREAUTHORIZIED ETC... (ENSURE TO COMMENT THIS OUT IF GOING WITTH THE ANNOTATIONS INSTEAD )
 		.anyRequest().authenticated() 
 		.and()
 		.logout() 
-		.logoutUrl("/api/v1/auth/logout")
+		.logoutUrl("/logout")
 		.permitAll()
 		.and()
 		.httpBasic(); 

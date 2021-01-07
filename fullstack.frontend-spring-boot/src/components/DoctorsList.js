@@ -49,14 +49,20 @@ export default class CategoriesList extends Component {
       return <Appointments appointments={currentAppointments} key={i} />;
     });
   };
+  
   render() {
-    return (
-      <div>
-        <h1>Doctors</h1>
-        {this.doctorsList()}
-        <h2>Appointments</h2>
-        {this.appointmentList()} 
-      </div>
-    );
+    if (AuthenticationService.isUserLoggedIn()) {
+      return (     
+        <div>          
+          <h1>Doctors</h1>
+          {this.doctorsList()}
+          <h2>Appointments</h2>
+          {this.appointmentList()} 
+  
+        </div>
+      );
+  } else {
+      return <Redirect to="/login" />
   }
+}
 }

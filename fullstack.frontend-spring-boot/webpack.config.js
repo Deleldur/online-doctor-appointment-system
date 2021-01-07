@@ -2,7 +2,7 @@ const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+//const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 module.exports = {
   entry: ["babel-polyfill", "./src/index.js"],
@@ -79,9 +79,10 @@ module.exports = {
     new webpack.DefinePlugin({
       BASEPATH: "''",
       WEB_PACK_CONFIG_RUNNING: "'development-config'"
-    }),
-    new CopyWebpackPlugin({
-      patterns: [{ from: "src/img", to: "../dist/src/img" }]
-    })
+     })
+    ,
+    // new CopyWebpackPlugin({
+    //   patterns: [{ from: "src/img", to: "../dist/src/img" }]
+    // })
   ]
 };
