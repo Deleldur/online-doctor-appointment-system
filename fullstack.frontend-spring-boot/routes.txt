@@ -1,0 +1,29 @@
+routes
+
+auth routes:
+login		    POST	
+logout		    POST	
+reset-password  POST
+create-user	    POST
+
+user routes:
+delete-user	            DELETE	
+view-user	            GET	
+edit-user	            PUT	
+send private message    POST
+
+
+forum routes:
+add post	    POST	
+delete post	    DELETE	
+edit post	    PUT	
+view post	    GET	
+
+Categories / Subjects routes:
+view-categories
+
+What about replies to an existing post?
+
+
+
+A user could se on his profile page which posts he/she has done.

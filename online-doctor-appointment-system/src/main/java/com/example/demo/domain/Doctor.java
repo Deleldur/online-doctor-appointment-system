@@ -4,12 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+
 @Document
 public class Doctor extends User{
 
 	private List<String> ailmentList;
-//	5feb037c596b8a4448dc33eb
-
 
 	public Doctor() {
 		super();
@@ -27,5 +26,4 @@ public class Doctor extends User{
 	public void setAilmentList(List<String> ailmentList) {
 		this.ailmentList = ailmentList;
 	}
-
 }

@@ -67,25 +67,53 @@ public class App {
 
 	}
 
-	@Bean CommandLineRunner doctorDemo(DoctorRepository doctorRepository) {
-		return (args) -> {
-			
-			doctorRepository.deleteAll();
-			Doctor doctor1 = new Doctor("Tommy", "Hansen", address1, "888-888-8888", "doctor@doctor.com", Arrays.asList("Acne", 
-																														"Allergies"));
-			Doctor doctor2 = new Doctor("Marie", "Larsson", address2, "888-888-9999", "marie@doctor.com", Arrays.asList("Cancer",
-																														"Diabetes", 
-																														"Hearing"));
-			doctorRepository.save(doctor1);
-			doctorRepository.save(doctor2);
-			
-			int counter = 0;
-			for (Doctor doctor: doctorRepository.getAllDoctors()) {
-				++counter;
-				log.info(counter + ". doctor: " + doctor);
-			}
-		};
-	}
+//	@Bean CommandLineRunner doctorDemo(DoctorRepository doctorRepository) {
+//		return (args) -> {
+//			
+//			doctorRepository.deleteAll();
+//			Doctor doctor1 = new Doctor("Tommy", "Hansen", address1, "888-333-8888", "doctor@doctor.com", Arrays.asList("acne", 
+//																														"allergies"));
+//			Doctor doctor2 = new Doctor("Marie", "Larsson", address2, "888-978-9999", "marie@doctor.com", Arrays.asList("acne",
+//																														"diabetes", 
+//																														"hearing"));
+//			Doctor doctor3 = new Doctor("Wilma", "Andersson", address1, "312-455-1222", "doctor@doctor.com", Arrays.asList("Cancer", 
+//																														"Chronic Pain"));
+//			Doctor doctor4 = new Doctor("Lucas", "Johansson", address1, "845-665-1234", "doctor@doctor.com", Arrays.asList("Diabetes", 
+//																														"Diet"));
+//			Doctor doctor5 = new Doctor("Hugo", "Karlsson", address1, "126-555-6234", "doctor@doctor.com", Arrays.asList("High Blood Pressure", 
+//																														"allergies"));
+//			Doctor doctor6 = new Doctor("Oscar", "Nilsson", address1, "345-321-8945", "doctor@doctor.com", Arrays.asList("IBS", 
+//																														"allergies"));
+//			Doctor doctor7 = new Doctor("Alma", "Eriksson", address1, "555-897-6511", "doctor@doctor.com", Arrays.asList("Rheumatism", 
+//																														"Sinusitis"));
+//			Doctor doctor8 = new Doctor("Ella", "Larsson", address1, "444-645-3254", "doctor@doctor.com", Arrays.asList("Migraines", 
+//																														"Psoriasis"));
+//			Doctor doctor9 = new Doctor("Ebba", "Persson", address1, "333-664-8798", "doctor@doctor.com", Arrays.asList("Snoring", 
+//																														"Insomnia"));
+//			Doctor doctor10 = new Doctor("Liam", "Gustafsson", address1, "222-122-5432", "doctor@doctor.com", Arrays.asList("Weight", 
+//																														"Diabetes"));
+//
+//
+//			
+//			
+//			doctorRepository.save(doctor1);
+//			doctorRepository.save(doctor2);
+//			doctorRepository.save(doctor3);
+//			doctorRepository.save(doctor4);
+//			doctorRepository.save(doctor5);
+//			doctorRepository.save(doctor6);
+//			doctorRepository.save(doctor7);
+//			doctorRepository.save(doctor8);
+//			doctorRepository.save(doctor9);
+//			doctorRepository.save(doctor10);
+//			
+//			int counter = 0;
+//			for (Doctor doctor: doctorRepository.getAllDoctors()) {
+//				++counter;
+//				log.info(counter + ". doctor: " + doctor);
+//			}
+//		};
+//	}
 	
 	@Bean
 	public CommandLineRunner patientDemo(PatientRepository patientRepository) {
@@ -127,25 +155,27 @@ public class App {
 		};
 	}
 	
-	@Bean
-	public CommandLineRunner feedbackDemo(FeedbackRepository feedbackRepository) {
-		
-		// String doctorId, String patientId, String appointmentId, String feedbackMessage
-		return (args) -> {
-			
-			feedbackRepository.deleteAll();
-			Feedback feedback = new Feedback("doctor Id", "patient Id", "Appointment Id", "Feedback message");
-			feedbackRepository.save(feedback);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner feedbackDemo(FeedbackRepository feedbackRepository) {
+//		
+//		// String doctorId, String patientId, String appointmentId, String feedbackMessage
+//		return (args) -> {
+//			
+//			feedbackRepository.deleteAll();
+//			Feedback feedback = new Feedback("doctor Id", "patient Id", "Appointment Id", "Feedback message");
+//			feedbackRepository.save(feedback);
+//		};
+//	}
 	
-	@Bean
-	public CommandLineRunner appointmentDummy(AppointmentRepository appointmentRepository) {
-		return (args) -> {
-			appointmentRepository.deleteAll();
+//	@Bean
+//	public CommandLineRunner appointmentDummy(AppointmentRepository appointmentRepository) {
+//		return (args) -> {
+//			appointmentRepository.deleteAll();
 //			String doctorId, String patientId, Boolean active, String bookingDate, String bookingTime
-			Appointment appointment = new Appointment("DoctorID", "PatientID", true, "2020-12-31", "23:30");
-			appointmentRepository.save(appointment);
-		};
-	}
+//			Appointment appointment = new Appointment("DoctorID", "PatientID", true, "2020-12-31", "23:30");
+//			Appointment appointment2 = new Appointment("1234", "f123124", true, "2021-03-15", "12:30");
+//			appointmentRepository.save(appointment);
+//			appointmentRepository.save(appointment2);
+//		};
+//	}
 }
