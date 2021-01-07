@@ -8,15 +8,13 @@ USER COLLECTION
 		firstName: "",
 		lastName: "",
 		phone: "",
-		address: "",
-		email: "",
-		feedback: [ // Array of feedback (each feedback is connected to a specific appointment and doctor)
+		address: 
 			{
-				appointmentId: "",
-				feedbackText: "",
-				doctorId: "",
-			}
-		],
+			street: "",
+			city: "",
+			zipCode: ""	
+		},
+		email: "",
 		
 		// embedded version of appointments
 		appointments: [
@@ -73,7 +71,20 @@ USER COLLECTION
 	}
 
 // Reference version of appointments
+FEEDBACK COLLECTION
+
+feedback: [ // Array of feedback (each feedback is connected to a specific appointment and doctor)
+			{
+				appointmentId: "",
+				feedbackText: "",
+				doctorId: "",
+				feedbackMessage: ""
+			}
+		]
+
+
 APPOINTMENTS COLLECTION
+
 
 APPOINTMENTS
 {

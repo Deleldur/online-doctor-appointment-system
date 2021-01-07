@@ -27,18 +27,29 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.inMemoryAuthentication()
 		.withUser("admin").password("{noop}" + "password").authorities(new SimpleGrantedAuthority("ADMIN"))
 		.and()
-		.withUser("user").password("{noop}" + "password").authorities(new SimpleGrantedAuthority("USER"))
-		
+		.withUser("test@test.com").password("{noop}" + "password").authorities(new SimpleGrantedAuthority("USER"))
 		//ADD NEW USERS HERE ...
-		
+
 		;
 	}
 	
-	
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
 	protected void configure(HttpSecurity http) throws Exception {
-		 
+
+		
+		
 		http
+		.cors().and()
 		.csrf().disable()
 		.authorizeRequests()
 		//.antMatchers("/me**").permitAll() 
@@ -48,24 +59,14 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		//.antMatchers("/api/v1/user/**").access("hasAnyAuthority('ADMIN') or hasAnyRole('ADMIN')") //HARDCODED FILTER BUT CAN BE SPECIFIED AS AN ANNOTATION ON THE ENDPOINT DIRECTLY WITH @SECURE @PREAUTHORIZIED ETC... (ENSURE TO COMMENT THIS OUT IF GOING WITTH THE ANNOTATIONS INSTEAD )
 		.anyRequest().authenticated() 
 		.and()
-		.cors().and()
 		.logout() 
 		.logoutUrl("/api/v1/auth/logout")
 		.permitAll()
 		.and()
 		.httpBasic(); 
-		
 	}
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+
 
 }
 
