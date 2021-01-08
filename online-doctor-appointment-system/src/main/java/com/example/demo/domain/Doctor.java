@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+//@Document
 public class Doctor extends User{
 
 	private List<String> ailmentList;
@@ -14,8 +14,8 @@ public class Doctor extends User{
 		super();
 	}
 
-	public Doctor(String firstName, String lastName, Map<String, String> address, String phoneNumber, String email, List<String> ailmentList) {
-		super(firstName, lastName, address, phoneNumber, email);
+	public Doctor(String firstName, String lastName, Map<String, String> address, Map<String, String> roles, String phoneNumber, String email, String userName, String password, List<String> ailmentList) {
+		super(firstName, lastName, address, roles, phoneNumber, email, userName, password);
 		this.ailmentList = ailmentList;
 	}
 

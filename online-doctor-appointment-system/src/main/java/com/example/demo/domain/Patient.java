@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Map;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+//@Document
 public class Patient extends User {	
 
 	private boolean verified;
@@ -14,9 +14,9 @@ public class Patient extends User {
 	}
 	
 
-	public Patient(String firstName, String lastName, Map<String, String> address, String phoneNumber, String email, 
+	public Patient(String firstName, String lastName, Map<String, String> address, Map<String, String> roles, String phoneNumber, String email, String userName, String password, 
 			boolean verified) {
-		super(firstName, lastName, address, phoneNumber, email);
+		super(firstName, lastName, address, roles, phoneNumber, email, userName, password);
 		this.verified = verified;
 	}
 

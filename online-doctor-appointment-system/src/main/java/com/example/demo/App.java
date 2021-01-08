@@ -29,6 +29,18 @@ public class App {
 	private static final Logger log = LoggerFactory.getLogger(App.class);
 	
 	// Hard coded address fields
+	public static Map<String, String> patient;
+	static {
+		patient = new HashMap<>();
+		patient.put("role", "patient");
+	}
+	
+	public static Map<String, String> doctor;
+	static {
+		doctor = new HashMap<>();
+		doctor.put("role", "doctor");
+	}
+	
 	public static Map<String, String> address1;
 	static {
 	    address1 = new HashMap<>();
@@ -67,53 +79,53 @@ public class App {
 
 	}
 
-//	@Bean CommandLineRunner doctorDemo(DoctorRepository doctorRepository) {
-//		return (args) -> {
-//			
-//			doctorRepository.deleteAll();
-//			Doctor doctor1 = new Doctor("Tommy", "Hansen", address1, "888-333-8888", "doctor@doctor.com", Arrays.asList("acne", 
-//																														"allergies"));
-//			Doctor doctor2 = new Doctor("Marie", "Larsson", address2, "888-978-9999", "marie@doctor.com", Arrays.asList("acne",
-//																														"diabetes", 
-//																														"hearing"));
-//			Doctor doctor3 = new Doctor("Wilma", "Andersson", address1, "312-455-1222", "doctor@doctor.com", Arrays.asList("Cancer", 
-//																														"Chronic Pain"));
-//			Doctor doctor4 = new Doctor("Lucas", "Johansson", address1, "845-665-1234", "doctor@doctor.com", Arrays.asList("Diabetes", 
-//																														"Diet"));
-//			Doctor doctor5 = new Doctor("Hugo", "Karlsson", address1, "126-555-6234", "doctor@doctor.com", Arrays.asList("High Blood Pressure", 
-//																														"allergies"));
-//			Doctor doctor6 = new Doctor("Oscar", "Nilsson", address1, "345-321-8945", "doctor@doctor.com", Arrays.asList("IBS", 
-//																														"allergies"));
-//			Doctor doctor7 = new Doctor("Alma", "Eriksson", address1, "555-897-6511", "doctor@doctor.com", Arrays.asList("Rheumatism", 
-//																														"Sinusitis"));
-//			Doctor doctor8 = new Doctor("Ella", "Larsson", address1, "444-645-3254", "doctor@doctor.com", Arrays.asList("Migraines", 
-//																														"Psoriasis"));
-//			Doctor doctor9 = new Doctor("Ebba", "Persson", address1, "333-664-8798", "doctor@doctor.com", Arrays.asList("Snoring", 
-//																														"Insomnia"));
-//			Doctor doctor10 = new Doctor("Liam", "Gustafsson", address1, "222-122-5432", "doctor@doctor.com", Arrays.asList("Weight", 
-//																														"Diabetes"));
-//
-//
-//			
-//			
-//			doctorRepository.save(doctor1);
-//			doctorRepository.save(doctor2);
-//			doctorRepository.save(doctor3);
-//			doctorRepository.save(doctor4);
-//			doctorRepository.save(doctor5);
-//			doctorRepository.save(doctor6);
-//			doctorRepository.save(doctor7);
-//			doctorRepository.save(doctor8);
-//			doctorRepository.save(doctor9);
-//			doctorRepository.save(doctor10);
-//			
-//			int counter = 0;
-//			for (Doctor doctor: doctorRepository.getAllDoctors()) {
-//				++counter;
-//				log.info(counter + ". doctor: " + doctor);
-//			}
-//		};
-//	}
+	@Bean CommandLineRunner doctorDemo(DoctorRepository doctorRepository) {
+		return (args) -> {
+			
+			doctorRepository.deleteAll();
+			Doctor doctor1 = new Doctor("Tommy", "Hansen", address1, doctor, "888-333-8888", "doctor@doctor.com", "tommy", "password", Arrays.asList("acne", 
+																														"allergies"));
+			Doctor doctor2 = new Doctor("Marie", "Larsson", address2, doctor, "888-978-9999", "marie@doctor.com", "marie", "password", Arrays.asList("acne",
+																														"diabetes", 
+																														"hearing"));
+			Doctor doctor3 = new Doctor("Wilma", "Andersson", address1, doctor, "312-455-1222", "doctor@doctor.com", "wilma", "password", Arrays.asList("Cancer", 
+																														"Chronic Pain"));
+			Doctor doctor4 = new Doctor("Lucas", "Johansson", address1, doctor, "845-665-1234", "doctor@doctor.com", "lucas", "password", Arrays.asList("Diabetes", 
+																														"Diet"));
+			Doctor doctor5 = new Doctor("Hugo", "Karlsson", address1, doctor, "126-555-6234", "doctor@doctor.com", "hugo", "password", Arrays.asList("High Blood Pressure", 
+																														"allergies"));
+			Doctor doctor6 = new Doctor("Oscar", "Nilsson", address1, doctor, "345-321-8945", "doctor@doctor.com", "oscar", "password", Arrays.asList("IBS", 
+																														"allergies"));
+			Doctor doctor7 = new Doctor("Alma", "Eriksson", address1, doctor, "555-897-6511", "doctor@doctor.com", "alma", "password", Arrays.asList("Rheumatism", 
+																														"Sinusitis"));
+			Doctor doctor8 = new Doctor("Ella", "Larsson", address1, doctor, "444-645-3254", "doctor@doctor.com", "ella", "password", Arrays.asList("Migraines", 
+																														"Psoriasis"));
+			Doctor doctor9 = new Doctor("Ebba", "Persson", address1, doctor, "333-664-8798", "doctor@doctor.com", "ebba", "password", Arrays.asList("Snoring", 
+																														"Insomnia"));
+			Doctor doctor10 = new Doctor("Liam", "Gustafsson", address1, doctor, "222-122-5432", "doctor@doctor.com", "liam", "password", Arrays.asList("Weight", 
+																														"Diabetes"));
+
+
+			
+			
+			doctorRepository.save(doctor1);
+			doctorRepository.save(doctor2);
+			doctorRepository.save(doctor3);
+			doctorRepository.save(doctor4);
+			doctorRepository.save(doctor5);
+			doctorRepository.save(doctor6);
+			doctorRepository.save(doctor7);
+			doctorRepository.save(doctor8);
+			doctorRepository.save(doctor9);
+			doctorRepository.save(doctor10);
+			
+			int counter = 0;
+			for (Doctor doctor: doctorRepository.getAllDoctors()) {
+				++counter;
+				log.info(counter + ". doctor: " + doctor);
+			}
+		};
+	}
 	
 	@Bean
 	public CommandLineRunner patientDemo(PatientRepository patientRepository) {
@@ -122,13 +134,13 @@ public class App {
 
 			log.info("bean was executed!");
 
-			// DELETE ALL
-			patientRepository.deleteAll();
+			// DELETE ALL 
+
 
 			// SAVE USER
-			Patient patient1 = new Patient("Mikael", "Sten", address1, "555-555-5555", "test@test.com", true);
-			Patient patient2 = new Patient("Bosse", "Nilsson", address2, "555-555-4444", "test2@test.com", true);
-			Patient patient3 = new Patient("Klasse", "Boström", address1, "555-555-5123", "test3@test.com", true);
+			Patient patient1 = new Patient("Mikael", "Sten", address1, patient, "555-555-5555", "test@test.com", "mikael", "password", true);
+			Patient patient2 = new Patient("Bosse", "Nilsson", address2, patient, "555-555-4444", "test2@test.com", "bosse", "password", true);
+			Patient patient3 = new Patient("Klasse", "Boström", address1, patient, "555-555-5123", "test3@test.com", "klasse", "password", true);
 
 			patientRepository.save(patient1);
 			patientRepository.save(patient2);
