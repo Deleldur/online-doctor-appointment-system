@@ -1,7 +1,15 @@
 import React from "react";
-import { render } from "react-dom";
-import App from './App';
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
-//main entvry point for the app
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 
-render(<App />, document.getElementById("app"));
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
+
+serviceWorker.unregister();

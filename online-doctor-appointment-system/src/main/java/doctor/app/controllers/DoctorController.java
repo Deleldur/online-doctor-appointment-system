@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,9 +27,8 @@ import doctor.app.repository.DoctorRepository;
 import doctor.app.services.DoctorService;
 
 
-
-
-@RequestMapping(value = "/doctor")
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping(value = "/api/test")
 @RestController
 //@Validated
 public class DoctorController {
@@ -41,7 +41,8 @@ public class DoctorController {
 
 	
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@GetMapping(value = "/")
+		@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+		@GetMapping(value = "/doctor")
 	public List<Doctor> getAllDoctors() {
 		return doctorService.getAllDoctors();
 	}
