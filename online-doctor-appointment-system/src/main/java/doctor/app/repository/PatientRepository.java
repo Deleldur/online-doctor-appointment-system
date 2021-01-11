@@ -1,4 +1,4 @@
-package com.example.demo.repo;
+package doctor.app.repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,7 +7,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.domain.Patient;
+import doctor.app.models.Patient;
 
 //@Transactional
 @Repository

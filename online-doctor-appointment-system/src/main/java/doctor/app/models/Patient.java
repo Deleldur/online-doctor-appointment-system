@@ -1,8 +1,10 @@
-package com.example.demo.domain;
+package doctor.app.models;
 
 import java.util.Date;
 import java.util.Map;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.example.demo.domain.User;
 
 @Document
 public class Patient extends User {	

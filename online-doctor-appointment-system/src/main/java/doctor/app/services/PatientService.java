@@ -1,7 +1,8 @@
-package com.example.demo.service;
+package doctor.app.services;
 
 import java.util.List;
-import com.example.demo.domain.Patient;
+
+import doctor.app.models.Patient;
 
 /**
  * This is a test for a javadoc

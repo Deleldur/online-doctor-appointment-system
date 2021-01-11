@@ -1,8 +1,8 @@
-package com.example.demo.service;
+package doctor.app.services;
 
 import java.util.List;
 
-import com.example.demo.domain.Doctor;
+import doctor.app.models.Doctor;
 
 public interface DoctorService {
 

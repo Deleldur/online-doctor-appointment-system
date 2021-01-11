@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package doctor.app.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.domain.Doctor;
-import com.example.demo.repo.DoctorRepository;
+import doctor.app.models.Doctor;
+import doctor.app.repository.DoctorRepository;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {

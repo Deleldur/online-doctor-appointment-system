@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package doctor.app.controllers;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.Patient;
-import com.example.demo.service.PatientService;
+import doctor.app.models.Patient;
+import doctor.app.services.PatientService;
 
 @RequestMapping(value = "/patient")
 @RestController
