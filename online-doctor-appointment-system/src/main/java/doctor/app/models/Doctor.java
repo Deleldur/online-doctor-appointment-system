@@ -1,11 +1,13 @@
-package com.example.demo.domain;
+package doctor.app.models;
 
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-//@Document
+import com.example.demo.domain.User;
+
+@Document
 public class Doctor extends User{
 
 	private List<String> ailmentList;

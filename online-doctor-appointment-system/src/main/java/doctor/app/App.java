@@ -1,4 +1,4 @@
-package com.example.demo;
+package doctor.app;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,14 +13,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.example.demo.domain.Appointment;
-import com.example.demo.domain.Doctor;
-import com.example.demo.domain.Patient;
-import com.example.demo.domain.Feedback;
-import com.example.demo.repo.AppointmentRepository;
-import com.example.demo.repo.DoctorRepository;
-import com.example.demo.repo.FeedbackRepository;
-import com.example.demo.repo.PatientRepository;
+import doctor.app.models.Appointment;
+import doctor.app.models.Doctor;
+import doctor.app.models.Feedback;
+import doctor.app.models.Patient;
+import doctor.app.repository.AppointmentRepository;
+import doctor.app.repository.DoctorRepository;
+import doctor.app.repository.FeedbackRepository;
+import doctor.app.repository.PatientRepository;
 
 @EnableScheduling
 @SpringBootApplication

@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package doctor.app.controllers;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.Appointment;
-import com.example.demo.repo.AppointmentRepository;
-import com.example.demo.service.AppointmentService;
+import doctor.app.models.Appointment;
+import doctor.app.repository.AppointmentRepository;
+import doctor.app.services.AppointmentService;
 
 @RequestMapping(value = "/appointment")
 @CrossOrigin(origins = {"http://localhost:8080"})
