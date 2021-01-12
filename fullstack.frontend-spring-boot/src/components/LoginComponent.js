@@ -96,7 +96,7 @@ export default class LoginComponent extends Component {
               this.form = c;
             }}
           >
-    <form class="login-form acrylic">
+    <div className="login-form acrylic">
     <span>Login to your account</span>
             
               <Input
@@ -117,9 +117,9 @@ export default class LoginComponent extends Component {
 
               <button
                id="SignIn" disabled={this.state.loading}>Login</button>
-              <p class="message">Create Account</p>
+              <p className="message">Create Account</p>
             
-            </form>
+            </div>
             <CheckButton
               style={{ display: "none" }}
               ref={c => {
