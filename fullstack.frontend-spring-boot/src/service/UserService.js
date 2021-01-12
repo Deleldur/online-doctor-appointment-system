@@ -31,6 +31,11 @@ class UserService {
     let userId = authService.getCurrentUserId();
     return axios.get(API_URL + 'doctor/finddoctor/' + userId, { headers: authHeader() });
   }
-}
 
+  editUser(user) {
+    console.log(user);
+    let userId = authService.getCurrentUserId();
+    return axios.put(API_URL + 'doctor/updatedoctor/' + userId, user, {headers: authHeader()});
+  }
+}
 export default new UserService();

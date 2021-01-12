@@ -50,15 +50,15 @@ public class DoctorServiceImpl implements DoctorService {
 		return userRepository.findById(id);
 	}
 	
-//	@Override
-//	public Doctor updateDoctorProfile(Doctor orgDoctor, Doctor newDoctor) {
-//		orgDoctor.setEmail(newDoctor.getEmail());
-//		orgDoctor.setLastName(newDoctor.getLastName());
-//		orgDoctor.setFirstName(newDoctor.getFirstName());
-//        final Doctor updatedDoctor = userRepository.save(orgDoctor);
-//
-//		return updatedDoctor;
-//	}
+	@Override
+	public User updateDoctorProfile(User orgDoctor, User newDoctor) {
+		orgDoctor.setEmail(newDoctor.getEmail());
+		orgDoctor.setLastName(newDoctor.getLastName());
+		orgDoctor.setFirstName(newDoctor.getFirstName());
+        final User updatedDoctor = userRepository.save(orgDoctor);
+
+		return updatedDoctor;
+	}
 	@Override
 	public List<Doctor> findDoctorAndLocation(String firstName, String location) {
 		return userRepository.findDoctorAndLocation(firstName, location);

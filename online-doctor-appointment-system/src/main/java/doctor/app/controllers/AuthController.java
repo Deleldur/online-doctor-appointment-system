@@ -1,7 +1,10 @@
 package doctor.app.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import doctor.app.models.Doctor;
 import doctor.app.models.ERole;
 import doctor.app.models.Role;
 import doctor.app.models.User;
@@ -39,6 +43,13 @@ import doctor.app.security.services.UserDetailsImpl;
 @RequestMapping("/api/auth")
 public class AuthController {
 	
+	public static Map<String, String> address1;
+	static {
+	    address1 = new HashMap<>();
+	    address1.put("streetAddress", "Hammarvägen 12");
+	    address1.put("city", "Östersund");
+	    address1.put("zipCode", "831 35");
+	}
 	@Autowired
 	AuthenticationManager authenticationManager;
 
@@ -88,13 +99,28 @@ public class AuthController {
 					.badRequest()
 					.body(new MessageResponse("Error: Email is already in use!"));
 		}
+		Map<String, String> address = new HashMap<>();
+		address = signUpRequest.getAddress();
+		
+		List<String> ailmentList = new ArrayList<String>();
 
+		ailmentList = signUpRequest.getAilmentList();
+		
 		// Create new user's account
-		User user = new User(
-				signUpRequest.getUsername(), 
+		Doctor doctor = new Doctor(
+				signUpRequest.getUsername(),  
 				signUpRequest.getEmail(),
 				
-				encoder.encode(signUpRequest.getPassword()));
+				encoder.encode(signUpRequest.getPassword()),
+				signUpRequest.getFirstName(),
+				signUpRequest.getLastName(),
+				address,
+				signUpRequest.getPhoneNumber(),
+				ailmentList
+				
+				
+				
+				);
 
 		Set<String> strRoles = signUpRequest.getRoles();
 		Set<Role> roles = new HashSet<>();
@@ -126,8 +152,8 @@ public class AuthController {
 			});
 		}
 
-		user.setRoles(roles);
-		userRepository.save(user);
+		doctor.setRoles(roles);
+		userRepository.save(doctor);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}

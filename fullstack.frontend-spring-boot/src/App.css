@@ -117,11 +117,12 @@ label {
 .form .register-form {
   display: none;
 }
-.container {
-  position: relative;
-  z-index: 1;
-  max-width: 300px;
-  margin: 0 auto;
+.container-bg {
+  background-color: white;
+  padding: 10px;
+}
+.container form .btn {
+  float: right;
 }
 .container:before,
 .container:after {

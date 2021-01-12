@@ -3,11 +3,6 @@ package doctor.app.models;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.example.demo.domain.User;
-
-//@Document
 public class Doctor extends User{
 
 	private List<String> ailmentList;
@@ -16,8 +11,8 @@ public class Doctor extends User{
 		super();
 	}
 
-	public Doctor(String firstName, String lastName, Map<String, String> address, String phoneNumber, String email, List<String> ailmentList) {
-		super(firstName, lastName, address, phoneNumber, email);
+	public Doctor(String username, String email, String password, String firstName, String lastName, Map<String, String> address, String phoneNumber, List<String> ailmentList) {
+		super(username, email, password, firstName, lastName, address, phoneNumber);
 		this.ailmentList = ailmentList;
 	}
 

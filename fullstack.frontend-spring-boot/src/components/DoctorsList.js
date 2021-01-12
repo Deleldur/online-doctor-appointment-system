@@ -20,9 +20,9 @@ const Appointments = (props) => (
 export default class CategoriesList extends Component {
   constructor(props) {
     super(props);
-    this.state = { doctors: [], appointments: [] };
+  this.state = { doctors: [], appointments: [] };
     
-  }
+  } 
 
   componentDidMount = () => {
     axios.get("http://localhost:3000/doctor/").then((res) => {
@@ -34,7 +34,7 @@ export default class CategoriesList extends Component {
       this.setState({
         appointments: res.data
       });
-    });
+    }); 
 
   };
 

@@ -17,120 +17,118 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "users")
 public class User {
-	
-  @Id
-  private String id;
 
-  @NotBlank
-  @Size(max = 20)
-  private String username;
+	@Id
+	private String id;
 
-  @NotBlank
-  @Size(max = 50)
-  @Email
-  private String email;
+	@NotBlank
+	@Size(max = 20)
+	private String username;
 
-  @NotBlank
-  @Size(max = 120)
-  private String password;
+	@NotBlank
+	@Size(max = 50)
+	@Email
+	private String email;
 
-  @NotNull
-  private String firstName;
-  @NotNull
-  private String lastName;
-  private String phoneNumber;
- 
-  @Field("address")
-  private Map<String, String> address = new HashMap<>();
-  
-  @DBRef
-  private Set<Role> roles = new HashSet<>();
+	@NotBlank
+	@Size(max = 120)
+	private String password;
 
-  public User() {
-  }
+	@NotNull
+	private String firstName;
+	@NotNull
+	private String lastName;
+	private String phoneNumber;
 
-	public User(String firstName, String lastName, Map<String, String> address,String phoneNumber) {
+	@Field("address")
+	private Map<String, String> address = new HashMap<>();
+
+	@DBRef
+	private Set<Role> roles = new HashSet<>();
+
+	public User() {
+	}
+
+	public User(String username, String email, String password, String firstName, String lastName,
+			Map<String, String> address, String phoneNumber) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
+		this.username = username;
+		this.email = email;
+		this.password = password;
 	}
 
-	public User(String username, String email, String password) {
-	  this.username = username;
-	  this.email = email;
-	  this.password = password;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public String getUsername() {
+		return username;
+	}
 
-  public String getUsername() {
-    return username;
-  }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+	public String getEmail() {
+		return email;
+	}
 
-  public String getEmail() {
-    return email;
-  }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+	public String getPassword() {
+		return password;
+	}
 
-  public String getPassword() {
-    return password;
-  }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+	public Set<Role> getRoles() {
+		return roles;
+	}
 
-  public Set<Role> getRoles() {
-    return roles;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public String getFirstName() {
-	return firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  public void setFirstName(String firstName) {
-	this.firstName = firstName;
-  }	
+	public String getLastName() {
+		return lastName;
+	}
 
-  public String getLastName() {
-	return lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  public void setLastName(String lastName) {
-	this.lastName = lastName;
-  }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-  public String getPhoneNumber() {
-	return phoneNumber;
-  }
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
-  public void setPhoneNumber(String phoneNumber) {
-	this.phoneNumber = phoneNumber;
-  }
+	public Map<String, String> getAddress() {
+		return address;
+	}
 
-  public Map<String, String> getAddress() {
-	return address;
-  }
+	public void setAddress(Map<String, String> address) {
+		this.address = address;
+	}
 
-  public void setAddress(Map<String, String> address) {
-	this.address = address;
-  }
-  
-  public void setRoles(Set<Role> roles) {
-    this.roles = roles;
-  }
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 }
