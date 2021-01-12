@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.example.demo.domain.User;
 
-@Document
+//@Document
 public class Doctor extends User{
 
 	private List<String> ailmentList;

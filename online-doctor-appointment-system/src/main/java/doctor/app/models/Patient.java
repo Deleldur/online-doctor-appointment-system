@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.example.demo.domain.User;
 
-@Document
+//@Document
 public class Patient extends User {	
 
 	private boolean verified;

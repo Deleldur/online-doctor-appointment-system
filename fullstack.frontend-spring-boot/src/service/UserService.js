@@ -4,11 +4,10 @@ import authService from './AuthService';
 
 const API_URL = 'http://localhost:3000/api/';
 //const API_URL2 = 'http://localhost:3000/';
-let userId = authService.getCurrentUserId();
-
 
 //let userId = "5ffc712295f0dd3932d7b593";
 class UserService {
+
   getPublicContent() {
     return axios.get(API_URL + 'all');
   }
@@ -27,7 +26,9 @@ class UserService {
   getDoctorBoard() {
     return axios.get(API_URL + 'doctor', { headers: authHeader() });
   }
+
   getDoctorInfo() {
+    let userId = authService.getCurrentUserId();
     return axios.get(API_URL + 'doctor/finddoctor/' + userId, { headers: authHeader() });
   }
 }

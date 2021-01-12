@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import UserService from "../service/UserService";
-
+/*
+      {props.doctors.firstName} {props.doctors.lastName} {", Phone: "} {props.doctors.phoneNumber} {", City: "} {" "}
+      <Link to={"/edit-category/" + props.doctors.id}>Edit</Link>
+*/
 const Doctors = (props) => (
   <div>
     <div>
-      {props.doctors.firstName} {props.doctors.lastName} {", Phone: "} {props.doctors.phoneNumber} {", City: "} {" "}
-      <Link to={"/edit-category/" + props.doctors.id}>Edit</Link>
+        Email: {props.doctors.email}
     </div>
   </div>
 );
@@ -38,6 +40,8 @@ export default class BoardDoctorComponent extends Component {
       return <Appointments appointments={currentAppointments} key={i} />;
     });
   };
+
+
   componentDidMount() {
     UserService.getAppointments().then(
       response => {

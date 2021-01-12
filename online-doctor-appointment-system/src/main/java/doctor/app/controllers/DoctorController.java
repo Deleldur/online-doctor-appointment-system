@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import doctor.app.models.Doctor;
-import doctor.app.repository.DoctorRepository;
+import doctor.app.models.User;
+import doctor.app.repository.UserRepository;
 import doctor.app.services.DoctorService;
 
 
@@ -37,27 +38,31 @@ public class DoctorController {
 	private DoctorService doctorService;
 
 	@Autowired
-	private DoctorRepository doctorRepository;
+	UserRepository userRepository;
+	
 
 	
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
 //		@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-		@GetMapping(value = "/doctor")
+//		@GetMapping(value = "/doctor")
 //		public String getAllDoctors() {
 //			return "hello";
 //		}
-	public List<Doctor> getAllDoctors() {
-		return doctorService.getAllDoctors();
-	}
+//	public List<Doctor> getAllDoctors() {
+//		return doctorService.getAllDoctors();
+//	}
 	
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
+		
+
+	
 	@PostMapping(value="/")
 	public List<Doctor> findDoctorByAilment(String ailment) {
 		return doctorService.findDoctorByAilment(ailment);
 	}
 	@GetMapping(value="/doctor/finddoctor/{id}")
 	public Optional<Doctor> findDoctorById(@PathVariable(value= "id") String id) {
-		return doctorService.findDoctorById(id);
+		return userRepository.findDoctorById(id);
 	}
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
 	@PostMapping(value="/location")
@@ -66,16 +71,16 @@ public class DoctorController {
 	}
 
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-    @PutMapping(value="/update/{id}")
-    public Doctor updateDoctor(@PathVariable(value = "id") String id,
-        @RequestBody Doctor doctorDetails) throws Exception   {
-    	
-		
-    	Doctor doctor = doctorRepository.findById(id).orElseThrow(() -> new Exception("Doctor not found for this id :: " + id));
-
-    	return doctorService.updateDoctorProfile(doctor, doctorDetails);
+//    @PutMapping(value="/update/{id}")
+//    public Doctor updateDoctor(@PathVariable(value = "id") String id,
+//        @RequestBody Doctor doctorDetails) throws Exception   {
+//    	
+//		
+//    	Doctor doctor = doctorRepository.findById(id).orElseThrow(() -> new Exception("Doctor not found for this id :: " + id));
+//
+//    	return doctorService.updateDoctorProfile(doctor, doctorDetails);
 //        return ResponseEntity.ok(updatedDoctor);
-    } 
+//    } 
 	 
 
 	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")

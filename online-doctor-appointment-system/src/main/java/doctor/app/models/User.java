@@ -1,18 +1,23 @@
 package doctor.app.models;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "users")
 public class User {
+	
   @Id
   private String id;
 
@@ -29,17 +34,32 @@ public class User {
   @Size(max = 120)
   private String password;
 
+  @NotNull
+  private String firstName;
+  @NotNull
+  private String lastName;
+  private String phoneNumber;
+ 
+  @Field("address")
+  private Map<String, String> address = new HashMap<>();
+  
   @DBRef
   private Set<Role> roles = new HashSet<>();
 
   public User() {
   }
 
-  public User(String username, String email, String password) {
-   
-	 this.username = username;
-    this.email = email;
-    this.password = password;
+	public User(String firstName, String lastName, Map<String, String> address,String phoneNumber) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+	}
+
+	public User(String username, String email, String password) {
+	  this.username = username;
+	  this.email = email;
+	  this.password = password;
   }
 
   public String getId() {
@@ -78,6 +98,38 @@ public class User {
     return roles;
   }
 
+  public String getFirstName() {
+	return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+	this.firstName = firstName;
+  }	
+
+  public String getLastName() {
+	return lastName;
+  }
+
+  public void setLastName(String lastName) {
+	this.lastName = lastName;
+  }
+
+  public String getPhoneNumber() {
+	return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+	this.phoneNumber = phoneNumber;
+  }
+
+  public Map<String, String> getAddress() {
+	return address;
+  }
+
+  public void setAddress(Map<String, String> address) {
+	this.address = address;
+  }
+  
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
   }

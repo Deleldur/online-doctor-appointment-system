@@ -11,6 +11,7 @@ import Home from "./components/HomeComponent";
 import Profile from "./components/ProfileComponent";
 import BoardDoctorComponent from "./components/BoardDoctorComponent";
 import BoardPatientComponent from "./components/BoardPatientComponent";
+import EditUserComponent from "./components/EditUserComponent";
 
 class App extends Component {
   constructor(props) {
@@ -30,8 +31,8 @@ class App extends Component {
     if (user) {
       this.setState({
         currentUser: user,
-        showPatientBoard: user.roles.includes("ROLE_ADMIN"),
-        showDoctorBoard: user.roles.includes("ROLE_ADMIN"),
+        showPatientBoard: user.roles.includes("ROLE_DOCTOR", "ROLE_PATIENT"),
+        showDoctorBoard: user.roles.includes("ROLE_DOCTOR"),
       });
     }
   }
@@ -68,14 +69,6 @@ class App extends Component {
               <li className="nav-item">
                 <Link to={"/doctor"} className="nav-link">
                  Doctor Board
-                </Link>
-              </li>
-            )}
-
-            {currentUser && (
-              <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                 Patient
                 </Link>
               </li>
             )}
@@ -117,7 +110,7 @@ class App extends Component {
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login" component={LoginComponent} />
             <Route exact path="/register" component={RegisterComponent} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile" component={EditUserComponent} />
             <Route path="/patient" component={BoardPatientComponent} />
             <Route path="/doctor" component={BoardDoctorComponent} />
           </Switch>
