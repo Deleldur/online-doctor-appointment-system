@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import doctor.app.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 
+
+
 @Component
 public class JwtUtils {
 	private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
@@ -53,6 +55,6 @@ public class JwtUtils {
 			logger.error("JWT claims string is empty: {}", e.getMessage());
 		}
 
-		return false;
+		return false; 
 	}
 }

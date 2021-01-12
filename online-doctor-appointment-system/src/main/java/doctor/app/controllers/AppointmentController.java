@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import doctor.app.models.Appointment;
+import com.example.demo.domain.Appointment;
+
 import doctor.app.repository.AppointmentRepository;
 import doctor.app.services.AppointmentService;
 
-@RequestMapping(value = "/appointment")
-@CrossOrigin(origins = {"http://localhost:8080"})
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping(value = "/api/appointment")
 @RestController
 public class AppointmentController {
 

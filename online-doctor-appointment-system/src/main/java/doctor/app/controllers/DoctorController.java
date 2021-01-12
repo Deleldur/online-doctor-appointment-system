@@ -28,7 +28,7 @@ import doctor.app.services.DoctorService;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping(value = "/api/test")
+@RequestMapping(value = "/api")
 @RestController
 //@Validated
 public class DoctorController {
@@ -41,8 +41,11 @@ public class DoctorController {
 
 	
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-		@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+//		@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
 		@GetMapping(value = "/doctor")
+//		public String getAllDoctors() {
+//			return "hello";
+//		}
 	public List<Doctor> getAllDoctors() {
 		return doctorService.getAllDoctors();
 	}
@@ -52,7 +55,10 @@ public class DoctorController {
 	public List<Doctor> findDoctorByAilment(String ailment) {
 		return doctorService.findDoctorByAilment(ailment);
 	}
-	
+	@GetMapping(value="/doctor/finddoctor/{id}")
+	public Optional<Doctor> findDoctorById(@PathVariable(value= "id") String id) {
+		return doctorService.findDoctorById(id);
+	}
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
 	@PostMapping(value="/location")
 	public List<Doctor> findDoctorByLocation(String location) {

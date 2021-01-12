@@ -13,9 +13,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import doctor.app.models.Appointment;
+import com.example.demo.domain.Appointment;
+import com.example.demo.domain.Feedback;
+
 import doctor.app.models.Doctor;
-import doctor.app.models.Feedback;
 import doctor.app.models.Patient;
 import doctor.app.repository.AppointmentRepository;
 import doctor.app.repository.DoctorRepository;
@@ -27,41 +28,41 @@ import doctor.app.repository.PatientRepository;
 public class App {
 
 	private static final Logger log = LoggerFactory.getLogger(App.class);
-	
-	// Hard coded address fields
-	public static Map<String, String> address1;
-	static {
-	    address1 = new HashMap<>();
-	    address1.put("streetAddress", "Hammarvägen 12");
-	    address1.put("city", "Östersund");
-	    address1.put("zipCode", "831 35");
-	}
-
-	public static Map<String, String> address2;
-	static {
-	    address2 = new HashMap<>();
-	    address2.put("streetAddress", "Backegatan 22");
-	    address2.put("city", "Sundsvall");
-	    address2.put("zipCode", "835 55");
-	} 
-
-	 
-	// Hard coded feedback fields from patient -> doctor
-	public static Map<String, String> feedback1;
-	static {
-		feedback1 = new HashMap<>();
-		feedback1.put("feedback", "This is my feedback for doctor 1");
-		feedback1.put("doctorId", "unique doctor ID");
-	}
-
-	public static Map<String, String> feedback2;
-	static {
-		feedback2 = new HashMap<>();
-		feedback2.put("feedback", "This is my feedback for doctor 2");
-		feedback2.put("doctorId", "unique doctor ID");
-	}
-
-	
+//	
+//	// Hard coded address fields
+//	public static Map<String, String> address1;
+//	static {
+//	    address1 = new HashMap<>();
+//	    address1.put("streetAddress", "Hammarvägen 12");
+//	    address1.put("city", "Östersund");
+//	    address1.put("zipCode", "831 35");
+//	}
+//
+//	public static Map<String, String> address2;
+//	static {
+//	    address2 = new HashMap<>();
+//	    address2.put("streetAddress", "Backegatan 22");
+//	    address2.put("city", "Sundsvall");
+//	    address2.put("zipCode", "835 55");
+//	} 
+//
+//	 
+//	// Hard coded feedback fields from patient -> doctor
+//	public static Map<String, String> feedback1;
+//	static {
+//		feedback1 = new HashMap<>();
+//		feedback1.put("feedback", "This is my feedback for doctor 1");
+//		feedback1.put("doctorId", "unique doctor ID");
+//	}
+//
+//	public static Map<String, String> feedback2;
+//	static {
+//		feedback2 = new HashMap<>();
+//		feedback2.put("feedback", "This is my feedback for doctor 2");
+//		feedback2.put("doctorId", "unique doctor ID");
+//	}
+//
+//	
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 
@@ -114,47 +115,47 @@ public class App {
 //			}
 //		};
 //	}
-	
-	@Bean
-	public CommandLineRunner patientDemo(PatientRepository patientRepository) {
-
-		return (args) -> {
-
-			log.info("bean was executed!");
-
-			// DELETE ALL
-			patientRepository.deleteAll();
-
-			// SAVE USER
-			Patient patient1 = new Patient("Mikael", "Sten", address1, "555-555-5555", "test@test.com", true);
-			Patient patient2 = new Patient("Bosse", "Nilsson", address2, "555-555-4444", "test2@test.com", true);
-			Patient patient3 = new Patient("Klasse", "Boström", address1, "555-555-5123", "test3@test.com", true);
-
-			patientRepository.save(patient1);
-			patientRepository.save(patient2);
-			patientRepository.save(patient3);
-
-			// GET ALL PATIENTS
-			int counter = 0;
-			for (Patient patient : patientRepository.getAllPatients()) {
-				++counter;
-				log.info(counter + ". patient: " + patient);
-			}
-
-			// FIND USER BY ID
-			try {
-				List<Patient> findPhoneNumber = patientRepository.findByPhoneNumber("555-555-5555");
-				List<Patient> findByFirstName = patientRepository.findByFirstName("Mikael");
-//				log.info("user: {}", patient);
-				System.out.println("First phone number: " + findPhoneNumber);
-				System.out.println("find first name: " + findByFirstName);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		};
-	}
-	
+//	
+//	@Bean
+//	public CommandLineRunner patientDemo(PatientRepository patientRepository) {
+//
+//		return (args) -> {
+//
+//			log.info("bean was executed!");
+//
+//			// DELETE ALL
+//			patientRepository.deleteAll();
+//
+//			// SAVE USER
+//			Patient patient1 = new Patient("Mikael", "Sten", address1, "555-555-5555", "test@test.com", true);
+//			Patient patient2 = new Patient("Bosse", "Nilsson", address2, "555-555-4444", "test2@test.com", true);
+//			Patient patient3 = new Patient("Klasse", "Boström", address1, "555-555-5123", "test3@test.com", true);
+//
+//			patientRepository.save(patient1);
+//			patientRepository.save(patient2);
+//			patientRepository.save(patient3);
+//
+//			// GET ALL PATIENTS
+//			int counter = 0;
+//			for (Patient patient : patientRepository.getAllPatients()) {
+//				++counter;
+//				log.info(counter + ". patient: " + patient);
+//			}
+//
+//			// FIND USER BY ID
+//			try {
+//				List<Patient> findPhoneNumber = patientRepository.findByPhoneNumber("555-555-5555");
+//				List<Patient> findByFirstName = patientRepository.findByFirstName("Mikael");
+////				log.info("user: {}", patient);
+//				System.out.println("First phone number: " + findPhoneNumber);
+//				System.out.println("find first name: " + findByFirstName);
+//
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		};
+//	}
+//	
 //	@Bean
 //	public CommandLineRunner feedbackDemo(FeedbackRepository feedbackRepository) {
 //		

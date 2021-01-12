@@ -1,4 +1,4 @@
-package doctor.app.models;
+package com.example.demo.domain;
 
 import javax.validation.constraints.NotNull;
 

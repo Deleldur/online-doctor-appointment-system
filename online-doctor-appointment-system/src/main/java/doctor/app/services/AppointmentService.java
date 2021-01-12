@@ -2,7 +2,7 @@ package doctor.app.services;
 
 import java.util.List;
 
-import doctor.app.models.Appointment;
+import com.example.demo.domain.Appointment;
 
 public interface AppointmentService {
 

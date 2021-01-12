@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import doctor.app.models.Appointment;
+import com.example.demo.domain.Appointment;
+
 import doctor.app.repository.AppointmentRepository;
 
 @Service
