@@ -1,22 +1,24 @@
 import React, { Component } from "react";
 import axios from "axios";
+import UserService from "../service/UserService";
 
 export default class CreateAppointment extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      bookingTime: "",
+      bookingStartTime: "",
+      bookingEndTime: "",
       bookingDate: "",
-      doctorId: "123avaer341xc",
-      patientId: "abc34123fvdf343",
+      doctorId: "5ffeeee09407e72bb837a737",
+      patientId: "abc",
       active: true
     };
   }
 
   onChangeBookingTime = (e) => {
     this.setState({
-      bookingTime: e.target.value
+      bookingStartTime: e.target.value
     });
   };
 
@@ -26,41 +28,46 @@ export default class CreateAppointment extends Component {
     });
   };
 
+  componentDidMount() {
+    this.loadUser();
+  }
+
+  loadUser = () => {
+    UserService.getPatientInfo().then((response) => {
+      this.setState({
+        patientId: response.data.id
+      });
+    });
+  };
+
   onSubmit = (e) => {
     e.preventDefault();
 
     console.log(`Form Submitted`);
-    
-    console.log(`Time ${this.state.bookingTime}`);
-    console.log(`Date ${this.state.bookingDate}`); 
+
+    console.log(`Time ${this.state.bookingStartTime}`);
+    console.log(`Date ${this.state.bookingDate}`);
 
     const newAppointment = {
-      bookingTime: this.state.bookingTime,
+      bookingStartTime: this.state.bookingStartTime,
+      bookingEndTime: this.state.bookingEndTime,
       bookingDate: this.state.bookingDate,
       doctorId: this.state.doctorId,
       patientId: this.state.patientId,
       active: this.state.active
     };
-    
-    axios
-      .post("http://localhost:3000/appointment/create/", newAppointment);
+
+    axios.post("http://localhost:3000/api/appointment/create/", newAppointment);
     this.setState({
-      bookingTime: "",
+      bookingStartTime: "",
+      bookingEndTime: "",
       bookingDate: "",
-      doctorId: "123avaer341xc",
-      patientId: "abc34123fvdf343",
+      doctorId: "5ffeeee09407e72bb837a737",
+      patientId: "",
       active: true
     });
   };
-/*
-    {
-        "doctorId": "1412f123",
-        "patientId": "f1231244512",
-        "active": true,
-        "bookingDate": "2021-04-12",
-        "bookingTime": "16:30"
-    }
-  */
+
   render() {
     return (
       <div style={{ marginTop: 20 }}>
@@ -75,7 +82,6 @@ export default class CreateAppointment extends Component {
               onChange={this.onChangeBookingDate}
               // categoryTitle -> bookingDate
               // onChangeCategoryTitle - onChangeBookingDate
-
             />
           </div>
           <div className="col-12">
@@ -83,7 +89,7 @@ export default class CreateAppointment extends Component {
             <input
               type="time"
               className="col-12"
-              value={this.state.bookingTime}
+              value={this.state.bookingStartTime}
               onChange={this.onChangeBookingTime}
               // categoryDescription -> bookingTime
               // onChangeCategoryDescription -> onChangeBookingTime

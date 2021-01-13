@@ -26,6 +26,12 @@ class UserService {
     return axios.get(API_URL + "doctor", { headers: authHeader() });
   }
 
+  getPatientInfo() {
+    let userId = authService.getCurrentUserId();
+    return axios.get(API_URL + "patient/findpatient/" + userId, {
+      headers: authHeader()
+    });
+  }
   getDoctorInfo() {
     let userId = authService.getCurrentUserId();
     return axios.get(API_URL + "doctor/finddoctor/" + userId, {

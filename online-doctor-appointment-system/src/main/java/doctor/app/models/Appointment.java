@@ -16,7 +16,9 @@ public class Appointment {
 	private String patientId;
 	private Boolean active; //  set to false if the meeting is "done" or cancelled
 	private String bookingDate; // String is a placeholder until joda-time or LocalDateTime is chosen to be used
-	private String bookingTime; // might not be needed if date and time is baked in to one field
+//	private String bookingTime; // might not be needed if date and time is baked in to one field
+	private String bookingStartTime;
+	private String bookingEndTime;
 	
 	public Appointment() {
 		
@@ -24,13 +26,15 @@ public class Appointment {
 	
 	
 
-	public Appointment(String doctorId, String patientId, Boolean active, String bookingDate, String bookingTime) {
+	public Appointment(String doctorId, String patientId, Boolean active, String bookingDate, String bookingStartTime, String bookingEndTime) {
 		super();
 		this.doctorId = doctorId;
 		this.patientId = patientId;
 		this.active = active;
 		this.bookingDate = bookingDate;
-		this.bookingTime = bookingTime;
+		this.bookingStartTime = bookingStartTime;
+		this.bookingEndTime = bookingEndTime;
+
 	}
 
 
@@ -67,14 +71,30 @@ public class Appointment {
 		this.bookingDate = bookingDate;
 	}
 
-	public String getBookingTime() {
-		return bookingTime;
+
+
+	public String getBookingStartTime() {
+		return bookingStartTime;
 	}
 
-	public void setBookingTime(String bookingTime) {
-		this.bookingTime = bookingTime;
+
+
+	public void setBookingStartTime(String bookingStartTime) {
+		this.bookingStartTime = bookingStartTime;
 	}
-	
+
+
+
+	public String getBookingEndTime() {
+		return bookingEndTime;
+	}
+
+
+
+	public void setBookingEndTime(String bookingEndTime) {
+		this.bookingEndTime = bookingEndTime;
+	}
+
 	
 	
 }

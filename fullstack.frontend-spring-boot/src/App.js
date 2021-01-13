@@ -8,10 +8,13 @@ import AuthService from "./service/AuthService";
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import Home from "./components/HomeComponent";
+import HomeDoctor from "./components/HomeDoctor";
+import HomePatient from "./components/HomePatient";
 // import Profile from "./components/ProfileComponent";
 import BoardDoctorComponent from "./components/BoardDoctorComponent";
 import BoardPatientComponent from "./components/BoardPatientComponent";
 import EditUserComponent from "./components/EditUserComponent";
+import CreateAppointment from "./components/CreateAppointment";
 
 class App extends Component {
   constructor(props) {
@@ -60,8 +63,8 @@ class App extends Component {
             </li>
             {showPatientBoard && (
               <li className="nav-item">
-                <Link to={"/patient"} className="nav-link">
-                  Patient Board
+                <Link to={"/createappointment"} className="nav-link">
+                  Create appointments
                 </Link>
               </li>
             )}
@@ -107,16 +110,17 @@ class App extends Component {
 
         <div className="container container-bg">
           <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
+            {showDoctorBoard && (
+              <Route exact path={["/", "/home"]} component={HomeDoctor} />
+            )}
+            {showPatientBoard && (
+              <Route exact path={["/", "/home"]} component={HomePatient} />
+            )}
             <Route exact path="/login" component={LoginComponent} />
             <Route exact path="/register" component={RegisterComponent} />
             <Route exact path="/profile" component={EditUserComponent} />
-            <Route path="/patient" component={BoardPatientComponent} />
-            <Route
-              path="/doctor"
-              component={BoardDoctorComponent}
-              loggedIn={showDoctorBoard}
-            />
+            <Route path="/createappointment" component={CreateAppointment} />
+            <Route path="/doctor" component={BoardDoctorComponent} />
           </Switch>
         </div>
       </div>

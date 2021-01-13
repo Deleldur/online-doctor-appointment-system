@@ -1,30 +1,78 @@
 import React, { Component } from "react";
-
+//import { Link } from "react-router-dom";
 import UserService from "../service/UserService";
 
+const Appointments = (props) => (
+  <div>
+    <div>
+      bookingdate: {props.appointments.bookingDate} - booking start time:{" "}
+      {props.appointments.bookingStartTime} - booking end time{" "}
+      {props.appointments.bookingEndTime}
+    </div>
+  </div>
+);
 export default class HomeComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      content: ""
+      doctors: "",
+      appointments: []
     };
   }
 
-  componentDidMount() {
-    UserService.getPublicContent().then((response) => {
-      this.setState({
-        content: response.data
-      });
+  appointmentList = () => {
+    return this.state.appointments.map((currentAppointments, i) => {
+      return <Appointments appointments={currentAppointments} key={i} />;
     });
+  };
+
+  componentDidMount() {
+    UserService.getAppointments().then(
+      (response) => {
+        this.setState({
+          appointments: response.data
+        });
+      },
+      (error) => {
+        this.setState({
+          content:
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+        });
+      }
+    );
+    UserService.getDoctorInfo().then(
+      (response) => {
+        this.setState({
+          doctors: response.data
+        });
+      },
+      (error) => {
+        this.setState({
+          content:
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+        });
+      }
+    );
   }
 
   render() {
     return (
-      <div className="container">
-        <header className="jumbotron">
-          <h1>Doctor Home</h1>
-        </header>
+      <div className="row">
+        <div className="col-12">
+          <header className="jumbotron">
+            <h1>Appointments</h1>
+            {this.appointmentList()}
+          </header>
+        </div>
       </div>
     );
   }
