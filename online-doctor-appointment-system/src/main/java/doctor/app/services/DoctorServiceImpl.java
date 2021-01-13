@@ -54,13 +54,12 @@ public class DoctorServiceImpl implements DoctorService {
 	
 	@Override
 	public User updateDoctorProfile(User orgDoctor, User newDoctor) {
+		Map<String, String> address = new HashMap<>();
 		
 		//		orgDoctor.setEmail(newDoctor.getEmail());
 		orgDoctor.setLastName(newDoctor.getLastName());
 		orgDoctor.setFirstName(newDoctor.getFirstName());
 		orgDoctor.setPhoneNumber(newDoctor.getPhoneNumber());
-		
-		Map<String, String> address = new HashMap<>();
 
 		String zipCode = newDoctor.getZipCode();
 		String streetAddress = newDoctor.getStreetAddress();

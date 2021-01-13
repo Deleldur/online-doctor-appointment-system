@@ -13,9 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.example.demo.domain.Appointment;
-import com.example.demo.domain.Feedback;
-
 import doctor.app.models.Doctor;
 import doctor.app.models.Patient;
 import doctor.app.repository.AppointmentRepository;
