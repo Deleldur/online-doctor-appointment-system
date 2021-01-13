@@ -1,6 +1,8 @@
 package doctor.app.services;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -52,13 +54,28 @@ public class DoctorServiceImpl implements DoctorService {
 	
 	@Override
 	public User updateDoctorProfile(User orgDoctor, User newDoctor) {
-		orgDoctor.setEmail(newDoctor.getEmail());
+		
+		//		orgDoctor.setEmail(newDoctor.getEmail());
 		orgDoctor.setLastName(newDoctor.getLastName());
 		orgDoctor.setFirstName(newDoctor.getFirstName());
+		orgDoctor.setPhoneNumber(newDoctor.getPhoneNumber());
+		
+		Map<String, String> address = new HashMap<>();
+
+		String zipCode = newDoctor.getZipCode();
+		String streetAddress = newDoctor.getStreetAddress();
+		String city = newDoctor.getCity();
+		
+		address.put("zipCode", zipCode);
+		address.put("streetAddress", streetAddress);
+		address.put("city", city);
+		
+		orgDoctor.setAddress(address);
         final User updatedDoctor = userRepository.save(orgDoctor);
 
 		return updatedDoctor;
 	}
+	
 	@Override
 	public List<Doctor> findDoctorAndLocation(String firstName, String location) {
 		return userRepository.findDoctorAndLocation(firstName, location);

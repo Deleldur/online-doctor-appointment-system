@@ -43,13 +43,6 @@ import doctor.app.security.services.UserDetailsImpl;
 @RequestMapping("/api/auth")
 public class AuthController {
 	
-	public static Map<String, String> address1;
-	static {
-	    address1 = new HashMap<>();
-	    address1.put("streetAddress", "Hammarvägen 12");
-	    address1.put("city", "Östersund");
-	    address1.put("zipCode", "831 35");
-	}
 	@Autowired
 	AuthenticationManager authenticationManager;
 

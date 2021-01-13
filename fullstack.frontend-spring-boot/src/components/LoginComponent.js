@@ -108,7 +108,7 @@ export default class LoginComponent extends Component {
               />
             
               <Input
-                type="text"
+                type="password"
                 placeholder = "Password"
                 value={this.state.password}
                 onChange={this.onChangePassword}

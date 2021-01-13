@@ -78,7 +78,7 @@ export default class BoardDoctorComponent extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-lg-12">
+        <div className="col-12">
         <header className="jumbotron">
         <h1>Appointments</h1>
         {this.appointmentList()}
