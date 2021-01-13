@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
-import "./css/simple-grid.css";
+
 
 import AuthService from "./service/AuthService";
 
