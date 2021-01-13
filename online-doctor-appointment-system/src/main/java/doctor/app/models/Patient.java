@@ -2,9 +2,6 @@ package doctor.app.models;
 
 import java.util.Date;
 import java.util.Map;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.example.demo.domain.User;
 
 //@Document
 public class Patient extends User {	
@@ -18,7 +15,7 @@ public class Patient extends User {
 
 	public Patient(String firstName, String lastName, Map<String, String> address, String phoneNumber, String email, 
 			boolean verified) {
-		super(firstName, lastName, address, phoneNumber, email);
+		super();
 		this.verified = verified;
 	}
 

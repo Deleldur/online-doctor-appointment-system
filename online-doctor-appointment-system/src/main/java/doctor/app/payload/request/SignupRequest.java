@@ -25,9 +25,7 @@ public class SignupRequest {
     @Size(min = 6, max = 40)
     private String password;
   
-    @NotNull
     private String firstName;
-    @NotNull
     private String lastName;
     private String phoneNumber;
     @Field("address")

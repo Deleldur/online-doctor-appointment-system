@@ -5,7 +5,7 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "../service/AuthService";
 
-const required = value => {
+const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -50,7 +50,7 @@ export default class LoginComponent extends Component {
       loading: true
     });
 
-    this.form.validateAll(); 
+    this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
       AuthService.login(this.state.username, this.state.password).then(
@@ -58,7 +58,7 @@ export default class LoginComponent extends Component {
           this.props.history.push("/profile");
           window.location.reload();
         },
-        error => {
+        (error) => {
           const resMessage =
             (error.response &&
               error.response.data &&
@@ -81,7 +81,6 @@ export default class LoginComponent extends Component {
 
   render() {
     return (
- 
       <div className="login-page">
         <div className="form">
           {/* <img
@@ -92,37 +91,37 @@ export default class LoginComponent extends Component {
 
           <Form
             onSubmit={this.handleLogin}
-            ref={c => {
+            ref={(c) => {
               this.form = c;
             }}
           >
-    <div className="login-form acrylic">
-    <span>Login to your account</span>
-            
+            <div className="login-form acrylic">
+              <span>Login to your account</span>
+
               <Input
                 type="text"
-                placeholder = "Username"
+                placeholder="Username"
                 value={this.state.username}
                 onChange={this.onChangeUsername}
                 validations={[required]}
               />
-            
+
               <Input
                 type="password"
-                placeholder = "Password"
+                placeholder="Password"
                 value={this.state.password}
                 onChange={this.onChangePassword}
                 validations={[required]}
               />
 
-              <button
-               id="SignIn" disabled={this.state.loading}>Login</button>
+              <button id="SignIn" disabled={this.state.loading}>
+                Login
+              </button>
               <p className="message">Create Account</p>
-            
             </div>
             <CheckButton
               style={{ display: "none" }}
-              ref={c => {
+              ref={(c) => {
                 this.checkBtn = c;
               }}
             />

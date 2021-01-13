@@ -2,14 +2,13 @@ package doctor.app.repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import doctor.app.models.Doctor;
+import doctor.app.models.Patient;
 import doctor.app.models.User;
 
 
@@ -22,10 +21,7 @@ public interface UserRepository extends MongoRepository<User, String> {
   Boolean existsByEmail(String email);
   
   Optional<Doctor> findDoctorById(String id);
-  
-//	default List<User> getAllDoctors() {
-//		return   StreamSupport.stream(findAll().spliterator(), false).collect(Collectors.toList());
-//	}
+  Optional<Patient> findPatientById(String id);
 	
 	@Query("{ 'ailmentList' : ?0}") //NOSQL QUERY
 	List<Doctor> findDoctorByAilment(@Param("ailment") String ailment);
@@ -35,5 +31,6 @@ public interface UserRepository extends MongoRepository<User, String> {
 	
 	@Query("{ 'firstName': ?0, 'address.city' : ?1}")
 	List<Doctor> findDoctorAndLocation(String firstName, String location);
+	
 	
 }

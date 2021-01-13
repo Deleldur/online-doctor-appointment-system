@@ -1,8 +1,10 @@
 package doctor.app.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import doctor.app.models.Patient;
+import doctor.app.models.User;
 
 /**
  * This is a test for a javadoc
@@ -12,6 +14,7 @@ import doctor.app.models.Patient;
 
 public interface PatientService {
 
-	List<Patient> getPatientByFirstName(String firstName);
-	List<Patient> getAllPatients();
+	
+	Optional<User> findPatientById(String id);
+
 }

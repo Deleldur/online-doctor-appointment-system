@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 import doctor.app.models.Doctor;
 import doctor.app.models.ERole;
 import doctor.app.models.Role;
-import doctor.app.models.User;
 import doctor.app.payload.request.LoginRequest;
 import doctor.app.payload.request.SignupRequest;
 import doctor.app.payload.response.JwtResponse;
