@@ -1,9 +1,11 @@
 package doctor.app.services;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,7 @@ public class DoctorServiceImpl implements DoctorService {
 //	public Optional<User> findDoctorInformation(String id) {
 //		return userRepository.findById(id);
 //	}
+	
 	@Override
 	public List<Doctor> findDoctorByLocation(String location) {
 		// Converts the first letter in a search to an upper case letter (example östersund becomes Östersund)
@@ -72,5 +75,10 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	public List<Doctor> findDoctorAndLocation(String firstName, String location) {
 		return userRepository.findDoctorAndLocation(firstName, location);
+	}
+	
+	@Override
+	public List<Doctor> findAllDoctorLocations(String role) {
+		return userRepository.findAllDoctorLocations(role);
 	}
 }

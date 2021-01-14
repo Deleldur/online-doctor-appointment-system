@@ -7,12 +7,12 @@ import AuthService from "./service/AuthService";
 
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
-import Home from "./components/HomeComponent";
+//import Home from "./components/HomeComponent";
 import HomeDoctor from "./components/HomeDoctor";
 import HomePatient from "./components/HomePatient";
 // import Profile from "./components/ProfileComponent";
 import BoardDoctorComponent from "./components/BoardDoctorComponent";
-import BoardPatientComponent from "./components/BoardPatientComponent";
+//import BoardPatientComponent from "./components/BoardPatientComponent";
 import EditUserComponent from "./components/EditUserComponent";
 import CreateAppointment from "./components/CreateAppointment";
 

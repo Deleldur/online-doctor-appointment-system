@@ -39,6 +39,17 @@ class UserService {
     });
   }
 
+  getDoctorLocations() {
+    let role = "5ff86007480a2c4b6d697909";
+    return axios.get(API_URL + "doctorlocations/" + role, {
+      headers: authHeader()
+    });
+  }
+  getAilmentList() {
+    return axios.get(API_URL + "ailments/", {
+      headers: authHeader()
+    });
+  }
   editUser(user) {
     console.log(user);
     let userId = authService.getCurrentUserId();

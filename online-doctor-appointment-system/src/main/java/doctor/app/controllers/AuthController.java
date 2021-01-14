@@ -109,9 +109,6 @@ public class AuthController {
 				address,
 				signUpRequest.getPhoneNumber(),
 				ailmentList
-				
-				
-				
 				);
 
 		Set<String> strRoles = signUpRequest.getRoles();

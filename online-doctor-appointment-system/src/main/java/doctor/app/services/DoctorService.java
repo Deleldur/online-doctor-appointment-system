@@ -15,4 +15,5 @@ public interface DoctorService {
 	List<Doctor> findDoctorAndLocation(String firstName, String location);
 //	Optional<User> findDoctorInformation(String id);
 	User updateDoctorProfile(User orgDoctor, User newDoctor);
+	List<Doctor> findAllDoctorLocations(String role);
 }

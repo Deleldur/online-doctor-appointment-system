@@ -32,5 +32,12 @@ public interface UserRepository extends MongoRepository<User, String> {
 	@Query("{ 'firstName': ?0, 'address.city' : ?1}")
 	List<Doctor> findDoctorAndLocation(String firstName, String location);
 	
+//	@Query("{ 'address.city' : }")
+	@Query("{ 'roles.id': ?0}")
+//	@Query(value = "{}", fields ="{'roles.id' : ?0, 'address.city': 1 }")
+	List<Doctor> findAllDoctorLocations(String role);
 	
+
+	@Query(value = "{}", fields ="{'address.city': 1 }")
+    List<Doctor> findDistinctCity();	
 }
