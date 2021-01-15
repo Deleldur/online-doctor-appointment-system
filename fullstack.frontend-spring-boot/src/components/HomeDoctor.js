@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 //import { Link } from "react-router-dom";
 import UserService from "../service/UserService";
-
-const Appointments = (props) => (
+import AuthService from "../service/AuthService";
+const CurrentAppointments = (props) => (
   <div>
+    <h2>Upcoming appointments</h2>
     <div>
       bookingdate: {props.appointments.bookingDate} - booking start time:{" "}
       {props.appointments.bookingStartTime} - booking end time{" "}
@@ -11,6 +12,18 @@ const Appointments = (props) => (
     </div>
   </div>
 );
+
+const BookingRequests = (props) => (
+  <div>
+    <h2>Booking requests</h2>
+    <div>
+      bookingdate: {props.appointments.bookingDate} - booking start time:{" "}
+      {props.appointments.bookingStartTime} - booking end time{" "}
+      {props.appointments.bookingEndTime}
+    </div>
+  </div>
+);
+
 export default class HomeComponent extends Component {
   constructor(props) {
     super(props);
@@ -23,12 +36,20 @@ export default class HomeComponent extends Component {
 
   appointmentList = () => {
     return this.state.appointments.map((currentAppointments, i) => {
-      return <Appointments appointments={currentAppointments} key={i} />;
+      if (currentAppointments.active === true) {
+        return (
+          <CurrentAppointments appointments={currentAppointments} key={i} />
+        );
+      } else {
+        return <BookingRequests appointments={currentAppointments} key={i} />;
+      }
     });
   };
 
   componentDidMount() {
-    UserService.getAppointments().then(
+    const doctorId = AuthService.getCurrentUserId();
+    console.log(doctorId);
+    UserService.getAppointmentsFromDoctorId(doctorId).then(
       (response) => {
         this.setState({
           appointments: response.data
@@ -68,11 +89,7 @@ export default class HomeComponent extends Component {
     return (
       <div className="row">
         <div className="col-12">
-          <header className="jumbotron">
-            <h2>Booking requests</h2>
-            {this.appointmentList()}
-            <h2>Upcoming appointments</h2>
-          </header>
+          <header className="jumbotron">{this.appointmentList()}</header>
         </div>
       </div>
     );
