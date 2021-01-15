@@ -1,21 +1,18 @@
 import React, { Component } from "react";
 //import { Link } from "react-router-dom";
 import UserService from "../service/UserService";
-/*
-      {props.doctors.firstName} {props.doctors.lastName} {", Phone: "} {props.doctors.phoneNumber} {", City: "} {" "}
-      <Link to={"/edit-category/" + props.doctors.id}>Edit</Link>
-*/
-const Doctors = (props) => (
-  <div>
-    <div>Email: {props.doctors.email}</div>
-  </div>
-);
 
-const Appointments = (props) => (
+const AppointmentHistory = (props) => (
   <div>
-    <div>
-      bookingdate: {props.appointments.bookingDate} - bookingtime:{" "}
-      {props.appointments.bookingTime}
+    <div className="card">
+      <a href="#">Patient name</a>
+      <p>
+        bookingdate: {props.appointments.appointmentDate} - bookingtime:{" "}
+        {props.appointments.appointmentTime} - Treated ailment:{" "}
+        {props.appointments.treatedAilment}
+      </p>
+      <p>Doctor feedback: {props.appointments.doctorFeedback}</p>
+      <p>Patient feedback: {props.appointments.patientFeedback}</p>
     </div>
   </div>
 );
@@ -24,43 +21,21 @@ export default class BoardDoctorComponent extends Component {
     super(props);
 
     this.state = {
-      doctors: "",
-      appointments: []
+      appointmentHistory: []
     };
   }
 
-  doctorsList = () => {
-    return <Doctors doctors={this.state.doctors} />;
-  };
-
-  appointmentList = () => {
-    return this.state.appointments.map((currentAppointments, i) => {
-      return <Appointments appointments={currentAppointments} key={i} />;
+  appointmentHistoryList = () => {
+    return this.state.appointmentHistory.map((appointmentHistory, i) => {
+      return <AppointmentHistory appointments={appointmentHistory} key={i} />;
     });
   };
 
   componentDidMount() {
-    UserService.getAppointments().then(
+    UserService.getAppointmentHistory().then(
       (response) => {
         this.setState({
-          appointments: response.data
-        });
-      },
-      (error) => {
-        this.setState({
-          content:
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
-        });
-      }
-    );
-    UserService.getDoctorInfo().then(
-      (response) => {
-        this.setState({
-          doctors: response.data
+          appointmentHistory: response.data
         });
       },
       (error) => {
@@ -81,10 +56,8 @@ export default class BoardDoctorComponent extends Component {
       <div className="row">
         <div className="col-12">
           <header className="jumbotron">
-            <h1>Appointments</h1>
-            {this.appointmentList()}
-            <h1>Doctors</h1>
-            {this.doctorsList()}
+            <h1>Appointment history</h1>
+            {this.appointmentHistoryList()}
           </header>
         </div>
       </div>

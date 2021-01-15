@@ -69,8 +69,9 @@ export default class HomeComponent extends Component {
       <div className="row">
         <div className="col-12">
           <header className="jumbotron">
-            <h1>Appointments</h1>
+            <h2>Booking requests</h2>
             {this.appointmentList()}
+            <h2>Upcoming appointments</h2>
           </header>
         </div>
       </div>

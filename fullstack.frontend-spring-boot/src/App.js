@@ -71,7 +71,7 @@ class App extends Component {
             {showDoctorBoard && (
               <li className="nav-item">
                 <Link to={"/doctor"} className="nav-link">
-                  Doctor Board
+                  Appointment History
                 </Link>
               </li>
             )}

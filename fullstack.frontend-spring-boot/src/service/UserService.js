@@ -22,6 +22,11 @@ class UserService {
   getAppointments() {
     return axios.get(API_URL + "appointment/", { headers: authHeader() });
   }
+  getAppointmentHistory() {
+    return axios.get(API_URL + "appointmenthistory/", {
+      headers: authHeader()
+    });
+  }
   getDoctorBoard() {
     return axios.get(API_URL + "doctor", { headers: authHeader() });
   }
