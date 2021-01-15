@@ -29,9 +29,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // imports the userinformation based on the logged in user.
     const user = AuthService.getCurrentUser();
 
     if (user) {
+      // Show information based on the role of the logged in user and sets
+      // it in a variable to show relevant information depending on the logged in user
       this.setState({
         currentUser: user,
         showPatientBoard: user.roles.includes("ROLE_PATIENT"),

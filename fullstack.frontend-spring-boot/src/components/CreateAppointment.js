@@ -81,14 +81,14 @@ export default class CreateAppointment extends Component {
       bookingDate: "",
       doctorId: "5ffeeee09407e72bb837a737",
       patientId: "",
-      active: true
+      active: false
     });
   };
 
   // Create "alert" for user if something went wrong
 
   render() {
-    let { ailmentList, doctorLocationlist } = this.state;
+    let { doctorLocationlist } = this.state;
     const obj = [
       ...new Map(
         doctorLocationlist.map((item) => [

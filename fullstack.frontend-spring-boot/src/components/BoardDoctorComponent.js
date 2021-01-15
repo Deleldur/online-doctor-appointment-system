@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import UserService from "../service/UserService";
 
 const AppointmentHistory = (props) => (
   <div>
     <div className="card">
-      <a href="#">Patient name</a>
+      <Link to="">Patient name</Link>
       <p>
         bookingdate: {props.appointments.appointmentDate} - bookingtime:{" "}
         {props.appointments.appointmentTime} - Treated ailment:{" "}
