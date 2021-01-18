@@ -63,10 +63,7 @@ public class DoctorController {
 	public List<Doctor> findAllDoctorLocations(@PathVariable(value="role") String role) {
 		return doctorService.findAllDoctorLocations(role);
 	}
-	@GetMapping(value="/doctorlocations")
-	public List<Doctor> findDistinctCity() {
-		return userRepository.findDistinctCity();
-	}
+
 
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
     @PutMapping(value="doctor/updatedoctor/{id}")
@@ -84,5 +81,14 @@ public class DoctorController {
 	@PostMapping(value="/test")
 	public List<Doctor> findDoctorAndLocation(String firstName, String location) {
 		return doctorService.findDoctorAndLocation(firstName, location);
+	}
+	
+	@GetMapping(value="/doctorlocations")
+	public List<Doctor> findAllDistinctCity() {
+		return doctorService.findAllDistinctCity();
+	}
+	@GetMapping(value="/doctorailment")
+	public List<Doctor> findAllDistinctAilment() {
+		return doctorService.findAllDistinctAilment();
 	}
 }

@@ -81,4 +81,18 @@ public class DoctorServiceImpl implements DoctorService {
 	public List<Doctor> findAllDoctorLocations(String role) {
 		return userRepository.findAllDoctorLocations(role);
 	}
+	@Override
+	public List<Doctor> findAllDistinctAilment() {
+		List<Doctor> list = new ArrayList<>(); 
+		list.addAll(userRepository.findAllDistinctAilment());
+		
+	return list;
+
+	
+	}
+
+	@Override
+	public List<Doctor> findAllDistinctCity() {
+		return userRepository.findAllDistinctCity();
+	}
 }
