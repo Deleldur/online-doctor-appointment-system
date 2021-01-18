@@ -12,9 +12,9 @@ export default class CreateAppointment extends Component {
       bookingStartTime: "",
       bookingEndTime: "",
       bookingDate: "",
-      doctorId: "5ffeeee09407e72bb837a737",
+      doctorId: "5ffef47b9407e72bb837a73f",
       patientId: "",
-      active: true
+      active: false
     };
   }
   componentDidMount() {
@@ -79,7 +79,7 @@ export default class CreateAppointment extends Component {
       bookingStartTime: "",
       bookingEndTime: "",
       bookingDate: "",
-      doctorId: "5ffeeee09407e72bb837a737",
+      doctorId: "5ffef47b9407e72bb837a73f",
       patientId: "",
       active: false
     });

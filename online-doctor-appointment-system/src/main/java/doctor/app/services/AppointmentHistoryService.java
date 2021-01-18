@@ -9,7 +9,8 @@ import doctor.app.models.AppointmentHistory;
 
 public interface AppointmentHistoryService {
 
-	List<AppointmentHistory> findAllAppointments();
+	List<AppointmentHistory> findAppointmentsByDoctorId(String id);
+	List<AppointmentHistory> findAppointmentsByPatientId(String id);
 	AppointmentHistory saveAppointmentHistory(AppointmentHistory information);
 
 }

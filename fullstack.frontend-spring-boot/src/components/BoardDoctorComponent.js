@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import UserService from "../service/UserService";
-
+import AuthService from "../service/AuthService";
 const AppointmentHistory = (props) => (
   <div>
     <div className="card">
@@ -32,7 +32,8 @@ export default class BoardDoctorComponent extends Component {
   };
 
   componentDidMount() {
-    UserService.getAppointmentHistory().then(
+    const doctorId = AuthService.getCurrentUserId();
+    UserService.getDoctorAppointmentHistory(doctorId).then(
       (response) => {
         this.setState({
           appointmentHistory: response.data

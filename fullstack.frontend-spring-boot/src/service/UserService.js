@@ -38,8 +38,8 @@ class UserService {
     });
   }
   // fetches all appointment history from the end point
-  getAppointmentHistory() {
-    return axios.get(API_URL + "appointmenthistory/", {
+  getDoctorAppointmentHistory(doctorId) {
+    return axios.get(API_URL + "appointmenthistory/doctor/" + doctorId, {
       headers: authHeader()
     });
   }
@@ -61,6 +61,7 @@ class UserService {
   // fetches all locations for all the doctors in the datbase
   // this is used to render the drop down menu in the search function for the booking requests.
   getDoctorLocations() {
+    // This is the id for the ROLE_DOCTOR in the database
     let role = "5ff86007480a2c4b6d697909";
     return axios.get(API_URL + "doctorlocations/" + role, {
       headers: authHeader()
@@ -70,7 +71,7 @@ class UserService {
   // fetches all ailments from the end point
   // this is used to render the drop down menu in the search function for the booking requests.
   getAilmentList() {
-    return axios.get(API_URL + "ailments/", {
+    return axios.get(API_URL + "doctorailment/", {
       headers: authHeader()
     });
   }

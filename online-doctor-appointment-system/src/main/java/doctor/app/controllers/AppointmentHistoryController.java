@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +23,18 @@ public class AppointmentHistoryController {
 	@Autowired
 	private AppointmentHistoryService appointmentHistoryService;
 	
-	@GetMapping(value="/appointmenthistory")
-	public List<AppointmentHistory> appointmentHistory() {
+	@GetMapping(value="/appointmenthistory/doctor/{id}")
+	public List<AppointmentHistory> findAppointmentsByDoctorId(@PathVariable(value="id") String id) {
 		
-		return appointmentHistoryService.findAllAppointments();
+		return appointmentHistoryService.findAppointmentsByDoctorId(id);
 	}
+
+	@GetMapping(value="/appointmenthistory/patient/{id}")
+	public List<AppointmentHistory> findAppointmentsByPatientId(@PathVariable(value="id") String id) {
+		
+		return appointmentHistoryService.findAppointmentsByPatientId(id);
+	}
+
 	
 	@PostMapping(value="/appointmenthistory")
 	public AppointmentHistory saveAppointmentHistory(@RequestBody AppointmentHistory information) {

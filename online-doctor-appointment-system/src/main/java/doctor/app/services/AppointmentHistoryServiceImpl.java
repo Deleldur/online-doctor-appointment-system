@@ -17,9 +17,13 @@ public class AppointmentHistoryServiceImpl implements AppointmentHistoryService{
 	AppointmentHistoryRepository appointmentHistoryRepository;
 	
 	
-	public List<AppointmentHistory> findAllAppointments() {
-		return appointmentHistoryRepository.findAll();
+	public List<AppointmentHistory> findAppointmentsByDoctorId(String id) {
+		return appointmentHistoryRepository.findAppointmentsByDoctorId(id);
 	}
+	
+	public List<AppointmentHistory> findAppointmentsByPatientId(String id) {
+		return appointmentHistoryRepository.findAppointmentsByPatientId(id);
+	}	
 	
 	public AppointmentHistory saveAppointmentHistory(AppointmentHistory information) {
 		return appointmentHistoryRepository.save(information);
