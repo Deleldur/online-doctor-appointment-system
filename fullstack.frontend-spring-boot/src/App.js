@@ -54,10 +54,12 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand">
-            Doctor booking
-          </Link>
 
+          <h4 className="Doctor booking">
+            Doctor booking
+          </h4>
+
+          
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to={"/home"} className="nav-link">
@@ -89,8 +91,8 @@ class App extends Component {
               </li>
 
               <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
+                <a href="/login" className="nav-link" onClick={this.logout}>
+                  Logout
                 </a>
               </li>
             </div>

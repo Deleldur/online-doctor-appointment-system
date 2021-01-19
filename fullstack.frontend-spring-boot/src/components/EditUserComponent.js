@@ -69,7 +69,10 @@ class EditUserComponent extends Component {
   render() {
     return (
       <>
+      <div className="card">
         <h2 className="text-center">Edit User</h2>
+
+        
         <form>
           <div className="row">
             <div className="col">
@@ -144,6 +147,7 @@ class EditUserComponent extends Component {
             Save
           </button>
         </form>
+        </div>
       </>
     );
   }

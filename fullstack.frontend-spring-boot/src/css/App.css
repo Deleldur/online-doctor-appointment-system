@@ -119,6 +119,8 @@ label {
   padding: 10px;
 }
 .container form .btn {
+  margin-top: 20px;
+  margin-top: px;
   float: right;
   background-color: rgba(58, 25, 243, 0.445);
   color: white;
@@ -203,10 +205,13 @@ body,
 }
 
 .navbar-dark .navbar-nav .nav-link {
+  margin-left: 20px;
   color: #000;
+  font-size: large;
 }
 
 .navbar-dark .navbar-brand {
+  
   color: #000;
 }
 
