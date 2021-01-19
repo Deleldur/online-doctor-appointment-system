@@ -61,24 +61,39 @@ class App extends Component {
 
           
           <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
+
+           
+
             {showPatientBoard && (
+               <div className="navbar-nav mr-auto">
+               <li className="nav-item">
+               <Link to={"/home"} className="nav-link">
+                Home
+               </Link>
+               </li>
+
               <li className="nav-item">
                 <Link to={"/createappointment"} className="nav-link">
                   Create appointments
                 </Link>
               </li>
+              </div>
             )}
+
             {showDoctorBoard && (
+                  <div className="navbar-nav mr-auto">
+                  <li className="nav-item">
+                  <Link to={"/home"} className="nav-link">
+                   Home
+                  </Link>
+                  </li>
+              
               <li className="nav-item">
                 <Link to={"/doctor"} className="nav-link">
                   Appointment History
                 </Link>
               </li>
+              </div>
             )}
           </div>
 
@@ -91,7 +106,7 @@ class App extends Component {
               </li>
 
               <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logout}>
+                <a href="/login" className="nav-link" onClick={this.logOut}>
                   Logout
                 </a>
               </li>

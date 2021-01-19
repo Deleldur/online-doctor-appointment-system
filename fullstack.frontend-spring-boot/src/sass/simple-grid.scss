@@ -104,6 +104,7 @@ p {
 
 $width: 96%;
 $gutter: 4%;
+$breakpoint-xsmall: 20em; // 540px
 $breakpoint-small: 33.75em; // 540px
 $breakpoint-med: 45em; // 720px
 $breakpoint-large: 60em; // 960px
@@ -113,6 +114,9 @@ $breakpoint-large: 60em; // 960px
   margin-left: auto;
   margin-right: auto;
 
+  @media only screen and (min-width: $breakpoint-xsmall) {     
+    width: 80%;   }
+
   @media only screen and (min-width: $breakpoint-small) {
     width: 80%;
   }
@@ -121,6 +125,8 @@ $breakpoint-large: 60em; // 960px
     width: 75%;
     max-width: 60rem;
   }
+
+  
 }
 
 .row {
