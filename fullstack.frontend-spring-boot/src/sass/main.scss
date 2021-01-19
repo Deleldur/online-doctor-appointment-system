@@ -20,7 +20,7 @@ body {
 */
 
 .header {
-  background-color: $grey;
+  background-color: $black;
   height: 75px;
   padding-top: 15px;
 
@@ -28,6 +28,7 @@ body {
   z-index: 5000;
   width: 100%;
 }
+
 .header .nav {
   padding-top: 10px;
   height: auto;
@@ -67,22 +68,6 @@ body {
   }
 }
 
-// .nav-icon {
-//   width: 30px;
-//   height: 30px;
-//   float: right;
-//   margin-right: 40px;
-//   cursor: pointer;
-//   transition: all 0.2s ease-in;
-//   &.closed {
-//     background-image: url("../img/hamburger.svg");
-//     background-repeat: no-repeat;
-//   }
-//   &.open {
-//     background-image: url("../img/hamburger-cross.svg");
-//     background-repeat: no-repeat;
-//   }
-// }
 
 .logo {
   float: left;
@@ -93,3 +78,4 @@ body {
   margin-top: 5px;
   // margin-left: 20px;
 }
+

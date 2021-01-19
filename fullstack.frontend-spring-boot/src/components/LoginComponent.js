@@ -117,7 +117,7 @@ export default class LoginComponent extends Component {
               <button id="SignIn" disabled={this.state.loading}>
                 Login
               </button>
-              <p className="message">Create Account</p>
+            <a className ="create" href="register">Want to create a account?</a>
             </div>
             <CheckButton
               style={{ display: "none" }}

@@ -91,21 +91,24 @@ export default class HomeComponent extends Component {
       <div className="row">
         <div className="col-lg-12">
           <header className="jumbotron">
-            <h1>Doctor page</h1>
+             <h1>Doctor page</h1>
           </header>
-
+          <div className="card">
           <h2>Booking requests</h2>
           {this.currentBookingRequests()}
-
+          </div>
+          <div className="card">
           <h2>Upcoming appointments</h2>
           {this.currentAppointmentList()}
-
+          </div>
+          <div className="card">
           <h2>Finished appointments</h2>
           <p>
             All appointments that are done that the doctor has to write a
             "journal" on. Then it should transfer to the appointment history and
             be considered done.
           </p>
+          </div>
         </div>
       </div>
     );

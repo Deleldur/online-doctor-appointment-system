@@ -56,12 +56,13 @@ export default class HomeComponent extends Component {
     console.log(appointments);
     return (
       <div className="container">
-        <header className="jumbotron">
-          <h1>Patient Home</h1>
-        </header>
-
-        <h2>Upcoming bookings</h2>
+        <div className="card">
+        <h1>Upcoming appointments</h1>
         {this.appointmentHistoryList()}
+        </div>
+        <div className="card">
+        <h2>Previous appointments</h2>
+        </div>
       </div>
     );
   }

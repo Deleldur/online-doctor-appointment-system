@@ -12,9 +12,9 @@ export default class CreateAppointment extends Component {
       bookingStartTime: "",
       bookingEndTime: "",
       bookingDate: "",
-      doctorId: "5ffef47b9407e72bb837a73f",
+      doctorId: "5ffeeee09407e72bb837a737",
       patientId: "",
-      active: false
+      active: true
     };
   }
   componentDidMount() {
@@ -79,7 +79,7 @@ export default class CreateAppointment extends Component {
       bookingStartTime: "",
       bookingEndTime: "",
       bookingDate: "",
-      doctorId: "5ffef47b9407e72bb837a73f",
+      doctorId: "5ffeeee09407e72bb837a737",
       patientId: "",
       active: false
     });
@@ -88,45 +88,42 @@ export default class CreateAppointment extends Component {
   // Create "alert" for user if something went wrong
 
   render() {
-    let { doctorLocationlist, ailmentList } = this.state;
-
-    let result2 = doctorLocationlist.map((result) => result.address.city);
+    let { doctorLocationlist } = this.state;
     const obj = [
-      ...new Map(result2.map((item) => [JSON.stringify(item), item])).values()
-    ];
-
-    // Remove duplicates from the ailmentList to print in the dropdown menu on the page
-    let result = ailmentList.map((result) => result.ailmentList);
-    const obj2 = [
       ...new Map(
-        result.flat().map((item) => [JSON.stringify(item), item])
+        doctorLocationlist.map((item) => [
+          JSON.stringify(item.address.city),
+          item
+        ])
       ).values()
     ];
 
     return (
       <div>
-        <div className="row">
+
+        <div className="card">
           <form>
             <div className="col-lg-12">
               <div className="form-group">
                 <h3>Search for doctor</h3>
 
-                <label>Choose a location:</label>
+                <label>Choose an ailment:</label>
                 <select className="form-control" id="ailments" name="ailments">
-                  {obj.sort().map((list, key) => {
+                  {this.state.ailmentList.map((list, key) => {
                     return (
-                      <option value={list} key={key}>
-                        {list}
+                      <option value={list.ailment} key={key}>
+                        {list.ailment}
                       </option>
                     );
                   })}
                 </select>
-                <label>Choose an ailment:</label>
+
+                <label>Choose a location:</label>
                 <select className="form-control" id="ailments" name="ailments">
-                  {obj2.sort().map((list, key) => {
+                  {obj.map((list, key) => {
                     return (
-                      <option value={list} key={key}>
-                        {list}
+                      <option value={list.address.city} key={key}>
+                        {list.address.city}
                       </option>
                     );
                   })}
@@ -136,8 +133,12 @@ export default class CreateAppointment extends Component {
               <input type="submit" value="Search" className="btn" />
             </div>
           </form>
-        </div>
-        <div className="row">
+        
+
+
+
+
+        
           <form onSubmit={this.onSubmit}>
             <div className="col-lg-12">
               <h3>Create New Appointment</h3>
@@ -151,21 +152,23 @@ export default class CreateAppointment extends Component {
                 // onChangeCategoryTitle - onChangeBookingDate
               />
             </div>
-            <div className="col-12">
+            <div className="col-lg-12">
               <label>Time</label>
               <input
                 type="time"
-                className="col-12"
+                className="col-lg-12"
                 value={this.state.bookingStartTime}
                 onChange={this.onChangeBookingTime}
                 // categoryDescription -> bookingTime
                 // onChangeCategoryDescription -> onChangeBookingTime
               />
+              
+              <input type="submit" value="Create appointment" className="btn" />
             </div>
-
-            <input type="submit" value="Create appointment" className="btn" />
           </form>
         </div>
+
+
       </div>
     );
   }
