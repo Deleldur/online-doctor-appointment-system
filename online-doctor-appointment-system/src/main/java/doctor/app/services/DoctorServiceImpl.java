@@ -1,6 +1,7 @@
 package doctor.app.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import doctor.app.models.Doctor;
@@ -83,13 +85,11 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 	@Override
 	public List<Doctor> findAllDistinctAilment() {
-		List<Doctor> list = new ArrayList<>(); 
-		list.addAll(userRepository.findAllDistinctAilment());
-		
-	return list;
-
 	
+	return userRepository.findAllDistinctAilment();
 	}
+	
+	//List<Passenger> passengers = repository.findAll(Sort.by(Sort.Direction.ASC, "seatNumber"));
 
 	@Override
 	public List<Doctor> findAllDistinctCity() {

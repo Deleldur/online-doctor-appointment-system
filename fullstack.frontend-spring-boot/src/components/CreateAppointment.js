@@ -88,13 +88,18 @@ export default class CreateAppointment extends Component {
   // Create "alert" for user if something went wrong
 
   render() {
-    let { doctorLocationlist } = this.state;
+    let { doctorLocationlist, ailmentList } = this.state;
+
+    let result2 = doctorLocationlist.map((result) => result.address.city);
     const obj = [
+      ...new Map(result2.map((item) => [JSON.stringify(item), item])).values()
+    ];
+
+    // Remove duplicates from the ailmentList to print in the dropdown menu on the page
+    let result = ailmentList.map((result) => result.ailmentList);
+    const obj2 = [
       ...new Map(
-        doctorLocationlist.map((item) => [
-          JSON.stringify(item.address.city),
-          item
-        ])
+        result.flat().map((item) => [JSON.stringify(item), item])
       ).values()
     ];
 
@@ -106,23 +111,22 @@ export default class CreateAppointment extends Component {
               <div className="form-group">
                 <h3>Search for doctor</h3>
 
-                <label>Choose an ailment:</label>
+                <label>Choose a location:</label>
                 <select className="form-control" id="ailments" name="ailments">
-                  {this.state.ailmentList.map((list, key) => {
+                  {obj.sort().map((list, key) => {
                     return (
-                      <option value={list.ailment} key={key}>
-                        {list.ailment}
+                      <option value={list} key={key}>
+                        {list}
                       </option>
                     );
                   })}
                 </select>
-
-                <label>Choose a location:</label>
+                <label>Choose an ailment:</label>
                 <select className="form-control" id="ailments" name="ailments">
-                  {obj.map((list, key) => {
+                  {obj2.sort().map((list, key) => {
                     return (
-                      <option value={list.address.city} key={key}>
-                        {list.address.city}
+                      <option value={list} key={key}>
+                        {list}
                       </option>
                     );
                   })}
