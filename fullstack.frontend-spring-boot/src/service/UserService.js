@@ -76,6 +76,23 @@ class UserService {
     });
   }
 
+  getDoctorByLocationAndAilment(location, ailment) {
+    return axios.get(
+      API_URL + "doctor/findbyailmentandlocation/" + location + "/" + ailment,
+      {
+        headers: authHeader()
+      }
+    );
+  }
+  getAilmentListByDoctorLocation(location) {
+    let role = "5ff86007480a2c4b6d697909";
+    return axios.get(
+      API_URL + "doctor/findbylocation/" + location + "/" + role,
+      {
+        headers: authHeader()
+      }
+    );
+  }
   // edits the current user information (works for both doctors and patients)
   editUser(user) {
     console.log(user);

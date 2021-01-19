@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import UserService from "../service/UserService";
+import SearchForm from "./SearchForm";
+import SearchDoctorResult from "./SearchDoctorResult";
 
 export default class CreateAppointment extends Component {
   constructor(props) {
@@ -14,25 +16,18 @@ export default class CreateAppointment extends Component {
       bookingDate: "",
       doctorId: "5ffeeee09407e72bb837a737",
       patientId: "",
-      active: true
+      active: false,
+      dropDownLocation: "",
+      ailmentsDropDownValue: "",
+      value: "",
+      finalDoctorList: ""
     };
   }
   componentDidMount() {
     this.loadUser();
-    this.getAilments();
+
     this.getDoctorLocations();
   }
-  onChangeBookingTime = (e) => {
-    this.setState({
-      bookingStartTime: e.target.value
-    });
-  };
-
-  onChangeBookingDate = (e) => {
-    this.setState({
-      bookingDate: e.target.value
-    });
-  };
 
   loadUser = () => {
     UserService.getPatientInfo().then((response) => {
@@ -49,14 +44,41 @@ export default class CreateAppointment extends Component {
       });
     });
   };
-  getAilments = () => {
-    UserService.getAilmentList().then((response) => {
+  getAilments = (res) => {
+    UserService.getAilmentListByDoctorLocation(res).then((response) => {
       this.setState({
         ailmentList: response.data
       });
     });
   };
 
+  onSearchSubmit = (e) => {
+    let { value, ailmentsDropDownValue } = this.state;
+    e.preventDefault();
+    console.log(value);
+    console.log(ailmentsDropDownValue);
+
+    UserService.getDoctorByLocationAndAilment(
+      value,
+      ailmentsDropDownValue
+    ).then((response) => {
+      this.setState({
+        finalDoctorList: response.data
+      });
+    });
+  };
+  onChangeLocation = (e) => {
+    this.setState({
+      value: e.target.value
+    });
+    this.getAilments(e.target.value);
+  };
+
+  onChangeAilments = (e) => {
+    this.setState({
+      ailmentsDropDownValue: e.target.value
+    });
+  };
   onSubmit = (e) => {
     e.preventDefault();
 
@@ -88,8 +110,25 @@ export default class CreateAppointment extends Component {
   // Create "alert" for user if something went wrong
 
   render() {
-    let { doctorLocationlist } = this.state;
-    const obj = [
+    let {
+      doctorLocationlist,
+      ailmentList,
+      bookingDate,
+      bookingStartTime,
+      bookingEndTime,
+      dropDownLocation,
+      finalDoctorList
+    } = this.state;
+    // Removes duplicates from the location list (the cities)
+    let result2 = doctorLocationlist.map((result) => result.address.city);
+    const finalDoctorLocationList = [
+      ...new Map(result2.map((item) => [JSON.stringify(item), item])).values()
+    ];
+
+    // Remove duplicates from the ailmentList to print in the dropdown menu on the page
+    // Then it flattens the array so all items gets put in to one array list.
+    let result = ailmentList.map((result) => result.ailmentList);
+    const flattedAilmentList = [
       ...new Map(
         doctorLocationlist.map((item) => [
           JSON.stringify(item.address.city),
@@ -100,75 +139,19 @@ export default class CreateAppointment extends Component {
 
     return (
       <div>
+        <SearchForm
+          onChangeAilments={this.onChangeAilments}
+          onSearchSubmit={this.onSearchSubmit}
+          onChangeLocation={this.onChangeLocation}
+          bookingStartTime={bookingStartTime}
+          bookingEndTime={bookingEndTime}
+          bookingDate={bookingDate}
+          finalDoctorLocationList={finalDoctorLocationList}
+          flattedAilmentList={flattedAilmentList}
+          dropDownLocation={dropDownLocation}
+        />
 
-        <div className="card">
-          <form>
-            <div className="col-lg-12">
-              <div className="form-group">
-                <h3>Search for doctor</h3>
-
-                <label>Choose an ailment:</label>
-                <select className="form-control" id="ailments" name="ailments">
-                  {this.state.ailmentList.map((list, key) => {
-                    return (
-                      <option value={list.ailment} key={key}>
-                        {list.ailment}
-                      </option>
-                    );
-                  })}
-                </select>
-
-                <label>Choose a location:</label>
-                <select className="form-control" id="ailments" name="ailments">
-                  {obj.map((list, key) => {
-                    return (
-                      <option value={list.address.city} key={key}>
-                        {list.address.city}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-
-              <input type="submit" value="Search" className="btn" />
-            </div>
-          </form>
-        
-
-
-
-
-        
-          <form onSubmit={this.onSubmit}>
-            <div className="col-lg-12">
-              <h3>Create New Appointment</h3>
-              <label>Date</label>
-              <input
-                type="date"
-                className="col-12"
-                value={this.state.bookingDate}
-                onChange={this.onChangeBookingDate}
-                // categoryTitle -> bookingDate
-                // onChangeCategoryTitle - onChangeBookingDate
-              />
-            </div>
-            <div className="col-lg-12">
-              <label>Time</label>
-              <input
-                type="time"
-                className="col-lg-12"
-                value={this.state.bookingStartTime}
-                onChange={this.onChangeBookingTime}
-                // categoryDescription -> bookingTime
-                // onChangeCategoryDescription -> onChangeBookingTime
-              />
-              
-              <input type="submit" value="Create appointment" className="btn" />
-            </div>
-          </form>
-        </div>
-
-
+        <SearchDoctorResult finalDoctorList={finalDoctorList} />
       </div>
     );
   }

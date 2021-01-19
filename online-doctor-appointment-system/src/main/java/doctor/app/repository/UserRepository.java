@@ -27,8 +27,8 @@ public interface UserRepository extends MongoRepository<User, String> {
 	@Query("{ 'ailmentList' : ?0}") //NOSQL QUERY
 	List<Doctor> findDoctorByAilment(@Param("ailment") String ailment);
 	
-	@Query("{ 'address.city' : ?0}")
-	List<Doctor> findDoctorByLocation(String location);
+	@Query("{ 'address.city' : ?0, 'roles.id' : ?1}")
+	List<Doctor> findDoctorByLocation(String location, String role);
 	
 	@Query("{ 'firstName': ?0, 'address.city' : ?1}")
 	List<Doctor> findDoctorAndLocation(String firstName, String location);
@@ -39,7 +39,8 @@ public interface UserRepository extends MongoRepository<User, String> {
 	List<Doctor> findAllDoctorLocations(String role);
 	
 //
-
+	@Query("{'address.city': ?0, 'ailmentList' : ?1 }")
+	List<Doctor> findDoctorsByAilmentAndLocation(String location, String ailment);
 
 	@Query(value = "{}", fields ="{'address.city': 1 }")
     List<Doctor> findAllDistinctCity();	

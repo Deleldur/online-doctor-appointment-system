@@ -55,9 +55,9 @@ public class DoctorController {
 		return userRepository.findDoctorById(id);
 	}
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@PostMapping(value="/location")
-	public List<Doctor> findDoctorByLocation(String location) {
-		return doctorService.findDoctorByLocation(location);
+	@GetMapping(value="/doctor/findbylocation/{location}/{role}")
+	public List<Doctor> findDoctorByLocation(@PathVariable String location, @PathVariable String role) {
+		return doctorService.findDoctorByLocation(location, role);
 	}
 	
 	@GetMapping(value="/doctorlocations/{role}")
@@ -65,9 +65,13 @@ public class DoctorController {
 		return doctorService.findAllDoctorLocations(role);
 	}
 
+	@GetMapping(value="/doctor/findbyailmentandlocation/{location}/{ailment}")
+	public List<Doctor> findDoctorsByAilmentAndLocation(@PathVariable String location, @PathVariable String ailment) {
+		return doctorService.findDoctorsByAilmentAndLocation(location, ailment);
+	}
 
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-    @PutMapping(value="doctor/updatedoctor/{id}")
+    @PutMapping(value="/doctor/updatedoctor/{id}")
     public User updateDoctor(@PathVariable(value = "id") String id,
         @RequestBody User doctorDetails) throws Exception   {
     	
