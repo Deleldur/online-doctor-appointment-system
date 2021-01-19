@@ -130,10 +130,7 @@ export default class CreateAppointment extends Component {
     let result = ailmentList.map((result) => result.ailmentList);
     const flattedAilmentList = [
       ...new Map(
-        doctorLocationlist.map((item) => [
-          JSON.stringify(item.address.city),
-          item
-        ])
+        result.flat().map((item) => [JSON.stringify(item), item])
       ).values()
     ];
 
