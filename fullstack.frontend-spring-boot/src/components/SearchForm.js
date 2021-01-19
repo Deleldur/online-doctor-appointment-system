@@ -31,12 +31,13 @@ class SearchForm extends Component {
     console.log(finalDoctorList);
     return (
       <React.Fragment>
-        <div className="row">
+        <div className="card">
           <form onSubmit={this.props.onSearchSubmit}>
             <div className="col-lg-12">
               <div className="form-group">
+                
                 <h3>Search for doctor</h3>
-
+               
                 <label>Choose a location:</label>
                 <select
                   className="form-control"
@@ -72,7 +73,7 @@ class SearchForm extends Component {
             </div>
           </form>
         </div>
-        <div className="row">
+        <div className="card">
           <form onSubmit={this.onSubmit}>
             <div className="col-lg-12">
               <h3>Create New Appointment</h3>

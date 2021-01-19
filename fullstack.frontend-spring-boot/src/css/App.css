@@ -116,6 +116,9 @@ label {
 }
 .container-bg {
   background-color: rgba(49, 37, 105, 0.267);
+  height: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
   
 }
 .container form .btn {
