@@ -52,7 +52,7 @@ public class DoctorController {
 	}
 	@GetMapping(value="/doctor/finddoctor/{id}")
 	public Optional<Doctor> findDoctorById(@PathVariable(value= "id") String id) {
-		return userRepository.findDoctorById(id);
+		return doctorService.findDoctorById(id);
 	}
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
 	@GetMapping(value="/doctor/findbylocation/{location}/{role}")
@@ -74,10 +74,7 @@ public class DoctorController {
     @PutMapping(value="/doctor/updatedoctor/{id}")
     public User updateDoctor(@PathVariable(value = "id") String id,
         @RequestBody User doctorDetails) throws Exception   {
-    	
-		
-    	User doctor = userRepository.findById(id).orElseThrow(() -> new Exception("Doctor not found for this id :: " + id));
-
+    	User doctor = doctorService.findDoctorById(id).orElseThrow(() -> new Exception("Doctor not found for this id :: " + id));
     	return doctorService.updateDoctorProfile(doctor, doctorDetails);
      //   return ResponseEntity.ok(updatedDoctor);
     } 

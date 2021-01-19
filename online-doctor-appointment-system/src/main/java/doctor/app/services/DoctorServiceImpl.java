@@ -47,8 +47,8 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 	
 	@Override
-	public Optional<User> findDoctorById(String id) {
-		return userRepository.findById(id);
+	public Optional<Doctor> findDoctorById(String id) {
+		return userRepository.findDoctorById(id);
 	}
 	
 	@Override
