@@ -147,8 +147,11 @@ export default class CreateAppointment extends Component {
           flattedAilmentList={flattedAilmentList}
           dropDownLocation={dropDownLocation}
         />
-
-        <SearchDoctorResult finalDoctorList={finalDoctorList} />
+        {/* Checks if the final doctor list is empty or not */}
+        {/* If it is not empty it shows the SearchDoctorResult component */}
+        {!!finalDoctorList ? (
+          <SearchDoctorResult finalDoctorList={finalDoctorList} />
+        ) : null}
       </div>
     );
   }
