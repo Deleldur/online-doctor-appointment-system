@@ -9,7 +9,7 @@ import doctor.app.models.User;
 public interface DoctorService {
 
 //	List<Doctor> getAllDoctors();
-	Optional<User> findDoctorById(String id);
+	Optional<Doctor> findDoctorById(String id);
 	List<Doctor> findDoctorByAilment(String ailment);
 	List<Doctor> findDoctorByLocation(String location, String role);
 	List<Doctor> findDoctorAndLocation(String firstName, String location);
