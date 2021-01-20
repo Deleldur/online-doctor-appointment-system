@@ -11,7 +11,6 @@ import doctor.app.repository.AppointmentRepository;
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 
-
 	@Autowired
 	private AppointmentRepository appointmentRepository;
 	
@@ -27,5 +26,22 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Override
 	public List<Appointment> findAppointmentByDoctorId(String id) {
 		return appointmentRepository.findByDoctorId(id);
+	}
+
+	@Override
+	public Appointment findAppointmentByAppointmentId(String id) {
+		return appointmentRepository.findAppointmentById(id);
+	}
+
+	@Override
+	public Appointment updateAppointmentDetails(Appointment orgAppointment, Appointment newAppointment) {	
+		
+		orgAppointment.setBookingDate(newAppointment.getBookingDate());
+		orgAppointment.setBookingStartTime(newAppointment.getBookingStartTime());
+		orgAppointment.setBookingEndTime(newAppointment.getBookingEndTime());
+
+        final Appointment updatedAppointment = appointmentRepository.save(orgAppointment);
+       
+		return updatedAppointment;
 	}
 }

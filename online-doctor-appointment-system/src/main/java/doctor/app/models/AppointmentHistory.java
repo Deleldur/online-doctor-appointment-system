@@ -26,7 +26,6 @@ public class AppointmentHistory {
 	private String patientFeedback;
 	private Boolean status;
 	
-	
 	public AppointmentHistory() {
 		
 	}

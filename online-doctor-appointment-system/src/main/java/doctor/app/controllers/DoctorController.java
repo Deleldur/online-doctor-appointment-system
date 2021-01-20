@@ -1,6 +1,5 @@
 package doctor.app.controllers;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +20,6 @@ import doctor.app.models.User;
 import doctor.app.repository.UserRepository;
 import doctor.app.services.DoctorService;
 
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(value = "/api")
 @RestController
@@ -30,9 +28,6 @@ public class DoctorController {
 
 	@Autowired
 	private DoctorService doctorService;
-
-	@Autowired
-	UserRepository userRepository;
 	
 //	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
 //		@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
