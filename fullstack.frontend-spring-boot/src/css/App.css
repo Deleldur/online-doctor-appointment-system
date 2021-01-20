@@ -44,7 +44,7 @@ label {
   margin: 0 auto 100px;
   padding: 50px;
   text-align: center;
-  }
+}
 
 .form input {
   font-family: "Roboto", sans-serif;
@@ -57,7 +57,6 @@ label {
   font-size: 14px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
- 
 }
 .form button {
   font-family: "Roboto", sans-serif;
@@ -116,15 +115,12 @@ label {
 }
 .container-bg {
   background-color: rgba(49, 37, 105, 0.267);
-  
 }
 .container form .btn {
   margin-top: 20px;
-  margin-top: px;
   float: right;
   background-color: rgba(58, 25, 243, 0.445);
   color: white;
- 
 }
 .container:before,
 .container:after {
@@ -192,15 +188,13 @@ body,
   opacity: 0.3;
   border: 1px solid rgb(0, 0, 0);
   background: rgb(0, 0, 0);
- 
 }
 
 .jumbotron {
-  background-color:#315c6e00;
+  background-color: #315c6e00;
 }
 
-
-.bg-dark{
+.bg-dark {
   background-color: #315c6e !important;
 }
 
@@ -211,15 +205,9 @@ body,
 }
 
 .navbar-dark .navbar-brand {
-  
   color: #000;
 }
 
 .create {
   color: rgb(255, 255, 255) !important;
 }
-
-
-
-
-

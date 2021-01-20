@@ -17,5 +17,7 @@ public interface AppointmentRepository extends MongoRepository<Appointment, Stri
 	List<Appointment> findByPatientId(@Param("id") String id);
 	@Query("{ 'doctorId' : ?0}") //NOSQL QUERY
 	List<Appointment> findByDoctorId(@Param("id") String id);
+	@Query("{ 'id' : ?0}") //NOSQL QUERY
+	List<Appointment> findAppointmentById(@Param("id") String id);
 	
 }

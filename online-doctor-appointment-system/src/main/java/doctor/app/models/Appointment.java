@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "appointment")
 public class Appointment {
 
 	@Id
@@ -36,6 +36,13 @@ public class Appointment {
 		this.bookingEndTime = bookingEndTime;
 
 	}
+
+
+
+	public String getId() {
+		return id;
+	}
+
 
 
 
