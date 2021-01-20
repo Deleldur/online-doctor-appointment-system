@@ -25,6 +25,13 @@ class UserService {
   getAppointments() {
     return axios.get(API_URL + "appointment/", { headers: authHeader() });
   }
+
+  // fetches all appointments with a specific patient id
+  getAppointmentsFromId(id) {
+    return axios.get(API_URL + "appointment/" + id, {
+      headers: authHeader()
+    });
+  }
   // fetches all appointments with a specific patient id
   getAppointmentsFromPatientId(patientId) {
     return axios.get(API_URL + "appointment/patient/" + patientId, {
