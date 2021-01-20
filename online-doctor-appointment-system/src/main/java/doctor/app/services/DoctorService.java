@@ -3,6 +3,7 @@ package doctor.app.services;
 import java.util.List;
 import java.util.Optional;
 
+import doctor.app.models.AppointmentHistory;
 import doctor.app.models.Doctor;
 import doctor.app.models.User;
 
@@ -19,4 +20,7 @@ public interface DoctorService {
 	List<Doctor> findAllDistinctAilment();
 	List<Doctor> findDoctorsByAilmentAndLocation(String location, String ailment);
 	List<Doctor> findAllDistinctCity();
+	
+	
+	//AppointmentHistory updateAppointmentHistoryDetails(AppointmentHistory orgAppointment, AppointmentHistory newAppointment);
 }
