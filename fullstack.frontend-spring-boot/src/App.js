@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component }  from "react";
 import { Switch, Route, Link, Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
@@ -17,6 +17,7 @@ import AppointmentComponent from "./components/AppointmentComponent";
 
 
 const MenuIcon = styled.button``
+
 
 class App extends Component {
   constructor(props) {
@@ -63,21 +64,13 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <h4 className="Doctor booking">Doctor booking</h4>
-
-          
-          
-          <MenuIcon className="burger">
-            <div className="burgerDiv"/>
-            <div className="burgerDiv"/>
-            <div className="burgerDiv"/>
-          </MenuIcon>
-          
-          
-          <div className="navbar-nav mr-auto">
+ 
+        <div className="navbar-nav mr-auto">
             {showPatientBoard && (
                <div className="navbar-nav mr-auto">
-                <li className="nav-item">
-               <Link to={"/home"} className="nav-link">
+                 
+                 <li className="nav-item">
+                <Link to={"/home"} className="nav-link">
                 Home
                </Link>
                </li>
@@ -86,8 +79,8 @@ class App extends Component {
                   <Link to={"/createappointment"} className="nav-link">
                     Create appointments
                   </Link>
-                </li>
-              </div>
+                  </li>
+                  </div>
             )}
 
             {showDoctorBoard && (
@@ -103,37 +96,46 @@ class App extends Component {
                     Appointment History
                   </Link>
                 </li>
-              </div>
+                </div>
             )}
           </div>
 
           {currentUser ? (
             <div className="navbar-nav ml-auto">
+
+                   
               <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">
                   Profile
                 </Link>
               </li>
+             
 
               <li className="nav-item">
                 <a href="/login" className="nav-link" onClick={this.logOut}>
                   Logout
                 </a>
               </li>
+
+              
             </div>
           ) : (
             <div className="navbar-nav ml-auto">
+
+                  
               <li className="nav-item">
                 <Link to={"/login"} className="nav-link">
                   Login
                 </Link>
               </li>
+              
 
               <li className="nav-item">
                 <Link to={"/register"} className="nav-link">
                   Sign Up
                 </Link>
               </li>
+              
             </div>
           )}
         </nav>
