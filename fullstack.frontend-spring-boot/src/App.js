@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
 import styled from "styled-components";
 import AuthService from "./service/AuthService";
+import "./css/temp.css";
+import UserService from "./service/UserService";
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import HomeDoctor from "./components/HomeDoctor";
@@ -11,9 +13,11 @@ import HomePatient from "./components/HomePatient";
 import BoardDoctorComponent from "./components/BoardDoctorComponent";
 import EditUserComponent from "./components/EditUserComponent";
 import CreateAppointment from "./components/CreateAppointment";
+import AppointmentComponent from "./components/AppointmentComponent";
 
 
 const MenuIcon = styled.button``
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +26,8 @@ class App extends Component {
     this.state = {
       showDoctorBoard: false,
       showPatientBoard: false,
-      currentUser: undefined
+      currentUser: undefined,
+      appointments: []
     };
   }
 
@@ -47,11 +52,17 @@ class App extends Component {
   }
 
   render() {
-    const { currentUser, showPatientBoard, showDoctorBoard } = this.state;
+    const {
+      currentUser,
+      showPatientBoard,
+      showDoctorBoard,
+      appointments
+    } = this.state;
 
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
+          <h4 className="Doctor booking">Doctor booking</h4>
 
           <h4 className="Doctor booking">
             Doctor booking
@@ -73,27 +84,27 @@ class App extends Component {
                </Link>
                </li>
 
-              <li className="nav-item">
-                <Link to={"/createappointment"} className="nav-link">
-                  Create appointments
-                </Link>
-              </li>
+                <li className="nav-item">
+                  <Link to={"/createappointment"} className="nav-link">
+                    Create appointments
+                  </Link>
+                </li>
               </div>
             )}
 
             {showDoctorBoard && (
-                  <div className="navbar-nav mr-auto">
-                  <li className="nav-item">
+              <div className="navbar-nav mr-auto">
+                <li className="nav-item">
                   <Link to={"/home"} className="nav-link">
-                   Home
+                    Home
                   </Link>
-                  </li>
-              
-              <li className="nav-item">
-                <Link to={"/doctor"} className="nav-link">
-                  Appointment History
-                </Link>
-              </li>
+                </li>
+
+                <li className="nav-item">
+                  <Link to={"/doctor"} className="nav-link">
+                    Appointment History
+                  </Link>
+                </li>
               </div>
             )}
           </div>
@@ -137,11 +148,24 @@ class App extends Component {
             {showPatientBoard && (
               <Route exact path={["/", "/home"]} component={HomePatient} />
             )}
-            <Route exact path="/login" component={LoginComponent} />
-            <Route exact path="/register" component={RegisterComponent} />
-            <Route exact path="/profile" component={EditUserComponent} />
+            <Route path="/login" component={LoginComponent} />
+            <Route path="/register" component={RegisterComponent} />
+            <Route path="/profile" component={EditUserComponent} />
             <Route path="/createappointment" component={CreateAppointment} />
             <Route path="/doctor" component={BoardDoctorComponent} />
+            <React.StrictMode>
+              <Route
+                exact
+                path="/appointment/:id"
+                render={(props) => <AppointmentComponent {...props} />}
+              />
+              <Route
+                exact
+                path="/appointment/:journal/:id"
+                render={(props) => <AppointmentComponent {...props} />}
+              />
+            </React.StrictMode>
+            {/*<Route path="/appointment" component={AppointmentComponent} />*/}
           </Switch>
         </div>
       </div>
@@ -150,4 +174,3 @@ class App extends Component {
 }
 
 export default App;
-

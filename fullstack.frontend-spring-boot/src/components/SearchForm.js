@@ -26,47 +26,65 @@ class SearchForm extends Component {
       bookingEndTime,
       onChangeLocation,
       onChangeAilments,
-      finalDoctorList
+      finalDoctorList,
+      showAilmentList
     } = this.props;
-    console.log(finalDoctorList);
+    console.log("Final doctor list in searhcform.js " + finalDoctorList);
+    console.log("finalDoctorLocationList: " + finalDoctorLocationList);
     return (
       <React.Fragment>
         <div className="card">
-          <form onSubmit={this.props.onSearchSubmit}>
+          <form className="form" onSubmit={this.props.onSearchSubmit}>
             <div className="col-lg-12">
               <div className="form-group">
                 
                 <h3>Search for doctor</h3>
-               
-                <label>Choose a location:</label>
-                <select
-                  className="form-control"
-                  name="location"
-                  //                  value={this.state.value}
-                  onChange={this.props.onChangeLocation}
+                <div className="locationdrop">
+                  <label>Choose a location:</label>
+                  <select
+                    className="form-control"
+                    name="location"
+                    defaultValue="1"
+                    //                  value={this.state.value}
+                    onChange={this.props.onChangeLocation}
+                  >
+                    <option value="1" disabled>
+                      Select your location...
+                    </option>
+                    {finalDoctorLocationList.sort().map((list, key) => {
+                      return (
+                        <option value={list} key={key}>
+                          {list}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+                <div
+                  className="ailmentdrop"
+                  style={
+                    showAilmentList ? { display: "block" } : { display: "none" }
+                  }
                 >
-                  {finalDoctorLocationList.sort().map((list, key) => {
-                    return (
-                      <option value={list} key={key}>
-                        {list}
-                      </option>
-                    );
-                  })}
-                </select>
-                <label>Choose an ailment:</label>
-                <select
-                  className="form-control"
-                  name="ailments"
-                  onChange={this.props.onChangeAilments}
-                >
-                  {flattedAilmentList.sort().map((list, key) => {
-                    return (
-                      <option value={list} key={key}>
-                        {list}
-                      </option>
-                    );
-                  })}
-                </select>
+                  <label>Choose an ailment:</label>
+                  <select
+                    className="form-control"
+                    name="ailments"
+                    defaultValue="1"
+                    onChange={this.props.onChangeAilments}
+                  >
+                    <option value="1" disabled>
+                      Select your Ailment...
+                    </option>
+                    {flattedAilmentList.sort().map((list, key) => {
+                      return (
+                        <option value={list} key={key}>
+                          {list}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
               </div>
 
               <input type="submit" value="submit" className="btn" />
@@ -101,7 +119,7 @@ class SearchForm extends Component {
 
             <input type="submit" value="Create appointment" className="btn" />
           </form>
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }

@@ -1,28 +1,53 @@
 package doctor.app.services;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import doctor.app.models.AppointmentHistory;
 import doctor.app.models.Doctor;
 import doctor.app.models.User;
+import doctor.app.repository.AppointmentHistoryRepository;
 import doctor.app.repository.UserRepository;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
 	
-	
 	@Autowired
 	UserRepository userRepository;
 
+	
+
+	//----------------- 
+	
+	
+//	@Autowired
+//	AppointmentHistoryRepository appointmentHistoryRepository;
+		
+//	// Update details in appointment history doctor
+//	@Override
+//	public AppointmentHistory updateAppointmentHistoryDetails(AppointmentHistory orgAppointment, AppointmentHistory newAppointment) {	
+//				
+//		orgAppointment.setTreatedAilment(newAppointment.getTreatedAilment());	
+//		orgAppointment.setAppointmentDate(newAppointment.getAppointmentDate());
+//		orgAppointment.setAppointmentTime(newAppointment.getAppointmentTime());
+//		orgAppointment.setDoctorFeedback(newAppointment.getDoctorFeedback());
+//
+//        final AppointmentHistory updatedAppointment = appointmentHistoryRepository.save(orgAppointment);
+//       
+//		return updatedAppointment;
+//	}
+	
+	
+	
+	//-----------------
+	
+	
+	
 	
 //	@Override
 //	public List<User> getAllDoctors() { 
@@ -47,8 +72,8 @@ public class DoctorServiceImpl implements DoctorService {
 	}
 	
 	@Override
-	public Optional<User> findDoctorById(String id) {
-		return userRepository.findById(id);
+	public Optional<Doctor> findDoctorById(String id) {
+		return userRepository.findDoctorById(id);
 	}
 	
 	@Override
@@ -74,6 +99,8 @@ public class DoctorServiceImpl implements DoctorService {
 		return updatedDoctor;
 	}
 	
+	
+	
 	@Override
 	public List<Doctor> findDoctorAndLocation(String firstName, String location) {
 		return userRepository.findDoctorAndLocation(firstName, location);
@@ -98,4 +125,6 @@ public class DoctorServiceImpl implements DoctorService {
 	public List<Doctor> findAllDistinctCity() {
 		return userRepository.findAllDistinctCity();
 	}
+	
+	
 }

@@ -3,6 +3,7 @@ import axios from "axios";
 import UserService from "../service/UserService";
 import SearchForm from "./SearchForm";
 import SearchDoctorResult from "./SearchDoctorResult";
+import Calendar from "./Calendar";
 
 export default class CreateAppointment extends Component {
   constructor(props) {
@@ -19,8 +20,9 @@ export default class CreateAppointment extends Component {
       active: false,
       dropDownLocation: "",
       ailmentsDropDownValue: "",
-      value: "",
-      finalDoctorList: ""
+      locationDropDownValue: "",
+      finalDoctorList: "",
+      showAilmentList: false
     };
   }
   componentDidMount() {
@@ -53,13 +55,13 @@ export default class CreateAppointment extends Component {
   };
 
   onSearchSubmit = (e) => {
-    let { value, ailmentsDropDownValue } = this.state;
+    let { locationDropDownValue, ailmentsDropDownValue } = this.state;
     e.preventDefault();
-    console.log(value);
+    console.log(locationDropDownValue);
     console.log(ailmentsDropDownValue);
 
     UserService.getDoctorByLocationAndAilment(
-      value,
+      locationDropDownValue,
       ailmentsDropDownValue
     ).then((response) => {
       this.setState({
@@ -69,7 +71,8 @@ export default class CreateAppointment extends Component {
   };
   onChangeLocation = (e) => {
     this.setState({
-      value: e.target.value
+      locationDropDownValue: e.target.value,
+      showAilmentList: true
     });
     this.getAilments(e.target.value);
   };
@@ -117,12 +120,17 @@ export default class CreateAppointment extends Component {
       bookingStartTime,
       bookingEndTime,
       dropDownLocation,
-      finalDoctorList
+      finalDoctorList,
+      showAilmentList
     } = this.state;
-    // Removes duplicates from the location list (the cities)
+    // Removes null values (filter) and duplicates from the location list (the cities)
     let result2 = doctorLocationlist.map((result) => result.address.city);
     const finalDoctorLocationList = [
-      ...new Map(result2.map((item) => [JSON.stringify(item), item])).values()
+      ...new Map(
+        result2
+          .filter((x) => x != null)
+          .map((item) => [JSON.stringify(item), item])
+      ).values()
     ];
 
     // Remove duplicates from the ailmentList to print in the dropdown menu on the page
@@ -136,6 +144,7 @@ export default class CreateAppointment extends Component {
 
     return (
       <div>
+        {/* Sends props in to the Searchform */}
         <SearchForm
           onChangeAilments={this.onChangeAilments}
           onSearchSubmit={this.onSearchSubmit}
@@ -146,9 +155,14 @@ export default class CreateAppointment extends Component {
           finalDoctorLocationList={finalDoctorLocationList}
           flattedAilmentList={flattedAilmentList}
           dropDownLocation={dropDownLocation}
+          showAilmentList={showAilmentList}
         />
-
-        <SearchDoctorResult finalDoctorList={finalDoctorList} />
+        {/* Checks if the final doctor list is empty or not */}
+        {/* If it is not empty it shows the SearchDoctorResult component */}
+        {!!finalDoctorList ? (
+          <SearchDoctorResult finalDoctorList={finalDoctorList} />
+        ) : null}
+        <Calendar />
       </div>
     );
   }
