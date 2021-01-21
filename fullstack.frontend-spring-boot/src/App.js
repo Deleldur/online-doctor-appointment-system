@@ -64,9 +64,7 @@ class App extends Component {
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <h4 className="Doctor booking">Doctor booking</h4>
 
-          <h4 className="Doctor booking">
-            Doctor booking
-          </h4>
+          
           
           <MenuIcon className="burger">
             <div className="burgerDiv"/>

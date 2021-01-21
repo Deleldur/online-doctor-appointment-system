@@ -119,7 +119,7 @@ class SearchForm extends Component {
 
             <input type="submit" value="Create appointment" className="btn" />
           </form>
-        </div> */}
+        </div> 
       </React.Fragment>
     );
   }
