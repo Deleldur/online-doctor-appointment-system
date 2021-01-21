@@ -28,7 +28,7 @@ class UserService {
 
   // fetches all appointments with a specific patient id
   getAppointmentsFromId(id) {
-    return axios.get(API_URL + "appointment/" + id, {
+    return axios.get(API_URL + "appointment/findbyid/" + id, {
       headers: authHeader()
     });
   }

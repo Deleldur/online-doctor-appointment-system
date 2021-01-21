@@ -27,12 +27,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public List<Appointment> findAppointmentByDoctorId(String id) {
 		return appointmentRepository.findByDoctorId(id);
 	}
-	@Override
-	public List<Appointment> findAppointmentById(String id) {
-		return appointmentRepository.findAppointmentById(id);
-	}
-	
-	
 	
 
 	@Override
@@ -51,4 +45,6 @@ public class AppointmentServiceImpl implements AppointmentService {
        
 		return updatedAppointment;
 	}
+
+
 }

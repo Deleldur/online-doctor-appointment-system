@@ -1,81 +1,47 @@
 import React, { Component } from "react";
-
+import UserService from "../service/UserService";
+import AppointmentForm from "./elements/AppointmentForm";
 class AppointmentComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      appointment: [],
+      appointmentData: [],
       id: this.props.match.params.id
     };
   }
 
-  appointmentMap = () => {
-    let { appointment } = this.state;
-    appointment.map((currentAppointments, i) => {
-      return <p>{currentAppointments.id}</p>;
-    });
-  };
-
-  render() {
+  appointmentInformation = () => {
     let { id } = this.state;
 
-    console.log("inside component" + id);
+    UserService.getAppointmentsFromId(id).then(
+      (response) => {
+        this.setState({
+          appointmentData: response.data
+        });
+      },
+      (error) => {
+        this.setState({
+          content:
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+        });
+      }
+    );
+  };
+
+  componentDidMount() {
+    this.appointmentInformation();
+  }
+
+  render() {
+    let { appointmentData } = this.state;
+
     return (
       <>
-        <div className="card">
-          <h2 className="text-center">Edit appointment</h2>
-
-          <form>
-            <div className="row">
-              <div className="col">
-                <label>Booking date</label>
-                <input
-                  placeholder="Booking date"
-                  name="bookingDate"
-                  className="form-control"
-                  value={id}
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="col">
-                <label>Booking time</label>
-                <input
-                  placeholder="Booking time"
-                  name="bookingTime"
-                  className="form-control"
-                  value={this.state.lastName}
-                  onChange={this.onChange}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <label>Patient name</label>
-                <input
-                  placeholder="Patient Name"
-                  name="patientName"
-                  className="form-control"
-                  value={this.state.phoneNumber}
-                  onChange={this.onChange}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col">
-                <label>Patient comments</label>
-                <textarea
-                  placeholder="Patient information"
-                  name="patientInformation"
-                  className="form-control"
-                  value={this.state.streetAddress}
-                  onChange={this.onChange}
-                />
-              </div>
-            </div>
-
-            <button className="btn btn-success">Save</button>
-          </form>
-        </div>
+        <AppointmentForm appointmentData={appointmentData} />
       </>
     );
   }

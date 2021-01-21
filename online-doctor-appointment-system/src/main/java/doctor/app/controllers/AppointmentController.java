@@ -34,10 +34,11 @@ public class AppointmentController {
 		return appointmentService.getAllAppointments();
 	}
 
-	@GetMapping(value="/{id}")
-	public List<Appointment> findAppointmentById(@PathVariable(value="id") String id) {
-		return appointmentService.findAppointmentById(id);
+	@GetMapping(value="/findbyid/{id}")
+	public Appointment findAppointmentByAppointmentId(@PathVariable(value="id") String id) {
+		return appointmentService.findAppointmentByAppointmentId(id);
 	}
+
 	// Endpoint to get specific appointments for a patient
 	@GetMapping(value="/patient/{id}")
 	public List<Appointment> findAppointmentByPatientId(@PathVariable(value="id") String id) {
