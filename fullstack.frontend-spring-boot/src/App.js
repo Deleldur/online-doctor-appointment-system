@@ -140,11 +140,18 @@ class App extends Component {
             <Route path="/profile" component={EditUserComponent} />
             <Route path="/createappointment" component={CreateAppointment} />
             <Route path="/doctor" component={BoardDoctorComponent} />
-            <Route
-              exact
-              path="/appointment/:id"
-              render={(props) => <AppointmentComponent {...props} />}
-            />
+            <React.StrictMode>
+              <Route
+                exact
+                path="/appointment/:id"
+                render={(props) => <AppointmentComponent {...props} />}
+              />
+              <Route
+                exact
+                path="/appointment/:journal/:id"
+                render={(props) => <AppointmentComponent {...props} />}
+              />
+            </React.StrictMode>
             {/*<Route path="/appointment" component={AppointmentComponent} />*/}
           </Switch>
         </div>

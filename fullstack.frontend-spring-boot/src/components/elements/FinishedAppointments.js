@@ -11,7 +11,7 @@ const FinishedAppointments = (props) => (
       </span>
       <span className="td">Patient name: xxxxxxx</span>
       <span className="td">
-        <Link to="/appointment">
+        <Link to={"/appointment/true/" + props.appointments.id}>
           <button
             className="btn"
             style={{ backgroundColor: "green", color: "white" }}

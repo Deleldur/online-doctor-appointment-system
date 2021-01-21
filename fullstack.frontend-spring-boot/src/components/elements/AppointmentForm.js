@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 
 class AppointmentForm extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    let { appointmentData } = this.props;
+    let { appointmentData, journal } = this.props;
     console.log(appointmentData);
     return (
       <div className="card">
@@ -59,6 +56,21 @@ class AppointmentForm extends Component {
               />
             </div>
           </div>
+          {/* Check if the doctor has clicked the "write journal" button and render this field if true*/}
+          {journal ? (
+            <div className="row">
+              <div className="col">
+                <label>Journal entry</label>
+                <textarea
+                  placeholder="Journal entry"
+                  name="doctorInformation"
+                  className="form-control"
+                  value=""
+                  onChange={this.onChange}
+                />
+              </div>
+            </div>
+          ) : null}
 
           <button className="btn btn-success">Save</button>
         </form>

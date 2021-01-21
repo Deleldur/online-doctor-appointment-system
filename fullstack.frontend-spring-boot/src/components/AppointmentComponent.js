@@ -41,7 +41,10 @@ class AppointmentComponent extends Component {
 
     return (
       <>
-        <AppointmentForm appointmentData={appointmentData} />
+        <AppointmentForm
+          appointmentData={appointmentData}
+          journal={this.props.match.params.journal}
+        />
       </>
     );
   }

@@ -49,7 +49,7 @@ export default class HomeComponent extends Component {
             <FinishedAppointments appointments={currentAppointments} key={i} />
           );
         } else {
-          console.log("testtest");
+          return null;
         }
       } else {
         return null;
@@ -79,7 +79,7 @@ export default class HomeComponent extends Component {
               <CurrentAppointments appointments={currentAppointments} key={i} />
             );
           } else {
-            console.log("testtest");
+            return null;
           }
         } else {
           return null;
