@@ -57,11 +57,11 @@ export default class HomeComponent extends Component {
     return (
       <div className="container">
         <div className="card">
-        <h1>Upcoming appointments</h1>
+        <h3>Upcoming appointments</h3>
         {this.appointmentHistoryList()}
         </div>
         <div className="card">
-        <h2>Previous appointments</h2>
+        <h3>Previous appointments</h3>
         </div>
       </div>
     );
