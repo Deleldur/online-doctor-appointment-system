@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-
-// Doctor and patient used this to leave feed back on the write journal entry 
-=======
 import UserService from "../../service/UserService";
->>>>>>> b15d550654f2d60b1dd45b1ef3569c7c822ac995
 class AppointmentForm extends Component {
   state = {
     appointmentInformation: {},

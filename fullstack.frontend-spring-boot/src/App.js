@@ -13,11 +13,6 @@ import EditUserComponent from "./components/EditUserComponent";
 import CreateAppointment from "./components/CreateAppointment";
 import AppointmentComponent from "./components/AppointmentComponent";
 
-<<<<<<< HEAD
-=======
-const MenuIcon = styled.button``;
-
->>>>>>> b15d550654f2d60b1dd45b1ef3569c7c822ac995
 class App extends Component {
   constructor(props) {
     super(props);
