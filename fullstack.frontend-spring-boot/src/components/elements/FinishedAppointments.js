@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+//this is the Finished appointments on home for the doctor with the links that lead to AppointmentForm.js
+
 const FinishedAppointments = (props) => (
   <div className="table">
     <form className="tr">

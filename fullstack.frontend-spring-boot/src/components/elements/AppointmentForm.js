@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+// Doctor and patient used this to leave feed back on the write journal entry 
 class AppointmentForm extends Component {
   render() {
     let { appointmentData, journal } = this.props;

@@ -2,10 +2,8 @@ import React, { Component }  from "react";
 import { Switch, Route, Link, Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
-import styled from "styled-components";
 import AuthService from "./service/AuthService";
 import "./css/temp.css";
-import UserService from "./service/UserService";
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import HomeDoctor from "./components/HomeDoctor";
@@ -14,10 +12,6 @@ import BoardDoctorComponent from "./components/BoardDoctorComponent";
 import EditUserComponent from "./components/EditUserComponent";
 import CreateAppointment from "./components/CreateAppointment";
 import AppointmentComponent from "./components/AppointmentComponent";
-
-
-const MenuIcon = styled.button``
-
 
 class App extends Component {
   constructor(props) {

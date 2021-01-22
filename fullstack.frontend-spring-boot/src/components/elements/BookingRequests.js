@@ -1,5 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+// this is the aprove or deny buttons on the Doctor page for booking requests
+
 const BookingRequests = (props) => (
   <div className="table">
     <form className="tr">

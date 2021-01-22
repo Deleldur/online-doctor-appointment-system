@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+//This is for the edit or cancel buttons on the current appointments
+
 const CurrentAppointments = (props) => (
   <div className="table">
     <form className="tr">
