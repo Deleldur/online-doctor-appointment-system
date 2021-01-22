@@ -21,13 +21,31 @@ export default class HomeComponent extends Component {
     };
   }
 
+  approveBookingRequest = (appointmentInformation) => {
+    let feedback = {
+      active: true,
+      bookingDate: appointmentInformation.bookingDate,
+      bookingStartTime: appointmentInformation.bookingStartTime,
+      treatedAilment: appointmentInformation.treatedAilment
+    };
+    console.log(feedback);
+    UserService.editAppointment(appointmentInformation.id, feedback);
+    //.then((res) => console.log(res.data));
+  };
+
   currentBookingRequests = () => {
     return this.state.appointments.map((currentAppointments, i) => {
       // Renders the appointment list based on the active boolean
       // Active = current active appointments
       // else is not yet confirmed booking requests
       if (currentAppointments.active === false) {
-        return <BookingRequests appointments={currentAppointments} key={i} />;
+        return (
+          <BookingRequests
+            approveBookingRequest={this.approveBookingRequest}
+            appointments={currentAppointments}
+            key={i}
+          />
+        );
       } else {
         return null;
       }
@@ -127,7 +145,7 @@ export default class HomeComponent extends Component {
             {this.currentBookingRequests()}
           </div>
           <div className="card">
-            <h2>Current appointments</h2>
+            <h2>Upcoming appointments</h2>
             {this.currentAppointmentList()}
           </div>
           <div className="card">

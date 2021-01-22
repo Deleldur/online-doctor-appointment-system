@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const FinishedAppointments = (props) => (
+
+const CurrentAppointments = (props) => (
   <div className="table">
     <form className="tr">
       <span className="td">
@@ -9,18 +10,27 @@ const FinishedAppointments = (props) => (
       <span className="td">
         Booking time {props.appointments.bookingStartTime}
       </span>
-      <span className="td">Patient name: xxxxxxx</span>
+      <span className="td">Doctor name: xxxxxxx</span>
       <span className="td">
-        <Link to={"/appointment/journal/" + props.appointments.id}>
+        <Link to="/appointment/">
+          <button
+            className="btn"
+            style={{ backgroundColor: "red", color: "white" }}
+          >
+            <span>Cancel</span>
+          </button>
+        </Link>
+        <Link to={"/appointment/" + props.appointments.id}>
           <button
             className="btn"
             style={{ backgroundColor: "green", color: "white" }}
           >
-            <span>Write journal entry</span>
+            <span>Edit</span>
           </button>
         </Link>
       </span>
     </form>
   </div>
 );
-export default FinishedAppointments;
+
+export default CurrentAppointments;
