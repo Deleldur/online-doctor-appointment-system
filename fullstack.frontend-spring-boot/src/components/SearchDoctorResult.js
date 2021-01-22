@@ -5,9 +5,9 @@ class SearchDoctorResult extends Component {
     let { finalDoctorList } = this.props;
     console.log("Finaldoctorlist" + finalDoctorList);
     return (
-      <div className="row">
-        <h1>Doctor list</h1>
-        <table style={{ color: "white" }} className="table table-hover">
+      <div className="card">
+        <h3>Doctor list</h3>
+        <table style={{ color: "white" }} className="table">
           <thead>
             <tr>
               <th scope="col">First Name</th>
@@ -29,7 +29,6 @@ class SearchDoctorResult extends Component {
                   <td>{list.address.city}</td>
                   <td>
                     <input
-                      style={{ backgroundColor: "green", color: "white" }}
                       type="submit"
                       value="Choose doctor"
                       className="btn"

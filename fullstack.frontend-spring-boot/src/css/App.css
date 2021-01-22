@@ -120,7 +120,19 @@ label {
   padding-top: 10px;
   
 }
+
+.container {
+  margin-top: 30px;
+}
+
 .container form .btn {
+  margin-top: 20px;
+  float: right;
+  background-color: rgba(58, 25, 243, 0.445);
+  color: white;
+}
+
+.container table .btn {
   margin-top: 20px;
   float: right;
   background-color: rgba(58, 25, 243, 0.445);
@@ -200,6 +212,12 @@ body,
 
 .bg-dark {
   background-color: #315c6e !important;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  border: solid;
+  border-width: 0.1ch;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -215,59 +233,3 @@ body,
 .create {
   color: rgb(255, 255, 255) !important;
 }
-
-@media screen and (min-width: 670px) {
-  .burgerDiv {
-
-    display: none;
-  }
-}
-
-@media screen and (max-width: 670px) {
-  .navbar-nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .navbar-nav.show {
-    display: flex;
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-  .burgerDiv {
-    display:block
-  }
-
-}
-
-.burger {
-position: fixed;
-top: 1rem;
-right: 2rem;
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-width: 1.5rem;
-height: 1.5rem;
-background: transparent;
-border: none;
-cursor: pointer;
-z-index: 5;
-}
-
-.burgerDiv {
-  width: 1.5rem;
-  height: .2rem;
-  background: black;
-  border-radius: 5px;
-  transform-origin: 1px;
-  position: relative;
-}
-
-
-
-
