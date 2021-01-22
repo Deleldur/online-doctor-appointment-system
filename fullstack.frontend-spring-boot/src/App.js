@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Switch, Route, Link, Router } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
 import AuthService from "./service/AuthService";
-import "./css/temp.css";
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import HomeDoctor from "./components/HomeDoctor";
@@ -58,12 +57,6 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <h4 className="Doctor booking">Doctor booking</h4>
-
-          <MenuIcon className="burger">
-            <div className="burgerDiv" />
-            <div className="burgerDiv" />
-            <div className="burgerDiv" />
-          </MenuIcon>
 
           <div className="navbar-nav mr-auto">
             {showPatientBoard && (

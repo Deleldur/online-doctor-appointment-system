@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
 import UserService from "../service/UserService";
 import AuthService from "../service/AuthService";
 import CurrentAppointments from "./elements/CurrentAppointments";
 import FinishedAppointments from "./elements/FinishedAppointments";
 import BookingRequests from "./elements/BookingRequests";
 import format from "date-fns/format";
-// component render for the current appointments
-
-// component render for the booking requests
-
 export default class HomeComponent extends Component {
   constructor(props) {
     super(props);

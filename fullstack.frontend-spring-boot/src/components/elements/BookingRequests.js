@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 
 class BookingRequests extends Component {
+
+//------------------------- check this out later
   constructor(props) {
     super(props);
   }
+//-------------------------
+
   render() {
     let { approveBookingRequest, appointments } = this.props;
     return (
