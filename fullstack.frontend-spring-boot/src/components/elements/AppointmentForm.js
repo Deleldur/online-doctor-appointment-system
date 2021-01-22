@@ -1,10 +1,43 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 
 // Doctor and patient used this to leave feed back on the write journal entry 
+=======
+import UserService from "../../service/UserService";
+>>>>>>> b15d550654f2d60b1dd45b1ef3569c7c822ac995
 class AppointmentForm extends Component {
+  state = {
+    appointmentInformation: {},
+    appointmentId: this.props.id,
+    appointmentData: this.props.appointmentData,
+    patientFeedback: "",
+    bookingDate: this.props.appointmentData.bookingDate,
+    bookingStartTime: this.props.appointmentData.bookingStartTime,
+    doctorFeedbackinfo: this.props.appointmentData.doctorFeedback
+  };
+
+  onChange = (e) => this.setState({ doctorFeedbackinfo: e.target.value });
+  componentDidMount() {
+    // fetch the project name, once it retrieves resolve the promsie and update the state.
+  }
+  saveFeedback = (e) => {
+    let { appointmentId } = this.state;
+    e.preventDefault();
+    let feedback = {
+      bookingDate: this.state.bookingDate,
+      bookingStartTime: this.state.bookingStartTime,
+      patientFeedback: this.state.patientFeedback,
+      doctorFeedbackinfo: this.state.doctorFeedbackinfo
+    };
+
+    UserService.editAppointment(appointmentId, feedback);
+    //.then((res) => console.log(res.data));
+  };
+
   render() {
-    let { appointmentData, journal } = this.props;
-    console.log(appointmentData);
+    let { journal } = this.props;
+    let { appointmentInformation, doctorFeedbackInfo } = this.state;
+    console.log("feedback info: " + doctorFeedbackInfo);
     return (
       <div className="card">
         <h2 className="text-center">Edit appointment</h2>
@@ -14,20 +47,22 @@ class AppointmentForm extends Component {
             <div className="col">
               <label>Booking date</label>
               <input
+                disabled
                 placeholder="Booking date"
                 name="bookingDate"
                 className="form-control"
-                value=""
+                value={this.props.appointmentData.bookingDate}
                 onChange={this.onChange}
               />
             </div>
             <div className="col">
               <label>Booking time</label>
               <input
+                disabled
                 placeholder="Booking time"
                 name="bookingTime"
                 className="form-control"
-                value=""
+                value={this.props.appointmentData.bookingStartTime}
                 onChange={this.onChange}
               />
             </div>
@@ -36,10 +71,15 @@ class AppointmentForm extends Component {
             <div className="col">
               <label>Patient name</label>
               <input
+                disabled
                 placeholder="Patient Name"
                 name="patientName"
                 className="form-control"
-                value=""
+                value={
+                  this.props.patientName.firstName +
+                  " " +
+                  this.props.patientName.lastName
+                }
                 onChange={this.onChange}
               />
             </div>
@@ -47,33 +87,55 @@ class AppointmentForm extends Component {
           <div className="row">
             <div className="col">
               <label>Patient Feedback</label>
-              <textarea
-                disabled
-                placeholder="Patient information"
-                name="patientInformation"
-                className="form-control"
-                value=""
-                onChange={this.onChange}
-              />
-            </div>
-          </div>
-          {/* Check if the doctor has clicked the "write journal" button and render this field if true*/}
-          {journal ? (
-            <div className="row">
-              <div className="col">
-                <label>Journal entry</label>
+              {/* Patient entry is disabled for the doctor and enabled for the patient*/}
+              {journal === "feedback" ? (
                 <textarea
-                  placeholder="Journal entry"
-                  name="doctorInformation"
+                  placeholder="Patient information"
+                  name="patientInformation"
                   className="form-control"
-                  value=""
+                  value={this.props.appointmentData.patientFeedback}
                   onChange={this.onChange}
                 />
-              </div>
+              ) : (
+                <textarea
+                  disabled
+                  placeholder="Patient information"
+                  name="patientInformation"
+                  className="form-control"
+                  value={this.props.appointmentData.patientFeedback}
+                  onChange={this.onChange}
+                />
+              )}
             </div>
-          ) : null}
+          </div>
+          {/* Journal entry is disabled for the patient and enabled for the doctor*/}
+          <div className="row">
+            <div className="col">
+              <label>Doctors journal entry</label>
+              {journal === "feedback" ? (
+                <textarea
+                  disabled
+                  placeholder="Journal entry"
+                  name="doctorFeedbackinfo"
+                  className="form-control"
+                  value={this.props.appointmentData.doctorFeedback}
+                  onChange={this.onChange}
+                />
+              ) : (
+                <textarea
+                  placeholder="Journal entry"
+                  name="doctorFeedbackinfo"
+                  className="form-control"
+                  value={this.props.appointmentData.doctorFeedback}
+                  onChange={this.onChange}
+                />
+              )}
+            </div>
+          </div>
 
-          <button className="btn btn-success">Save</button>
+          <button onClick={this.saveFeedback} className="btn btn-success">
+            Save
+          </button>
         </form>
       </div>
     );

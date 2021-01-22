@@ -7,8 +7,8 @@ const AppointmentHistory = (props) => (
     <div className="card">
       <Link to="">Patient name</Link>
       <p>
-        bookingdate: {props.appointments.appointmentDate} - bookingtime:{" "}
-        {props.appointments.appointmentTime} - Treated ailment:{" "}
+        bookingdate: {props.appointments.bookingDate} - bookingtime:{" "}
+        {props.appointments.bookingStartTime} - Treated ailment:{" "}
         {props.appointments.treatedAilment}
       </p>
       <p>Doctor feedback: {props.appointments.doctorFeedback}</p>
@@ -31,7 +31,7 @@ export default class BoardDoctorComponent extends Component {
     });
   };
 
-  componentDidMount() {
+  getDoctorAppointmentList = () => {
     const doctorId = AuthService.getCurrentUserId();
     UserService.getDoctorAppointmentHistory(doctorId).then(
       (response) => {
@@ -50,6 +50,9 @@ export default class BoardDoctorComponent extends Component {
         });
       }
     );
+  };
+  componentDidMount() {
+    this.getDoctorAppointmentList();
   }
 
   render() {
