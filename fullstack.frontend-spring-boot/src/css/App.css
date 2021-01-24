@@ -1,5 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+table {
+  color: white !important;
+}
 .login-page {
   width: 360px;
   padding: 1% 0 0;
@@ -118,26 +127,12 @@ label {
   height: 100%;
   padding-bottom: 10px;
   padding-top: 10px;
-  
 }
 
 .container {
   margin-top: 30px;
 }
 
-.container form .btn {
-  margin-top: 20px;
-  float: right;
-  background-color: rgba(58, 25, 243, 0.445);
-  color: white;
-}
-
-.container table .btn {
-  margin-top: 20px;
-  float: right;
-  background-color: rgba(58, 25, 243, 0.445);
-  color: white;
-}
 .container:before,
 .container:after {
   content: "";
@@ -167,11 +162,16 @@ label {
   color: #ef3b3a;
 }
 
-body, 
-
+.patient .form-control,
+.doctor .form-control {
+  border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+    0 0 15px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+}
+body,
 .acrylic::before {
   background: url("../green_3-wallpaper-2560x1440.jpg");
-  color: #000;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -232,4 +232,7 @@ DIV.tr {
 }
 SPAN.td {
   display: table-cell;
+}
+.btn {
+  margin-right: 1rem;
 }

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import UserService from "../service/UserService";
+
 class AppointmentComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       appointmentData: {},
-      patientInformation: {},
+      patientInformation: [],
       id: this.props.match.params.id,
       doctorFeedback: "",
       patientFeedback: "",
@@ -13,18 +14,22 @@ class AppointmentComponent extends Component {
       bookingDate: "",
       treatedAilment: "",
       patientId: "",
-      journal: this.props.match.params.journal
+      journal: this.props.match.params.journal,
+      patientFirstName: "",
+      patientLastname: ""
     };
   }
 
-  appointmentInformation = () => {
+  appointmentInformation = async () => {
     let { id } = this.state;
 
-    UserService.getAppointmentsFromId(id).then(
+    await UserService.getAppointmentsFromId(id).then(
       (response) => {
         this.setState({
           id: response.data.id,
-          patientId: response.data.patientId,
+          patientId: response.data.patientInformation.patientId,
+          patientFirstName: response.data.patientInformation.patientFirstName,
+          patientLastName: response.data.patientInformation.patientLastName,
           patientFeedback: response.data.patientFeedback,
           doctorFeedback: response.data.doctorFeedback,
           bookingStartTime: response.data.bookingStartTime,
@@ -45,27 +50,6 @@ class AppointmentComponent extends Component {
     );
   };
 
-  getPatientInfo = async () => {
-    let { patientId } = this.state;
-
-    await UserService.getPatientName(patientId).then(
-      (response) => {
-        this.setState({
-          patientInformation: response.data
-        });
-      },
-      (error) => {
-        this.setState({
-          content:
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
-        });
-      }
-    );
-  };
   onChange = (e) => {
     const value = e.target.value;
     this.setState({
@@ -87,15 +71,21 @@ class AppointmentComponent extends Component {
       active: true
     };
     UserService.editAppointment(id, feedback);
-    //.then((res) => console.log(res.data));
   };
   componentDidMount() {
     this.appointmentInformation();
-    this.getPatientInfo();
+    //    this.getPatientInfo();
   }
 
   render() {
-    let { appointmentData, id, patientInformation, journal } = this.state;
+    let {
+      journal,
+      patientFeedback,
+      doctorFeedback,
+      treatedAilment,
+      patientFirstName,
+      patientLastName
+    } = this.state;
 
     return (
       <>
@@ -135,11 +125,7 @@ class AppointmentComponent extends Component {
                   placeholder="Patient Name"
                   name="patientName"
                   className="form-control"
-                  value={
-                    patientInformation.firstName +
-                    " " +
-                    patientInformation.lastName
-                  }
+                  value={patientFirstName + " " + patientLastName}
                   onChange={this.onChange}
                 />
               </div>
@@ -150,13 +136,13 @@ class AppointmentComponent extends Component {
                   placeholder="Ailment"
                   name="ailment"
                   className="form-control"
-                  value={this.state.treatedAilment}
+                  value={treatedAilment !== null ? treatedAilment : ""}
                   onChange={this.onChange}
                 />
               </div>
             </div>
             <div className="row">
-              <div className="col">
+              <div className={journal === "feedback" ? "col patient" : "col"}>
                 <label>Patient Feedback</label>
                 {/* Patient entry is disabled for the doctor and enabled for the patient*/}
                 {journal === "feedback" ? (
@@ -164,7 +150,7 @@ class AppointmentComponent extends Component {
                     placeholder="Patient feedback"
                     name="patientFeedback"
                     className="form-control"
-                    value={this.state.patientFeedback}
+                    value={patientFeedback !== null ? patientFeedback : ""}
                     onChange={this.onChange}
                   />
                 ) : (
@@ -173,7 +159,7 @@ class AppointmentComponent extends Component {
                     placeholder="Patient feedback"
                     name="patientFeedback"
                     className="form-control"
-                    value={this.state.patientFeedback}
+                    value={patientFeedback !== null ? patientFeedback : ""}
                     onChange={this.onChange}
                   />
                 )}
@@ -181,7 +167,7 @@ class AppointmentComponent extends Component {
             </div>
             {/* Journal entry is disabled for the patient and enabled for the doctor*/}
             <div className="row">
-              <div className="col">
+              <div className={journal === "feedback" ? "col" : "col doctor"}>
                 <label>Doctors journal entry</label>
                 {journal === "feedback" ? (
                   <textarea
@@ -189,7 +175,7 @@ class AppointmentComponent extends Component {
                     placeholder="Journal entry"
                     name="doctorFeedback"
                     className="form-control"
-                    value={this.state.doctorFeedback}
+                    value={doctorFeedback !== null ? doctorFeedback : ""}
                     onChange={this.onChange}
                   />
                 ) : (
@@ -197,7 +183,7 @@ class AppointmentComponent extends Component {
                     placeholder="Journal entry"
                     name="doctorFeedback"
                     className="form-control"
-                    value={this.state.doctorFeedback}
+                    value={doctorFeedback !== null ? doctorFeedback : ""}
                     onChange={this.onChange}
                   />
                 )}

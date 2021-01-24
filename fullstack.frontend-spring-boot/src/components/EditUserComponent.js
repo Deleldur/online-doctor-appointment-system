@@ -63,90 +63,88 @@ class EditUserComponent extends Component {
     };
 
     UserService.editUser(user);
-    //.then((res) => console.log(res.data));
   };
 
   render() {
     return (
       <>
-      <div className="card">
-        <h2 className="text-center">Edit User</h2>
+        <div className="card">
+          <h2 className="text-center">Edit User</h2>
 
-        
-        <form>
-          <div className="row">
-            <div className="col">
-              <label>First Name:</label>
-              <input
-                placeholder="First Name"
-                name="firstName"
-                className="form-control"
-                value={this.state.firstName}
-                onChange={this.onChange}
-              />
+          <form>
+            <div className="row">
+              <div className="col">
+                <label>First Name:</label>
+                <input
+                  placeholder="First Name"
+                  name="firstName"
+                  className="form-control"
+                  value={this.state.firstName}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="col">
+                <label>Last Name:</label>
+                <input
+                  placeholder="Last Name"
+                  name="lastName"
+                  className="form-control"
+                  value={this.state.lastName}
+                  onChange={this.onChange}
+                />
+              </div>
             </div>
-            <div className="col">
-              <label>Last Name:</label>
-              <input
-                placeholder="Last Name"
-                name="lastName"
-                className="form-control"
-                value={this.state.lastName}
-                onChange={this.onChange}
-              />
+            <div className="row">
+              <div className="col">
+                <label>Phone Number:</label>
+                <input
+                  placeholder="Phone Number"
+                  name="phoneNumber"
+                  className="form-control"
+                  value={this.state.phoneNumber}
+                  onChange={this.onChange}
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label>Phone Number:</label>
-              <input
-                placeholder="Phone Number"
-                name="phoneNumber"
-                className="form-control"
-                value={this.state.phoneNumber}
-                onChange={this.onChange}
-              />
+            <div className="row">
+              <div className="col">
+                <label>Street Address:</label>
+                <input
+                  placeholder="Street Address"
+                  name="streetAddress"
+                  className="form-control"
+                  value={this.state.streetAddress}
+                  onChange={this.onChange}
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label>Street Address:</label>
-              <input
-                placeholder="Street Address"
-                name="streetAddress"
-                className="form-control"
-                value={this.state.streetAddress}
-                onChange={this.onChange}
-              />
+            <div className="row">
+              <div className="col">
+                <label>Zip code</label>
+                <input
+                  placeholder="Zip Code"
+                  name="zipCode"
+                  className="form-control"
+                  value={this.state.zipCode}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="col">
+                <label>City:</label>
+                <input
+                  placeholder="City"
+                  name="city"
+                  className="form-control"
+                  value={this.state.city}
+                  onChange={this.onChange}
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label>Zip code</label>
-              <input
-                placeholder="Zip Code"
-                name="zipCode"
-                className="form-control"
-                value={this.state.zipCode}
-                onChange={this.onChange}
-              />
-            </div>
-            <div className="col">
-              <label>City:</label>
-              <input
-                placeholder="City"
-                name="city"
-                className="form-control"
-                value={this.state.city}
-                onChange={this.onChange}
-              />
-            </div>
-          </div>
 
-          <button className="btn btn-success" onClick={this.saveUser}>
-            Save
-          </button>
-        </form>
+            <button className="btn btn-success" onClick={this.saveUser}>
+              Save
+            </button>
+          </form>
         </div>
       </>
     );

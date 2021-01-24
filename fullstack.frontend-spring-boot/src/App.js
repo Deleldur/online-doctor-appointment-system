@@ -46,12 +46,7 @@ class App extends Component {
   }
 
   render() {
-    const {
-      currentUser,
-      showPatientBoard,
-      showDoctorBoard,
-      appointments
-    } = this.state;
+    const { currentUser, showPatientBoard, showDoctorBoard } = this.state;
 
     return (
       <div>

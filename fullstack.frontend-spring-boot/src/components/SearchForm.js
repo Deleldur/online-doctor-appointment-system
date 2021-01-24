@@ -21,23 +21,17 @@ class SearchForm extends Component {
     let {
       finalDoctorLocationList,
       flattedAilmentList,
-      bookingDate,
-      bookingStartTime,
-      bookingEndTime,
-      onChangeLocation,
-      onChangeAilments,
       finalDoctorList,
       showAilmentList
     } = this.props;
-    console.log("Final doctor list in searhcform.js " + finalDoctorList);
-    console.log("finalDoctorLocationList: " + finalDoctorLocationList);
+    console.log(finalDoctorList);
     return (
       <React.Fragment>
+        )
         <div className="card">
           <form className="form" onSubmit={this.props.onSearchSubmit}>
             <div className="col-lg-12">
               <div className="form-group">
-                
                 <h3>Search for a doctor</h3>
                 <div className="locationdrop">
                   <label>Choose a location:</label>
@@ -91,10 +85,6 @@ class SearchForm extends Component {
             </div>
           </form>
         </div>
-     
-
-      
-       
       </React.Fragment>
     );
   }
