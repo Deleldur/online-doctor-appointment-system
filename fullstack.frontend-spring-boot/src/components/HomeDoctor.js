@@ -98,11 +98,11 @@ export default class HomeComponent extends Component {
         <div className="col-lg-12">
           <header className="jumbotron">
             <h1>Doctor page</h1>
-          </header>
+          </header> 
+          <h2>Booking requests</h2>
           <div className="card">
-            <h2>Booking requests</h2>
-            <BookingRequests
-              //              approveBookingRequest={this.approveBookingRequest}
+           
+          <BookingRequests
               appointments={appointments}
               currentDate={currentDate}
             />
@@ -120,6 +120,10 @@ export default class HomeComponent extends Component {
               appointments={appointments}
               currentDate={currentDate}
             />
+          </div>
+          <div className="card">
+            <h2>Email</h2>
+          
           </div>
         </div>
       </div>

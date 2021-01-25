@@ -26,6 +26,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+
     // imports the userinformation based on the logged in user.
     const user = AuthService.getCurrentUser();
 
@@ -51,7 +53,9 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <div className="header">
           <h4 className="Doctor booking">Doctor booking</h4>
+          </div>
 
           <div className="navbar-nav mr-auto">
             {showPatientBoard && (
@@ -119,6 +123,8 @@ class App extends Component {
         </nav>
 
         <div className="container container-bg">
+   
+          
           <Switch>
             {showDoctorBoard && (
               <Route exact path={["/", "/home"]} component={HomeDoctor} />
@@ -145,6 +151,7 @@ class App extends Component {
             </React.StrictMode>
             {/*<Route path="/appointment" component={AppointmentComponent} />*/}
           </Switch>
+  
         </div>
       </div>
     );
