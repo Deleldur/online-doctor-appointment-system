@@ -4,7 +4,7 @@ class Calendar extends Component {
   render() {
     return (
       <div>
-        <div className="row">
+        <div className="card">
           <form onSubmit={this.onSubmit}>
             <div className="col-lg-12">
               <h3>Create New Appointment</h3>

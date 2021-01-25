@@ -1,17 +1,11 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
+
 import UserService from "../service/UserService";
 import AuthService from "../service/AuthService";
-import CurrentAppointments from "./elements/CurrentAppointments";
-import FinishedAppointments from "./elements/FinishedAppointments";
-import BookingRequests from "./elements/BookingRequests";
+import CurrentAppointments from "./elements/CurrentAppointmentsCard";
+import FinishedAppointments from "./elements/FinishedAppointmentsCard";
+import BookingRequests from "./elements/BookingRequestsCard";
 import format from "date-fns/format";
-
-
-// component render for the current appointments
-
-// component render for the booking requests
-
 export default class HomeComponent extends Component {
   constructor(props) {
     super(props);
@@ -19,9 +13,14 @@ export default class HomeComponent extends Component {
     this.state = {
       doctors: "",
       appointments: [],
-      currentDate: format(new Date(), "yyyy-MM-dd")
+      currentDate: format(new Date(), "yyyy-MM-dd"),
+      patientName: "",
+      reload: false
     };
   }
+  refreshPage = () => {
+    this.setState({ reload: true }, () => this.setState({ reload: false }));
+  };
 
   currentBookingRequests = () => {
     return this.state.appointments.map((currentAppointments, i) => {
@@ -29,7 +28,13 @@ export default class HomeComponent extends Component {
       // Active = current active appointments
       // else is not yet confirmed booking requests
       if (currentAppointments.active === false) {
-        return <BookingRequests appointments={currentAppointments} key={i} />;
+        return (
+          <BookingRequests
+            approveBookingRequest={this.approveBookingRequest}
+            appointments={currentAppointments}
+            key={i}
+          />
+        );
       } else {
         return null;
       }
@@ -39,8 +44,6 @@ export default class HomeComponent extends Component {
   finishedAppointmentList = () => {
     let { currentDate } = this.state;
 
-    //      console.log(format(new Date(), "yyyy-MM-dd"));
-    //console.log(parse(toDate(currentDate), "yyyy-MM-dd", new Date()));
     return this.state.appointments.map((currentAppointments, i) => {
       // Renders the appointment list based on the active boolean
       // Active = current active appointments
@@ -59,42 +62,12 @@ export default class HomeComponent extends Component {
     });
   };
 
-  currentAppointmentList = () => {
-    let { currentDate } = this.state;
-
-    //      console.log(format(new Date(), "yyyy-MM-dd"));
-    //console.log(parse(toDate(currentDate), "yyyy-MM-dd", new Date()));
-    // Sorts the array by date
-    return this.state.appointments
-      .sort(function compare(a, b) {
-        let dateA = new Date(a.bookingDate);
-        let dateB = new Date(b.bookingDate);
-        return dateA - dateB;
-      })
-      .map((currentAppointments, i) => {
-        // Renders the appointment list based on the active boolean
-        // Active = current active appointments
-        // else is not yet confirmed booking requests
-        if (currentAppointments.active === true) {
-          if (currentAppointments.bookingDate >= currentDate) {
-            return (
-              <CurrentAppointments appointments={currentAppointments} key={i} />
-            );
-          } else {
-            return null;
-          }
-        } else {
-          return null;
-        }
-      });
-  };
-
   // Gets an array of all appointsments in the database for the currently logged in doctor.
-  getAllAppointments = () => {
+  getAllAppointments = async () => {
     const doctorId = AuthService.getCurrentUserId();
 
     // fetches all appointments from mongodb based on the logged in doctors ID
-    UserService.getAppointmentsFromDoctorId(doctorId).then(
+    await UserService.getAppointmentsFromDoctorId(doctorId).then(
       (response) => {
         this.setState({
           appointments: response.data
@@ -118,6 +91,8 @@ export default class HomeComponent extends Component {
   }
 
   render() {
+    let { appointments, currentDate } = this.state;
+
     return (
       <div className="row">
         <div className="col-lg-12">
@@ -130,12 +105,18 @@ export default class HomeComponent extends Component {
             {this.currentBookingRequests()}
           </div>
           <div className="card">
-            <h2>Current appointments</h2>
-            {this.currentAppointmentList()}
+            <h2>Upcoming appointments</h2>
+            <CurrentAppointments
+              appointments={appointments}
+              currentDate={currentDate}
+            />
           </div>
           <div className="card">
             <h2>Finished appointments</h2>
-            {this.finishedAppointmentList()}
+            <FinishedAppointments
+              appointments={appointments}
+              currentDate={currentDate}
+            />
           </div>
           <div className="card">
             <h2>Email</h2>

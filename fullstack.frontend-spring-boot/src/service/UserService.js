@@ -46,12 +46,41 @@ class UserService {
   }
   // fetches all appointment history from the end point
   getDoctorAppointmentHistory(doctorId) {
-    return axios.get(API_URL + "appointmenthistory/doctor/" + doctorId, {
+    return axios.get(
+      API_URL + "appointment/appointmenthistory/doctor/" + doctorId,
+      {
+        headers: authHeader()
+      }
+    );
+  }
+
+  editAppointment(id, data) {
+    return axios.put(API_URL + "appointment/updateappointment/" + id, data, {
       headers: authHeader()
     });
   }
+
+  getPatientName(patientId) {
+    return axios.get(API_URL + "patient/findpatient/" + patientId, {
+      headers: authHeader()
+    });
+  }
+
+  async getPatientNameTest(patientId) {
+    const result = await axios.get(
+      API_URL + "patient/findpatient/" + patientId,
+      {
+        headers: authHeader()
+      }
+    );
+    const data = {
+      firstName: result.data.firstName,
+      lastName: result.data.lastName
+    };
+    return data;
+  }
   // fetches all database information for a specific patient
-  getPatientInfo() {
+  getLoggedInPatientInfo() {
     let userId = authService.getCurrentUserId();
     return axios.get(API_URL + "patient/findpatient/" + userId, {
       headers: authHeader()
@@ -102,7 +131,6 @@ class UserService {
   }
   // edits the current user information (works for both doctors and patients)
   editUser(user) {
-    console.log(user);
     let userId = authService.getCurrentUserId();
     return axios.put(API_URL + "doctor/updatedoctor/" + userId, user, {
       headers: authHeader()

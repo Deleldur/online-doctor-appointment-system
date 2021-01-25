@@ -1,21 +1,16 @@
 import React, { Component } from "react";
-import { Switch, Route, Link, Router } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
-import styled from "styled-components";
 import AuthService from "./service/AuthService";
-import "./css/temp.css";
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import HomeDoctor from "./components/HomeDoctor";
 import HomePatient from "./components/HomePatient";
-import BoardDoctorComponent from "./components/BoardDoctorComponent";
+import BoardDoctorComponent from "./components/AppointmentHistory";
 import EditUserComponent from "./components/EditUserComponent";
 import CreateAppointment from "./components/CreateAppointment";
 import AppointmentComponent from "./components/AppointmentComponent";
-
-
-const MenuIcon = styled.button``
 
 class App extends Component {
   constructor(props) {
@@ -53,12 +48,7 @@ class App extends Component {
   }
 
   render() {
-    const {
-      currentUser,
-      showPatientBoard,
-      showDoctorBoard,
-      appointments
-    } = this.state;
+    const { currentUser, showPatientBoard, showDoctorBoard } = this.state;
 
     return (
       <div>
@@ -67,22 +57,14 @@ class App extends Component {
           <h4 className="Doctor booking">Doctor booking</h4>
           </div>
 
-    
-          <MenuIcon className="burger">  
-            <div className="burgerDiv"/>
-            <div className="burgerDiv"/>
-            <div className="burgerDiv"/>
-          </MenuIcon>
-          
-          
           <div className="navbar-nav mr-auto">
             {showPatientBoard && (
-               <div className="navbar-nav mr-auto">
+              <div className="navbar-nav mr-auto">
                 <li className="nav-item">
-               <Link to={"/home"} className="nav-link">
-                Home
-               </Link>
-               </li>
+                  <Link to={"/home"} className="nav-link">
+                    Home
+                  </Link>
+                </li>
 
                 <li className="nav-item">
                   <Link to={"/createappointment"} className="nav-link">

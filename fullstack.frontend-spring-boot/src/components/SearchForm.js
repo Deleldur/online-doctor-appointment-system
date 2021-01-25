@@ -21,24 +21,18 @@ class SearchForm extends Component {
     let {
       finalDoctorLocationList,
       flattedAilmentList,
-      bookingDate,
-      bookingStartTime,
-      bookingEndTime,
-      onChangeLocation,
-      onChangeAilments,
       finalDoctorList,
       showAilmentList
     } = this.props;
-    console.log("Final doctor list in searhcform.js " + finalDoctorList);
-    console.log("finalDoctorLocationList: " + finalDoctorLocationList);
+    console.log(finalDoctorList);
     return (
       <React.Fragment>
+        )
         <div className="card">
           <form className="form" onSubmit={this.props.onSearchSubmit}>
             <div className="col-lg-12">
               <div className="form-group">
-                
-                <h3>Search for doctor</h3>
+                <h3>Search for a doctor</h3>
                 <div className="locationdrop">
                   <label>Choose a location:</label>
                   <select
@@ -91,35 +85,6 @@ class SearchForm extends Component {
             </div>
           </form>
         </div>
-        <div className="card">
-          <form onSubmit={this.onSubmit}>
-            <div className="col-lg-12">
-              <h3>Create New Appointment</h3>
-              <label>Date</label>
-              <input
-                type="date"
-                className="col-12"
-                value={this.props.bookingDate}
-                onChange={this.onChangeBookingDate}
-                // categoryTitle -> bookingDate
-                // onChangeCategoryTitle - onChangeBookingDate
-              />
-            </div>
-            <div className="col-12">
-              <label>Time</label>
-              <input
-                type="time"
-                className="col-12"
-                value={this.props.bookingStartTime}
-                onChange={this.onChangeBookingTime}
-                // categoryDescription -> bookingTime
-                // onChangeCategoryDescription -> onChangeBookingTime
-              />
-            </div>
-
-            <input type="submit" value="Create appointment" className="btn" />
-          </form>
-        </div> 
       </React.Fragment>
     );
   }

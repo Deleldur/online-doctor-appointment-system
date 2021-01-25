@@ -2,35 +2,22 @@ import React, { Component } from "react";
 
 import UserService from "../service/UserService";
 import AuthService from "../service/AuthService";
-
-const CurrentAppointments = (props) => (
-  <div>
-    <div>
-      bookingdate: {props.patAppointments.bookingDate} - booking start time:{" "}
-      {props.patAppointments.bookingStartTime} - booking end time{" "}
-      {props.patAppointments.bookingEndTime}
-    </div>
-  </div>
-);
+import FinishedAppointmentsPatientCard from "./elements/FinishedAppointmentsPatientCard";
+import CurrentAppointmentsPatientCard from "./elements/CurrentAppointmentsPatientCard";
+import BookingRequests from "./elements/BookingRequestsPatientCard";
+import format from "date-fns/format";
 
 export default class HomeComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      appointments: []
+      appointments: [],
+      currentDate: format(new Date(), "yyyy-MM-dd")
     };
   }
 
-  appointmentHistoryList = () => {
-    return this.state.appointments.map((appointmentHistory, i) => {
-      return (
-        <CurrentAppointments patAppointments={appointmentHistory} key={i} />
-      );
-    });
-  };
-
-  componentDidMount() {
+  getAllAppointments = () => {
     const patientId = AuthService.getCurrentUserId();
     UserService.getAppointmentsFromPatientId(patientId).then(
       (response) => {
@@ -49,19 +36,38 @@ export default class HomeComponent extends Component {
         });
       }
     );
+  };
+
+  componentDidMount() {
+    this.getAllAppointments();
   }
 
   render() {
-    let { appointments } = this.state;
-    console.log(appointments);
+    let { appointments, currentDate } = this.state;
+
     return (
       <div className="container">
         <div className="card">
-        <h3>Upcoming appointments</h3>
-        {this.appointmentHistoryList()}
+          <h2>Booking requests</h2>
+          <BookingRequests
+            //              approveBookingRequest={this.approveBookingRequest}
+            appointments={appointments}
+            currentDate={currentDate}
+          />
         </div>
         <div className="card">
-        <h3>Previous appointments</h3>
+          <h2>Upcoming appointments</h2>
+          <CurrentAppointmentsPatientCard
+            appointments={appointments}
+            currentDate={currentDate}
+          />
+        </div>
+        <div className="card">
+          <h2>Finished appointments</h2>
+          <FinishedAppointmentsPatientCard
+            appointments={appointments}
+            currentDate={currentDate}
+          />
         </div>
       </div>
     );

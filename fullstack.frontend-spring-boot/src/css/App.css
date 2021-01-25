@@ -4,6 +4,15 @@
   padding-left: 40%;
   display: block;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+table {
+  color: white !important;
+}
 .login-page {
   width: 360px;
   padding: 1% 0 0;
@@ -115,16 +124,15 @@ label {
   background-color: rgba(49, 37, 105, 0.267);
   height: 100%;
   padding-bottom: 10px;
-  padding-top: 5px;
+  padding-top: 10px;
   padding-left: 15%;
   padding-right: 15%;
 }
-.container form .btn {
-  margin-top: 20px;
-  float: right;
-  background-color: rgba(58, 25, 243, 0.445);
-  color: white;
+
+.container {
+  margin-top: 30px;
 }
+
 .container:before,
 .container:after {
   content: "";
@@ -153,10 +161,17 @@ label {
 .container .info span .fa {
   color: #ef3b3a;
 }
+
+.patient .form-control,
+.doctor .form-control {
+  border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+    0 0 15px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+}
 body,
 .acrylic::before {
   background: url("../green_3-wallpaper-2560x1440.jpg");
-  color: #000;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -178,23 +193,17 @@ body,
   height: calc(100% + 20px);
   z-index: -1;
 }
-.acrylic::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  opacity: 0.3;
-  border: 1px solid rgb(0, 0, 0);
-  background: rgb(0, 0, 0);
-}
 .jumbotron {
   background-color: #315c6e00;
 }
 .bg-dark {
   background-color: #315c6e !important;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  border: solid;
+  border-width: 0.1ch;
 }
 .navbar-dark .navbar-nav .nav-link {
   margin-left: 20px;
@@ -207,11 +216,7 @@ body,
 .create {
   color: rgb(255, 255, 255) !important;
 }
-@media screen and (min-width: 670px) {
-  .burgerDiv {
-    display: none;
-  }
-}
+
 @media screen and (max-width: 670px) {
   .navbar-nav {
     display: none;
@@ -224,32 +229,10 @@ body,
   .btn {
     width: 100%;
   }
-  .burgerDiv {
-    display: block;
-  }
-}
-.burger {
-  position: fixed;
-  top: 1rem;
-  right: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 1.5rem;
-  height: 1.5rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 5;
-}
-.burgerDiv {
-  width: 1.5rem;
-  height: 0.2rem;
-  background: black;
-  border-radius: 5px;
-  transform-origin: 1px;
-  position: relative;
 }
 .react-datepicker__time-list-item--disabled {
   display: none;
+}
+.btn {
+  margin-right: 1rem;
 }
