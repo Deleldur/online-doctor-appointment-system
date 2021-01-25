@@ -254,7 +254,12 @@ label {
   }
 }
 
+@media screen and (max-width: 800px) {
 
+  .kajfWd {
+    display: none !important;
+  }
+}
 
 
 /* this is a quick and dirty fix for the colums / tables */
