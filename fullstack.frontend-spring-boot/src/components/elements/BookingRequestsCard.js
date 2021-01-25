@@ -99,32 +99,6 @@ class BookingRequests extends Component {
         </table>
       </div>
     );
-
-    // let { approveBookingRequest, appointments } = this.props;
-    // let { patientInformation } = this.state;
-    // return (
-    //   <div className="table">
-    //     <form className="tr">
-    //       <span className="td">Booking date: {appointments.bookingDate} </span>
-    //       <span className="td">
-    //         Booking time {appointments.bookingStartTime}
-    //       </span>
-    //       <span className="td">
-    //         Patient name:{" "}
-    //         {patientInformation.firstName + " " + patientInformation.lastName}
-    //       </span>
-    //       <span className="td">
-    //         <input type="submit" value="Deny" className="btn btn-danger" />
-    //         <input
-    //           type="submit"
-    //           value="Approve"
-    //           className="btn btn-success"
-    //           onClick={() => approveBookingRequest(appointments)}
-    //         />
-    //       </span>
-    //     </form>
-    //   </div>
-    // );
   }
 }
 
