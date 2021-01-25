@@ -14,7 +14,7 @@ export default class CreateAppointment extends Component {
       bookingStartTime: "",
       bookingEndTime: "",
       bookingDate: "",
-      doctorId: "5ffeeee09407e72bb837a737",
+      doctorId: "",
       patientId: "",
       patientFirstName: "",
       patientLastName: "",
@@ -25,7 +25,9 @@ export default class CreateAppointment extends Component {
       ailmentsDropDownValue: "",
       locationDropDownValue: "",
       finalDoctorList: "",
-      showAilmentList: false
+      showAilmentList: false,
+      chosenDoctor: "",
+      chosenDoctorId: ""
     };
   }
   componentDidMount() {
@@ -40,6 +42,14 @@ export default class CreateAppointment extends Component {
         patientId: response.data.id,
         patientFirstName: response.data.firstName,
         patientLastName: response.data.lastName
+      });
+    });
+  };
+
+  searchDoctorResultSubmit = (id) => {
+    UserService.getDoctorInfoById(id).then((res) => {
+      this.setState({
+        chosenDoctor: res.data
       });
     });
   };
@@ -72,6 +82,17 @@ export default class CreateAppointment extends Component {
       });
     });
   };
+  onChangeBookingTime = (e) => {
+    this.setState({
+      bookingStartTime: e.target.value
+    });
+  };
+
+  onChangeBookingDate = (e) => {
+    this.setState({
+      bookingDate: e.target.value
+    });
+  };
   onChangeLocation = (e) => {
     this.setState({
       locationDropDownValue: e.target.value,
@@ -92,17 +113,26 @@ export default class CreateAppointment extends Component {
       bookingStartTime: this.state.bookingStartTime,
       bookingEndTime: this.state.bookingEndTime,
       bookingDate: this.state.bookingDate,
-      doctorId: this.state.doctorId,
-      patientId: this.state.patientId,
-      active: this.state.active
+      doctorInformation: {
+        doctorId: this.state.chosenDoctor.id,
+        doctorFirstName: this.state.chosenDoctor.firstName,
+        doctorLastName: this.state.chosenDoctor.lastName
+      },
+      patientInformation: {
+        patientId: this.state.patientId,
+        patientFirstName: this.state.patientFirstName,
+        patientLastName: this.state.patientLastName
+      },
+      active: this.state.active,
+      ailmentsDropDownValue: this.state.ailmentsDropDownValue
     };
-
+    console.log(newAppointment);
     axios.post("http://localhost:3000/api/appointment/create/", newAppointment);
     this.setState({
       bookingStartTime: "",
       bookingEndTime: "",
       bookingDate: "",
-      doctorId: "5ffeeee09407e72bb837a737",
+      chosenDoctorId: "",
       patientId: "",
       active: false
     });
@@ -139,7 +169,7 @@ export default class CreateAppointment extends Component {
         result.flat().map((item) => [JSON.stringify(item), item])
       ).values()
     ];
-
+    console.log(this.state.chosenDoctor);
     return (
       <div>
         {/* Sends props in to the Searchform */}
@@ -158,9 +188,18 @@ export default class CreateAppointment extends Component {
         {/* Checks if the final doctor list is empty or not */}
         {/* If it is not empty it shows the SearchDoctorResult component */}
         {!!finalDoctorList ? (
-          <SearchDoctorResult finalDoctorList={finalDoctorList} />
+          <SearchDoctorResult
+            searchDoctorResultSubmit={this.searchDoctorResultSubmit}
+            finalDoctorList={finalDoctorList}
+          />
         ) : null}
-        <Calendar />
+        <Calendar
+          bookingStartTime={bookingStartTime}
+          bookingEndTime={bookingEndTime}
+          onChangeBookingDate={this.onChangeBookingDate}
+          onChangeBookingTime={this.onChangeBookingTime}
+          onSubmit={this.onSubmit}
+        />
       </div>
     );
   }

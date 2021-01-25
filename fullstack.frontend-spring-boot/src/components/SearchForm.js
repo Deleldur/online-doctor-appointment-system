@@ -5,17 +5,6 @@ class SearchForm extends Component {
     super(props);
     this.state = { value: "" };
   }
-  onChangeBookingTime = (e) => {
-    this.setState({
-      bookingStartTime: e.target.value
-    });
-  };
-
-  onChangeBookingDate = (e) => {
-    this.setState({
-      bookingDate: e.target.value
-    });
-  };
 
   render() {
     let {
@@ -24,7 +13,7 @@ class SearchForm extends Component {
       finalDoctorList,
       showAilmentList
     } = this.props;
-    console.log(finalDoctorList);
+
     return (
       <React.Fragment>
         
