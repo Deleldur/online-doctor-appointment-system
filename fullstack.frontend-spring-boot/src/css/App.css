@@ -197,6 +197,9 @@ label {
 .react-datepicker__time-list-item--disabled {
   display: none;
 }
+
+/* button styles*/
+
 .btn {
   margin-top: 1rem;
   margin-right: 1rem;
@@ -205,7 +208,7 @@ label {
   
 }
 
-/* this is background collor for the open the nav menu
+/* this is background collor for the open the burger menu
 */
 
 .erLTYI {
@@ -216,14 +219,14 @@ label {
   
 }
 
-/* this is link collor in the nav menu
+/* this is links collor in the burger menu
 */
 
 .erLTYI a {
   color: white !important;
   
 }
-/* this is background collor for the closing of the nav menu
+/* this is background collor for the closing of the burger menu
 */
 .kajfWd {
   background: #1a1738 !important;
@@ -234,7 +237,7 @@ label {
 }
 
 
-
+/* this hides the burger menu when the screen gets to big  */
 @media screen and (min-width: 800px) {
 
   .gLulYg {
@@ -242,6 +245,8 @@ label {
   }
 }
 
+
+/* this hides the desktop links when the screen gets to small */
 @media screen and (max-width: 800px) {
 
   .nav-link {
@@ -250,6 +255,9 @@ label {
 }
 
 
+
+
+/* this is a quick and dirty fix for the colums / tables */
 @media 
 only screen and (max-width: 3500px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
@@ -295,6 +303,4 @@ only screen and (max-width: 3500px),
 	td:nth-of-type(3):before { content: "Phone number"; }
 	td:nth-of-type(4):before { content: "Email"; }
 	td:nth-of-type(5):before { content: "City"; }
-	td:nth-of-type(6):before { content: "Book appointment"; }
-
 }
