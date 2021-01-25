@@ -102,7 +102,10 @@ export default class HomeComponent extends Component {
           <h2>Booking requests</h2>
           <div className="card">
            
-            {this.currentBookingRequests()}
+          <BookingRequests
+              appointments={appointments}
+              currentDate={currentDate}
+            />
           </div>
           <div className="card">
             <h2>Upcoming appointments</h2>
