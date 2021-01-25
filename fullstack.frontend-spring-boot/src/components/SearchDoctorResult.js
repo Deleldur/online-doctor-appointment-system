@@ -30,7 +30,7 @@ class SearchDoctorResult extends Component {
                   <td>
                     <input
                       type="submit"
-                      value="Choose doctor"
+                      value="Book this doctor"
                       className="btn"
                       onClick={() =>
                         this.props.searchDoctorResultSubmit(list.id)
