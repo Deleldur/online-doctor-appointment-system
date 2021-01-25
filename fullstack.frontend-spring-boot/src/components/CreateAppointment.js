@@ -4,7 +4,6 @@ import UserService from "../service/UserService";
 import SearchForm from "./SearchForm";
 import SearchDoctorResult from "./SearchDoctorResult";
 import Calendar from "./Calendar";
-
 export default class CreateAppointment extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +16,10 @@ export default class CreateAppointment extends Component {
       bookingDate: "",
       doctorId: "5ffeeee09407e72bb837a737",
       patientId: "",
+      patientFirstName: "",
+      patientLastName: "",
+      doctorFirstName: "",
+      doctorLastName: "",
       active: false,
       dropDownLocation: "",
       ailmentsDropDownValue: "",
@@ -32,9 +35,11 @@ export default class CreateAppointment extends Component {
   }
 
   loadUser = () => {
-    UserService.getPatientInfo().then((response) => {
+    UserService.getLoggedInPatientInfo().then((response) => {
       this.setState({
-        patientId: response.data.id
+        patientId: response.data.id,
+        patientFirstName: response.data.firstName,
+        patientLastName: response.data.lastName
       });
     });
   };
@@ -57,8 +62,6 @@ export default class CreateAppointment extends Component {
   onSearchSubmit = (e) => {
     let { locationDropDownValue, ailmentsDropDownValue } = this.state;
     e.preventDefault();
-    console.log(locationDropDownValue);
-    console.log(ailmentsDropDownValue);
 
     UserService.getDoctorByLocationAndAilment(
       locationDropDownValue,
@@ -84,11 +87,6 @@ export default class CreateAppointment extends Component {
   };
   onSubmit = (e) => {
     e.preventDefault();
-
-    console.log(`Form Submitted`);
-
-    console.log(`Time ${this.state.bookingStartTime}`);
-    console.log(`Date ${this.state.bookingDate}`);
 
     const newAppointment = {
       bookingStartTime: this.state.bookingStartTime,

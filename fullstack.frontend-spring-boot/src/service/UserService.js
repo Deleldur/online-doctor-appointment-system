@@ -65,8 +65,22 @@ class UserService {
       headers: authHeader()
     });
   }
+
+  async getPatientNameTest(patientId) {
+    const result = await axios.get(
+      API_URL + "patient/findpatient/" + patientId,
+      {
+        headers: authHeader()
+      }
+    );
+    const data = {
+      firstName: result.data.firstName,
+      lastName: result.data.lastName
+    };
+    return data;
+  }
   // fetches all database information for a specific patient
-  getPatientInfo() {
+  getLoggedInPatientInfo() {
     let userId = authService.getCurrentUserId();
     return axios.get(API_URL + "patient/findpatient/" + userId, {
       headers: authHeader()

@@ -1,21 +1,31 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+.header h4 {
+  padding-left: 40%;
+  display: block;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+table {
+  color: white !important;
+}
 .login-page {
   width: 360px;
   padding: 1% 0 0;
   margin: auto;
 }
-
 label {
   display: block;
   margin-top: 10px;
 }
-
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
 }
-
 .card {
   background-color: #315c6e;
   padding: 20px 25px 30px;
@@ -23,12 +33,11 @@ label {
   margin-top: 10px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-  border-radius: 2px;
+  border-radius: 5px;
   -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
-
 .profile-img-card {
   width: 96px;
   height: 96px;
@@ -45,7 +54,6 @@ label {
   padding: 50px;
   text-align: center;
 }
-
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
@@ -100,7 +108,6 @@ label {
   width: 100%;
   margin: 0 0 15px;
 }
-
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
@@ -118,26 +125,14 @@ label {
   height: 100%;
   padding-bottom: 10px;
   padding-top: 10px;
-  
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
 .container {
   margin-top: 30px;
 }
 
-.container form .btn {
-  margin-top: 20px;
-  float: right;
-  background-color: rgba(58, 25, 243, 0.445);
-  color: white;
-}
-
-.container table .btn {
-  margin-top: 20px;
-  float: right;
-  background-color: rgba(58, 25, 243, 0.445);
-  color: white;
-}
 .container:before,
 
 .container:after {
@@ -168,11 +163,16 @@ label {
   color: #ef3b3a;
 }
 
-body, 
-
+.patient .form-control,
+.doctor .form-control {
+  border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+    0 0 15px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+}
+body,
 .acrylic::before {
   background: url("../green_3-wallpaper-2560x1440.jpg");
-  color: #000;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -184,7 +184,6 @@ body,
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .acrylic::before {
   filter: blur(10px);
   content: "";
@@ -195,11 +194,9 @@ body,
   height: calc(100% + 20px);
   z-index: -1;
 }
-
 .jumbotron {
   background-color: #315c6e00;
 }
-
 .bg-dark {
   background-color: #315c6e !important;
   position: fixed;
@@ -209,28 +206,34 @@ body,
   border: solid;
   border-width: 0.1ch;
 }
-
 .navbar-dark .navbar-nav .nav-link {
   margin-left: 20px;
   color: #000;
   font-size: large;
 }
-
 .navbar-dark .navbar-brand {
   color: #000;
 }
-
 .create {
   color: rgb(255, 255, 255) !important;
 }
 
-DIV.table {
-  display: table;
+@media screen and (max-width: 670px) {
+  .navbar-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+  .navbar-nav.show {
+    display: flex;
+  }
+  .btn {
+    width: 100%;
+  }
 }
-FORM.tr,
-DIV.tr {
-  display: table-row;
+.react-datepicker__time-list-item--disabled {
+  display: none;
 }
-SPAN.td {
-  display: table-cell;
+.btn {
+  margin-right: 1rem;
 }

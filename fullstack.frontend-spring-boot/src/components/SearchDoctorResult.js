@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class SearchDoctorResult extends Component {
   render() {
     let { finalDoctorList } = this.props;
-    console.log("Finaldoctorlist" + finalDoctorList);
+
     return (
       <div className="card">
         <h3>Doctor list</h3>
