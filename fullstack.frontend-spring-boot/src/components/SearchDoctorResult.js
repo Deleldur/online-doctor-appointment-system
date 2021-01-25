@@ -32,6 +32,9 @@ class SearchDoctorResult extends Component {
                       type="submit"
                       value="Choose doctor"
                       className="btn"
+                      onClick={() =>
+                        this.props.searchDoctorResultSubmit(list.id)
+                      }
                       // doctor ID should be fired here so the backend can get the values for the calendar
                       //onSubmit=
                     />

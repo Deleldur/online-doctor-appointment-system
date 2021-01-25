@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import UserService from "../../service/UserService";
 //This is for the edit or cancel buttons on the current appointments
 class UpcomingAppointmentsCard extends Component {
   constructor(props) {
@@ -15,7 +15,9 @@ class UpcomingAppointmentsCard extends Component {
       test: []
     };
   }
-
+  deleteAppointment = (e, id) => {
+    UserService.deleteAppointment(id);
+  };
   currentAppointmentList = () => {
     let { appointments } = this.props;
     let { currentDate } = this.state;
@@ -43,16 +45,28 @@ class UpcomingAppointmentsCard extends Component {
                   {currentAppointments.patientInformation.patientLastName}
                 </td>
                 <td>
-                  <Link to={"/appointment/" + currentAppointments.id}>
-                    <button className="btn btn-success">
-                      <span>Edit</span>
-                    </button>
-                  </Link>
-                  <Link to="/appointment/">
-                    <button className="btn btn-danger">
-                      <span>Cancel</span>
-                    </button>
-                  </Link>
+                  <form>
+                    <Link to={"/appointment/edit/" + currentAppointments.id}>
+                      <button className="btn btn-success">
+                        <span>Edit</span>
+                      </button>
+                    </Link>
+
+                    <input
+                      type="submit"
+                      value="Cancel"
+                      className="btn btn-danger"
+                      onClick={(e) => {
+                        if (
+                          window.confirm(
+                            "Are you sure you wish to delete this item?" +
+                              `${currentAppointments.id}`
+                          )
+                        )
+                          this.deleteAppointment(e, currentAppointments.id);
+                      }}
+                    />
+                  </form>
                 </td>
               </tr>
             );

@@ -54,6 +54,17 @@ class UserService {
     );
   }
 
+  async deleteAppointment(id) {
+    return await axios
+      .delete(API_URL + "appointment/deleteappointment/" + id, {
+        headers: authHeader()
+      })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      });
+  }
+
   editAppointment(id, data) {
     return axios.put(API_URL + "appointment/updateappointment/" + id, data, {
       headers: authHeader()
@@ -94,6 +105,11 @@ class UserService {
     });
   }
 
+  getDoctorInfoById(id) {
+    return axios.get(API_URL + "doctor/finddoctor/" + id, {
+      headers: authHeader()
+    });
+  }
   // fetches all locations for all the doctors in the datbase
   // this is used to render the drop down menu in the search function for the booking requests.
   getDoctorLocations() {
