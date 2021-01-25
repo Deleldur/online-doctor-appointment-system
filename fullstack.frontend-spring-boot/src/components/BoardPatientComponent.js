@@ -13,12 +13,12 @@ export default class BoardPatientComponent extends Component {
 
   componentDidMount() {
     UserService.getPatientBoard().then(
-      response => {
+      (response) => {
         this.setState({
           content: response.data
         });
       },
-      error => {
+      (error) => {
         this.setState({
           content:
             (error.response &&
@@ -33,11 +33,11 @@ export default class BoardPatientComponent extends Component {
 
   render() {
     return (
-      <div className="container">
+      <>
         <header className="jumbotron">
           <h3>{this.state.content}</h3>
         </header>
-      </div>
+      </>
     );
   }
 }

@@ -83,7 +83,7 @@ class UpcomingAppointmentsCard extends Component {
 
   render() {
     return (
-      <div className="row">
+      <>
         <table className="table">
           <thead>
             <tr>
@@ -96,7 +96,7 @@ class UpcomingAppointmentsCard extends Component {
 
           <tbody>{this.currentAppointmentList()}</tbody>
         </table>
-      </div>
+      </>
     );
   }
 }

@@ -93,7 +93,7 @@ class BookingRequests extends Component {
   componentDidMount() {}
   render() {
     return (
-      <div className="row">
+      <>
         <table className="table">
           <thead>
             <tr>
@@ -106,7 +106,7 @@ class BookingRequests extends Component {
 
           <tbody>{this.bookingRequestList()}</tbody>
         </table>
-      </div>
+      </>
     );
   }
 }
