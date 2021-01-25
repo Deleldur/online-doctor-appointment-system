@@ -5,6 +5,8 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "../service/AuthService";
 
+
+
 const required = (value) => {
   if (!value) {
     return (

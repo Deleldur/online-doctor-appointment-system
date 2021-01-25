@@ -1,21 +1,22 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+.header h4 {
+  padding-left: 40%;
+  display: block;
+}
 .login-page {
   width: 360px;
   padding: 1% 0 0;
   margin: auto;
 }
-
 label {
   display: block;
   margin-top: 10px;
 }
-
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
 }
-
 .card {
   background-color: #315c6e;
   padding: 20px 25px 30px;
@@ -23,12 +24,11 @@ label {
   margin-top: 10px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-  border-radius: 2px;
+  border-radius: 5px;
   -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
-
 .profile-img-card {
   width: 96px;
   height: 96px;
@@ -45,7 +45,6 @@ label {
   padding: 50px;
   text-align: center;
 }
-
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
@@ -100,7 +99,6 @@ label {
   width: 100%;
   margin: 0 0 15px;
 }
-
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
@@ -117,8 +115,9 @@ label {
   background-color: rgba(49, 37, 105, 0.267);
   height: 100%;
   padding-bottom: 10px;
-  padding-top: 10px;
-  
+  padding-top: 5px;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 .container form .btn {
   margin-top: 20px;
@@ -169,7 +168,6 @@ body,
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 .acrylic::before {
   filter: blur(10px);
   content: "";
@@ -180,7 +178,6 @@ body,
   height: calc(100% + 20px);
   z-index: -1;
 }
-
 .acrylic::after {
   content: "";
   position: absolute;
@@ -193,81 +190,66 @@ body,
   border: 1px solid rgb(0, 0, 0);
   background: rgb(0, 0, 0);
 }
-
 .jumbotron {
   background-color: #315c6e00;
 }
-
 .bg-dark {
   background-color: #315c6e !important;
 }
-
 .navbar-dark .navbar-nav .nav-link {
   margin-left: 20px;
   color: #000;
   font-size: large;
 }
-
 .navbar-dark .navbar-brand {
   color: #000;
 }
-
 .create {
   color: rgb(255, 255, 255) !important;
 }
-
 @media screen and (min-width: 670px) {
   .burgerDiv {
-
     display: none;
   }
 }
-
 @media screen and (max-width: 670px) {
   .navbar-nav {
     display: none;
     flex-direction: column;
     width: 100%;
   }
-  
   .navbar-nav.show {
     display: flex;
   }
-
   .btn {
     width: 100%;
   }
-
   .burgerDiv {
-    display:block
+    display: block;
   }
-
 }
-
 .burger {
-position: fixed;
-top: 1rem;
-right: 2rem;
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-width: 1.5rem;
-height: 1.5rem;
-background: transparent;
-border: none;
-cursor: pointer;
-z-index: 5;
+  position: fixed;
+  top: 1rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
 }
-
 .burgerDiv {
   width: 1.5rem;
-  height: .2rem;
+  height: 0.2rem;
   background: black;
   border-radius: 5px;
   transform-origin: 1px;
   position: relative;
 }
-
-
-
-
+.react-datepicker__time-list-item--disabled {
+  display: none;
+}

@@ -6,6 +6,8 @@ import CurrentAppointments from "./elements/CurrentAppointments";
 import FinishedAppointments from "./elements/FinishedAppointments";
 import BookingRequests from "./elements/BookingRequests";
 import format from "date-fns/format";
+
+
 // component render for the current appointments
 
 // component render for the booking requests
@@ -121,9 +123,10 @@ export default class HomeComponent extends Component {
         <div className="col-lg-12">
           <header className="jumbotron">
             <h1>Doctor page</h1>
-          </header>
+          </header> 
+          <h2>Booking requests</h2>
           <div className="card">
-            <h2>Booking requests</h2>
+           
             {this.currentBookingRequests()}
           </div>
           <div className="card">
@@ -133,6 +136,10 @@ export default class HomeComponent extends Component {
           <div className="card">
             <h2>Finished appointments</h2>
             {this.finishedAppointmentList()}
+          </div>
+          <div className="card">
+            <h2>Email</h2>
+          
           </div>
         </div>
       </div>

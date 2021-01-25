@@ -4,7 +4,6 @@ import UserService from "../service/UserService";
 import SearchForm from "./SearchForm";
 import SearchDoctorResult from "./SearchDoctorResult";
 import Calendar from "./Calendar";
-
 export default class CreateAppointment extends Component {
   constructor(props) {
     super(props);

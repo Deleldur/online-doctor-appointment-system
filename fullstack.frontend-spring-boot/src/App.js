@@ -5,7 +5,6 @@ import "./css/App.css";
 import styled from "styled-components";
 import AuthService from "./service/AuthService";
 import "./css/temp.css";
-import UserService from "./service/UserService";
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import HomeDoctor from "./components/HomeDoctor";
@@ -32,6 +31,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+
     // imports the userinformation based on the logged in user.
     const user = AuthService.getCurrentUser();
 
@@ -62,11 +63,12 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <div className="header">
           <h4 className="Doctor booking">Doctor booking</h4>
+          </div>
 
-          
-          
-          <MenuIcon className="burger">
+    
+          <MenuIcon className="burger">  
             <div className="burgerDiv"/>
             <div className="burgerDiv"/>
             <div className="burgerDiv"/>
@@ -139,6 +141,8 @@ class App extends Component {
         </nav>
 
         <div className="container container-bg">
+   
+          
           <Switch>
             {showDoctorBoard && (
               <Route exact path={["/", "/home"]} component={HomeDoctor} />
@@ -165,6 +169,7 @@ class App extends Component {
             </React.StrictMode>
             {/*<Route path="/appointment" component={AppointmentComponent} />*/}
           </Switch>
+  
         </div>
       </div>
     );
