@@ -30,7 +30,7 @@ class SearchDoctorResult extends Component {
                   <td>
                     <input
                       type="submit"
-                      value="Choose doctor"
+                      value="Choose this doctor"
                       className="btn"
                       // doctor ID should be fired here so the backend can get the values for the calendar
                       //onSubmit=

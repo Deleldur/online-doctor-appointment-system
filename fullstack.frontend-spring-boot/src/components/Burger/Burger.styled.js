@@ -14,11 +14,12 @@ export const StyledBurger = styled.button`
   cursor: pointer;
   padding: 0;
   z-index: 10;
+  position: fixed;
 
   span {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ theme, open }) => open ? theme.primaryDark : theme.primaryLight};
+    background: ${({ theme, open }) => open ? theme.primaryDark : theme.primaryDark};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;

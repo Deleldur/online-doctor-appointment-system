@@ -27,7 +27,7 @@ class SearchForm extends Component {
     console.log(finalDoctorList);
     return (
       <React.Fragment>
-        )
+        
         <div className="card">
           <form className="form" onSubmit={this.props.onSearchSubmit}>
             <div className="col-lg-12">
