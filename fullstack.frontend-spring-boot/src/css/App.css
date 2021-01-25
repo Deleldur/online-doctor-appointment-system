@@ -236,7 +236,6 @@ label {
   margin-top: 20px;
 }
 
-
 /* this hides the burger menu when the screen gets to big  */
 @media screen and (min-width: 800px) {
 
