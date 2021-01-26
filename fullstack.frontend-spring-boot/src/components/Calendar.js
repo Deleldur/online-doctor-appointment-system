@@ -19,6 +19,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Calendar(props) {
   const [startDate, setStartDate] = useState(null);
+  const [messageActive, setMessageActive] = useState(false);
   const isWeekday = (date) => {
     const day = getDay(date);
     return day !== 0 && day !== 6;
@@ -58,7 +59,14 @@ export default function Calendar(props) {
       active: props.active,
       ailmentsDropDownValue: props.ailmentsDropDownValue
     };
-    axios.post("http://localhost:3000/api/appointment/create/", newAppointment);
+    axios
+      .post("http://localhost:3000/api/appointment/create/", newAppointment)
+      .then((res) => {
+        setMessageActive(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // console.log("BOOKING REQUEST  format iso: " + formatISO(startDate));
     // console.log(
@@ -123,6 +131,11 @@ export default function Calendar(props) {
           value="Book appointment"
         />
       </form>
+      <div
+        className={`success-message ${messageActive ? "showCss" : "hideCss"}`}
+      >
+        <span>Appointment booked successfully</span>
+      </div>
     </>
   );
 }

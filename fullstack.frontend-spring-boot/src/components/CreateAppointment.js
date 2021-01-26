@@ -50,9 +50,8 @@ export default class CreateAppointment extends Component {
   };
   getAllAppointmentsWithDoctorId = async (id) => {
     let appointments = await UserService.getAppointmentsFromDoctorId(id);
-    //console.log("result inside " + JSON.stringify(res.data));
+
     for (let index = 0; index < appointments.data.length; index++) {
-      // console.log(appointments.data[index].bookingDate);
       this.setState({
         allAppointmentsWithDoctorId: [
           ...this.state.allAppointmentsWithDoctorId,
@@ -83,9 +82,7 @@ export default class CreateAppointment extends Component {
   searchDoctorResultSubmit = async (id) => {
     UserService.getDoctorInfoById(id).then((res) => {
       const chosenDoctor = res.data;
-      this.getAllAppointmentsWithDoctorId(chosenDoctor.id).then((res2) => {
-        console.log("test res2: " + res2);
-      });
+      this.getAllAppointmentsWithDoctorId(chosenDoctor.id).then((res2) => {});
       this.setState({
         chosenDoctor: res.data
       });
@@ -108,7 +105,7 @@ export default class CreateAppointment extends Component {
   };
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
+
     // console.log(
     //   "BOOKING REQUEST  std: " + format(e.target.value, "yyyy-MM-dd")
     // );
@@ -215,7 +212,7 @@ export default class CreateAppointment extends Component {
       ).values()
     ];
     //    console.log(this.state.chosenDoctor);
-    console.log("allAppointmentsWithDoctorId " + allAppointmentsWithDoctorId);
+
     return (
       <div className="row">
         <div className="col-lg-12">
@@ -256,8 +253,6 @@ export default class CreateAppointment extends Component {
                 allAppointmentsWithDoctorId={allAppointmentsWithDoctorId}
               />
             ) : null}
-
-            {console.log("test : " + this.state.allAppointmentsWithDoctorId)}
           </div>
         </div>
       </div>
