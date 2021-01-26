@@ -65,7 +65,7 @@ export default class HomeComponent extends Component {
   // Gets an array of all appointsments in the database for the currently logged in doctor.
   getAllAppointments = async () => {
     const doctorId = AuthService.getCurrentUserId();
-
+    console.log("doctor ID: " + doctorId);
     // fetches all appointments from mongodb based on the logged in doctors ID
     await UserService.getAppointmentsFromDoctorId(doctorId).then(
       (response) => {
@@ -95,14 +95,14 @@ export default class HomeComponent extends Component {
 
     return (
       <div className="row">
-        <div className="col-lg-12">
+        <div className="col-lg-12 col-sm-12">
           <header className="jumbotron">
             <h1>Doctor page</h1>
-          </header> 
-          <h2>Booking requests</h2>
+          </header>
+
           <div className="card">
-           
-          <BookingRequests
+            <h2>Booking requests</h2>
+            <BookingRequests
               appointments={appointments}
               currentDate={currentDate}
             />
@@ -121,10 +121,9 @@ export default class HomeComponent extends Component {
               currentDate={currentDate}
             />
           </div>
-          <div className="card">
+          {/* <div className="card">
             <h2>Email</h2>
-          
-          </div>
+          </div> */}
         </div>
       </div>
     );

@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import UserService from "../../service/UserService";
 
 class BookingRequests extends Component {
-  //------------------------- check this out later
   constructor(props) {
     super(props);
 
@@ -11,11 +10,9 @@ class BookingRequests extends Component {
       patientId: "",
       patientInformation: "",
       currentDate: this.props.currentDate,
-      appointments: this.props.appointments,
-      temp: false
+      appointments: this.props.appointments
     };
   }
-  //-------------------------
 
   approveBookingRequest = (appointmentInformation) => {
     let feedback = {
@@ -28,6 +25,9 @@ class BookingRequests extends Component {
     UserService.editAppointment(appointmentInformation.id, feedback);
   };
 
+  deleteAppointment = (e, id) => {
+    UserService.deleteAppointment(id);
+  };
   bookingRequestList = () => {
     let { appointments } = this.props;
     let { currentDate } = this.state;
@@ -64,10 +64,19 @@ class BookingRequests extends Component {
                         this.approveBookingRequest(currentAppointments)
                       }
                     />
+
                     <input
                       type="submit"
                       value="Deny"
                       className="btn btn-danger"
+                      onClick={(e) => {
+                        if (
+                          window.confirm(
+                            "Are you sure you wish to delete this appointment?"
+                          )
+                        )
+                          this.deleteAppointment(e, currentAppointments.id);
+                      }}
                     />
                   </form>
                 </td>
@@ -84,7 +93,7 @@ class BookingRequests extends Component {
   componentDidMount() {}
   render() {
     return (
-      <div className="row">
+      <>
         <table className="table">
           <thead>
             <tr>
@@ -97,7 +106,7 @@ class BookingRequests extends Component {
 
           <tbody>{this.bookingRequestList()}</tbody>
         </table>
-      </div>
+      </>
     );
   }
 }

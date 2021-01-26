@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 .header h4 {
   padding-left: 40%;
   display: block;
@@ -49,19 +49,19 @@ label {
 }
 .form {
   position: relative;
-  max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 50px;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  padding: 15px;
   text-align: center;
 }
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: #f2f2f2;
+
   width: 100%;
   margin: 0 0 15px;
   padding: 15px;
-  box-sizing: border-box;
+
   font-size: 14px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -101,8 +101,8 @@ label {
   font-family: "Roboto", sans-serif;
   position: relative;
   display: inline-block;
-  box-sizing: border-box;
   background: #fff;
+  color: #000;
   opacity: 0.8;
   padding: 10px;
   width: 100%;
@@ -167,32 +167,10 @@ label {
     0 0 15px rgba(126, 239, 104, 0.6);
   outline: 0 none;
 }
-body,
-.acrylic::before {
-  background: url("../green_3-wallpaper-2560x1440.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.acrylic::before {
-  filter: blur(10px);
-  content: "";
-  position: absolute;
-  left: -10px;
-  top: -10px;
-  width: calc(100% + 20px);
-  height: calc(100% + 20px);
-  z-index: -1;
-}
+
 .jumbotron {
-  background-color: #315c6e00;
+  background-color: #315c6e;
+  padding: 1rem 1rem !important;
 }
 .bg-dark {
   background-color: #315c6e !important;
@@ -200,8 +178,13 @@ body,
   top: 0;
   width: 100%;
   z-index: 1;
-  border: solid;
-  border-width: 0.1ch;
+  border: none;
+  height: 100px;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+  margin-left: 20px;
+  font-size: large;
 }
 .navbar-dark .navbar-nav .nav-link {
   margin-left: 20px;
@@ -215,22 +198,84 @@ body,
   color: rgb(255, 255, 255) !important;
 }
 
-@media screen and (max-width: 670px) {
-  .navbar-nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-  }
-  .navbar-nav.show {
-    display: flex;
-  }
-  .btn {
-    width: 100%;
-  }
-}
 .react-datepicker__time-list-item--disabled {
   display: none;
 }
+
+/* button styles*/
+
 .btn {
+  margin-top: 1rem;
   margin-right: 1rem;
+  color: white !important;
+  /*  background-color: rgb(15, 15, 219);*/
+}
+
+/* this is background collor for the open the burger menu
+*/
+
+.erLTYI {
+  background: #1a1738 !important;
+  max-width: 30vh !important;
+  z-index: 1;
+  color: #fff !important;
+}
+
+/* this is links collor in the burger menu
+*/
+
+.erLTYI a {
+  color: white !important;
+}
+/* this is background collor for the closing of the burger menu
+*/
+.kajfWd {
+  background: #1a1738 !important;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+/* this hides the burger menu when the screen gets to big  */
+@media screen and (min-width: 800px) {
+  .gLulYg {
+    display: none !important;
+  }
+}
+
+/* this hides the desktop links when the screen gets to small */
+@media screen and (max-width: 800px) {
+  .nav-link {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .kajfWd {
+    display: none !important;
+  }
+}
+
+.success-message {
+  margin-top: 20px;
+  background-color: white;
+  width: 100%;
+  padding-bottom: 2px;
+}
+.success-message span {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: green;
+}
+.showCss {
+  display: block;
+}
+.hideCss {
+  display: none;
+}
+
+.container-xl,
+container-md {
+  margin-top: 120px;
 }

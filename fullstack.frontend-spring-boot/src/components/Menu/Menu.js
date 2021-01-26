@@ -29,7 +29,7 @@ showPatientBoard = true;
 }
 
   return (
-    <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
+    <StyledMenu className="side-links" open={open} aria-hidden={!isHidden} {...props}>
            {currentUser ? ( 
             <>
      <a href="/home" tabIndex={tabIndex}>

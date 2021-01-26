@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import UserService from "../../service/UserService";
 class BookingRequests extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +12,9 @@ class BookingRequests extends Component {
       temp: false
     };
   }
-
+  deleteAppointment = (e, id) => {
+    UserService.deleteAppointment(id);
+  };
   bookingRequestList = () => {
     let { appointments } = this.props;
     let { currentDate } = this.state;
@@ -36,8 +38,8 @@ class BookingRequests extends Component {
                 <td>{currentAppointments.bookingDate}</td>
                 <td>{currentAppointments.bookingStartTime}</td>
                 <td>
-                  {currentAppointments.patientInformation.patientFirstName}{" "}
-                  {currentAppointments.patientInformation.patientLastName}
+                  {currentAppointments.doctorInformation.doctorFirstName}{" "}
+                  {currentAppointments.doctorInformation.doctorLastName}
                 </td>
                 <td>
                   <form>
@@ -51,6 +53,14 @@ class BookingRequests extends Component {
                       type="submit"
                       value="Cancel"
                       className="btn btn-danger"
+                      onClick={(e) => {
+                        if (
+                          window.confirm(
+                            "Are you sure you wish to cancel your appointment?"
+                          )
+                        )
+                          this.deleteAppointment(e, currentAppointments.id);
+                      }}
                     />
                   </form>
                 </td>
