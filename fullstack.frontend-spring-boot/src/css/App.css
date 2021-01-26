@@ -205,7 +205,7 @@ label {
 /* button styles*/
 
 .btn {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   margin-right: 1rem;
   color: white !important;
   /*  background-color: rgb(15, 15, 219);*/
