@@ -4,14 +4,19 @@
   padding-left: 40%;
   display: block;
 }
-h1,
+
+h1 {
+  color: black;
+}
+
 h2,
 h3,
 h4,
 h5,
 h6,
+p,
 table {
-  color: white !important;
+  color: rgb(255, 255, 255) !important;
 }
 .login-page {
   width: 360px;
@@ -22,15 +27,17 @@ label {
   display: block;
   margin-top: 10px;
 }
+
+
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
+ 
 }
 .card {
   background-color: #315c6e;
   padding: 20px 25px 30px;
-  margin: 0 auto 25px;
-  margin-top: 10px;
+  margin: 25px auto 25px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 5px;
@@ -66,32 +73,7 @@ label {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
-.form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: rgb(255, 255, 255);
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #000;
-  font-size: 14px;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  cursor: pointer;
-  opacity: 0.6;
-}
-.form button:hover,
-.form button:active {
-  background: #7bb2ff69;
-}
-.form button:focus {
-  box-shadow: 0 0 20px #7bb1ff, 0 0 20px hsl(215, 100%, 74%);
-  background-color: #5691e6;
-  border-radius: 10px;
-  color: rgb(255, 255, 255);
-  opacity: 1;
-}
+
 .form input:focus {
   box-shadow: 0 0 20px #fff, 0 0 20px #fff;
   border-radius: 10px;
@@ -119,16 +101,6 @@ label {
 }
 .form .register-form {
   display: none;
-}
-.container-bg {
-  background-color: rgba(49, 37, 105, 0.267);
-  height: 100%;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
-.container {
-  margin-top: 30px;
 }
 
 .container:before,
@@ -162,16 +134,37 @@ label {
 
 .patient .form-control,
 .doctor .form-control {
-  border-color: rgba(126, 239, 104, 0.8);
+  border-color: rgba(38, 0, 255, 0.8);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
     0 0 15px rgba(126, 239, 104, 0.6);
   outline: 0 none;
 }
 
+body {
+background-image: url("../Public\ Opinion\ Research\ 1200x666.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+}
+
+
+/* adding the space between header and the first card*/
+.container-xl,
+.container-md {
+  margin-top: 125px;
+  
+}
+
+
+/*---------------------------- Header of the pages ---------------------------- */
 .jumbotron {
-  background-color: #315c6e00;
+  background-color: #00000000;
   padding: 1rem 1rem !important;
 }
+/*---------------------------- Header of the pages end ---------------------------- */
+
+/*---------------------------- Header Menu ---------------------------- */
 .bg-dark {
   background-color: #315c6e !important;
   position: fixed;
@@ -179,44 +172,46 @@ label {
   width: 100%;
   z-index: 1;
   border: none;
+  
 }
+
+/* Links on the right side of the header */
+
 .navbar-dark .navbar-nav .nav-link {
   margin-left: 20px;
-  color: #000;
+  color: rgb(255, 255, 255);
   font-size: large;
 }
+
+/*---------------------------- Header Menu end ---------------------------- */
+
 .navbar-dark .navbar-brand {
-  color: #000;
+  color: rgb(0, 0, 0);
 }
+
+/*---------------------------- Want to create account link ---------------------------- */
 .create {
   color: rgb(255, 255, 255) !important;
 }
+/*---------------------------- Want to create account link end ---------------------------- */
 
 .react-datepicker__time-list-item--disabled {
   display: none;
 }
 
-/* button styles*/
+/*---------------------------- Hamburger Menu ---------------------------- */
 
-.btn {
-  margin-top: 1rem;
-  margin-right: 1rem;
-  color: white !important;
-  /*  background-color: rgb(15, 15, 219);*/
-}
-
-/* this is background collor for the open the burger menu
-*/
+/* this is background collor for the open the burger menu*/
 
 .erLTYI {
-  background: #1a1738 !important;
+  background: rgb(19, 19, 179) !important;
   max-width: 30vh !important;
   z-index: 1;
   color: #fff !important;
 }
 
-/* this is links collor in the burger menu
-*/
+
+/* this is links collor in the burger menu*/
 
 .erLTYI a {
   color: white !important;
@@ -227,11 +222,11 @@ label {
   background: #1a1738 !important;
 }
 
-.table {
-  margin-top: 20px;
-}
+/*---------------------------- Hamburger Menu end ---------------------------- */
 
+/*---------------------------- Media queries ---------------------------- */
 /* this hides the burger menu when the screen gets to big  */
+
 @media screen and (min-width: 800px) {
   .gLulYg {
     display: none !important;
@@ -250,17 +245,23 @@ label {
     display: none !important;
   }
 }
+/*---------------------------- Media queries end ---------------------------- */
+
+.table {
+  margin-top: 20px;
+}
 
 .success-message {
   margin-top: 20px;
-  background-color: white;
+  background-color:transparent;
   width: 100%;
   padding-bottom: 2px;
 }
+
 .success-message span {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 500;
-  color: green;
+  color: rgb(255, 255, 255);
 }
 .showCss {
   display: block;
@@ -268,3 +269,53 @@ label {
 .hideCss {
   display: none;
 }
+
+
+/*---------------------------- button styles---------------------------- */
+
+.btn {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  color: white !important;
+  background-color: blue;
+}
+
+.btn-success {
+  width: 160px;
+  height: 50px;
+}
+
+.btn-danger {
+  width: 160px;
+  height: 50px;
+}
+
+
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: blue;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.form button:hover,
+.form button:active {
+  background: green !important;
+}
+.form button:focus {
+  box-shadow: 0 0 20px #7bb1ff, 0 0 20px hsl(215, 100%, 74%);
+  background-color: #007bff;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  opacity: 1;
+}
+
+/*---------------------------- button styles end ---------------------------- */
