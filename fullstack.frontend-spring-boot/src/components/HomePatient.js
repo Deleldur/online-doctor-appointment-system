@@ -46,7 +46,7 @@ export default class HomeComponent extends Component {
     let { appointments, currentDate } = this.state;
 
     return (
-      <div className="container">
+      <>
         <div className="card">
           <h2>Booking requests</h2>
           <BookingRequests
@@ -69,7 +69,7 @@ export default class HomeComponent extends Component {
             currentDate={currentDate}
           />
         </div>
-      </div>
+      </>
     );
   }
 }

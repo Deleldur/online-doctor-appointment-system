@@ -95,7 +95,7 @@ export default class HomeComponent extends Component {
 
     return (
       <div className="row">
-        <div className="col-lg-12">
+        <div className="col-lg-12 col-sm-12">
           <header className="jumbotron">
             <h1>Doctor page</h1>
           </header>

@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 .header h4 {
   padding-left: 40%;
   display: block;
@@ -49,19 +49,19 @@ label {
 }
 .form {
   position: relative;
-  max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 50px;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  padding: 15px;
   text-align: center;
 }
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: #f2f2f2;
+
   width: 100%;
   margin: 0 0 15px;
   padding: 15px;
-  
+
   font-size: 14px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -132,7 +132,6 @@ label {
 }
 
 .container:before,
-
 .container:after {
   content: "";
   display: block;
@@ -203,8 +202,7 @@ label {
   margin-top: 1rem;
   margin-right: 1rem;
   color: white !important;
-  background-color: rgb(15, 15, 219) !important;
-  
+  /*  background-color: rgb(15, 15, 219);*/
 }
 
 /* this is background collor for the open the burger menu
@@ -215,7 +213,6 @@ label {
   max-width: 30vh !important;
   z-index: 1;
   color: #fff !important;
-  
 }
 
 /* this is links collor in the burger menu
@@ -223,7 +220,6 @@ label {
 
 .erLTYI a {
   color: white !important;
-  
 }
 /* this is background collor for the closing of the burger menu
 */
@@ -237,73 +233,38 @@ label {
 
 /* this hides the burger menu when the screen gets to big  */
 @media screen and (min-width: 800px) {
-
   .gLulYg {
     display: none !important;
   }
 }
 
-
 /* this hides the desktop links when the screen gets to small */
 @media screen and (max-width: 800px) {
-
   .nav-link {
     display: none !important;
   }
 }
 
 @media screen and (max-width: 800px) {
-
   .kajfWd {
     display: none !important;
   }
 }
 
-
-/* this is a quick and dirty fix for the colums / tables */
-@media 
-only screen and (max-width: 3500px),
-(min-device-width: 768px) and (max-device-width: 1024px)  {
-
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
-		display: block; 
-	}
-	
-	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr { 
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-	
-	tr { border: 1px solid #ccc; }
-	
-	td { 
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee; 
-		position: relative;
-		padding-left: 50%; 
-	}
-	
-	td:before { 
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-	}
-	
-	/*
-	Label the data
-	*/
-	td:nth-of-type(1):before { content: "First Name"; }
-	td:nth-of-type(2):before { content: "Last Name"; }
-	td:nth-of-type(3):before { content: "Phone number"; }
-	td:nth-of-type(4):before { content: "Email"; }
-	td:nth-of-type(5):before { content: "City"; }
+.success-message {
+  margin-top: 20px;
+  background-color: white;
+  width: 100%;
+  padding-bottom: 2px;
+}
+.success-message span {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: green;
+}
+.showCss {
+  display: block;
+}
+.hideCss {
+  display: none;
 }
