@@ -50,14 +50,14 @@ label {
 .form {
   position: relative;
   max-width: 100%;
-  margin: 0 auto 100px;
-  padding: 50px;
+  margin: 0 auto 20px;
+  padding: 15px;
   text-align: center;
 }
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: #f2f2f2;
+
   width: 100%;
   margin: 0 0 15px;
   padding: 15px;
@@ -202,7 +202,7 @@ label {
   margin-top: 1rem;
   margin-right: 1rem;
   color: white !important;
-  background-color: rgb(15, 15, 219) !important;
+  /*  background-color: rgb(15, 15, 219);*/
 }
 
 /* this is background collor for the open the burger menu

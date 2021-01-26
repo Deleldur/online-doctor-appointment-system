@@ -219,41 +219,46 @@ export default class CreateAppointment extends Component {
     return (
       <div className="row">
         <div className="col-lg-12">
-          {/* Sends props in to the Searchform */}
-          <SearchForm
-            onChangeAilments={this.onChangeAilments}
-            onSearchSubmit={this.onSearchSubmit}
-            onChangeLocation={this.onChangeLocation}
-            bookingStartTime={bookingStartTime}
-            bookingEndTime={bookingEndTime}
-            bookingDate={bookingDate}
-            finalDoctorLocationList={finalDoctorLocationList}
-            flattedAilmentList={flattedAilmentList}
-            dropDownLocation={dropDownLocation}
-            showAilmentList={showAilmentList}
-          />
-          {/* Checks if the final doctor list is empty or not */}
-          {/* If it is not empty it shows the SearchDoctorResult component */}
-          {!!finalDoctorList ? (
-            <SearchDoctorResult
-              searchDoctorResultSubmit={this.searchDoctorResultSubmit}
-              finalDoctorList={finalDoctorList}
+          <div className="card">
+            {/* Sends props in to the Searchform */}
+            <SearchForm
+              onChangeAilments={this.onChangeAilments}
+              onSearchSubmit={this.onSearchSubmit}
+              onChangeLocation={this.onChangeLocation}
+              bookingStartTime={bookingStartTime}
+              bookingEndTime={bookingEndTime}
+              bookingDate={bookingDate}
+              finalDoctorLocationList={finalDoctorLocationList}
+              flattedAilmentList={flattedAilmentList}
+              dropDownLocation={dropDownLocation}
+              showAilmentList={showAilmentList}
             />
-          ) : null}
-          <Calendar
-            // bookingStartTime={bookingStartTime}
-            // bookingEndTime={bookingEndTime}
-            // onChangeBookingDate={this.onChangeBookingDate}
-            // onChangeBookingTime={this.onChangeBookingTime}
-            chosenDoctor={this.state.chosenDoctor}
-            patientId={this.state.patientId}
-            patientFirstName={this.state.patientFirstName}
-            patientLastName={this.state.patientLastName}
-            active={this.state.active}
-            ailmentsDropDownValue={this.state.ailmentsDropDownValue}
-            allAppointmentsWithDoctorId={allAppointmentsWithDoctorId}
-          />
-          {console.log("test : " + this.state.allAppointmentsWithDoctorId)}
+            {/* Checks if the final doctor list is empty or not */}
+            {/* If it is not empty it shows the SearchDoctorResult component */}
+            {!!finalDoctorList ? (
+              <SearchDoctorResult
+                searchDoctorResultSubmit={this.searchDoctorResultSubmit}
+                finalDoctorList={finalDoctorList}
+              />
+            ) : null}
+            {!!chosenDoctor ? (
+              <Calendar
+                // bookingStartTime={bookingStartTime}
+                // bookingEndTime={bookingEndTime}
+                // onChangeBookingDate={this.onChangeBookingDate}
+                // onChangeBookingTime={this.onChangeBookingTime}
+                chosenDoctor={this.state.chosenDoctor}
+                patientId={this.state.patientId}
+                patientFirstName={this.state.patientFirstName}
+                patientLastName={this.state.patientLastName}
+                active={this.state.active}
+                ailmentsDropDownValue={this.state.ailmentsDropDownValue}
+                allAppointmentsWithDoctorId={allAppointmentsWithDoctorId}
+              />
+            ) : null}
+
+            {console.log("test : " + this.state.allAppointmentsWithDoctorId)}
+          </div>
         </div>
       </div>
     );

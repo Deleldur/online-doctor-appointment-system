@@ -5,7 +5,7 @@ class SearchDoctorResult extends Component {
     let { finalDoctorList } = this.props;
 
     return (
-      <div className="card">
+      <>
         <h3>Doctor list</h3>
         <div style={{ overflowX: "auto" }}>
           <table className="table">
@@ -32,7 +32,7 @@ class SearchDoctorResult extends Component {
                       <input
                         type="submit"
                         value="Book doctor"
-                        className="btn btn-sm"
+                        className="btn btn-sm btn-success"
                         onClick={() =>
                           this.props.searchDoctorResultSubmit(list.id)
                         }
@@ -46,7 +46,7 @@ class SearchDoctorResult extends Component {
             </tbody>
           </table>
         </div>
-      </div>
+      </>
     );
   }
 }

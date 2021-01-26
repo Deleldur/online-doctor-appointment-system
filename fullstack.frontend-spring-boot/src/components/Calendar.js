@@ -86,7 +86,7 @@ export default function Calendar(props) {
   );
 
   return (
-    <div className="card card text-center">
+    <>
       <h3>Available appointments</h3>
       <form
         className="datepicker"
@@ -117,8 +117,12 @@ export default function Calendar(props) {
           filterTime={filterPassedTime}
           excludeTimes={excludeTimes}
         />
-        <input type="submit" className="btn" value="Book appointment" />
+        <input
+          type="submit"
+          className="btn btn-success"
+          value="Book appointment"
+        />
       </form>
-    </div>
+    </>
   );
 }
