@@ -99,8 +99,9 @@ export default class HomeComponent extends Component {
           <header className="jumbotron">
             <h1>Doctor page</h1>
           </header>
-          <h2>Booking requests</h2>
+
           <div className="card">
+            <h2>Booking requests</h2>
             <BookingRequests
               appointments={appointments}
               currentDate={currentDate}
@@ -120,9 +121,9 @@ export default class HomeComponent extends Component {
               currentDate={currentDate}
             />
           </div>
-          <div className="card">
+          {/* <div className="card">
             <h2>Email</h2>
-          </div>
+          </div> */}
         </div>
       </div>
     );

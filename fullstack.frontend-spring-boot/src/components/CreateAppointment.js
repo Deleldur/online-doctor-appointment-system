@@ -61,22 +61,6 @@ export default class CreateAppointment extends Component {
         ]
       });
     }
-
-    // this.setState({
-    //   allAppointmentsWithDoctorId: [
-    //     ...this.state.allAppointmentsWithDoctorId,
-    // currentArray.bookingDate +
-    //   "T" +
-    //   currentArray.bookingStartTime +
-    //   ":00.000Z"
-    //   ]
-    // });
-    //bookingDate, bookingStartTime
-    //parseISO("2021-01-27T12:00:00.000Z"),
-
-    // this.setState({
-    //   allAppointmentsWithDoctorId: res.data
-    // });
   };
 
   searchDoctorResultSubmit = async (id) => {
@@ -215,7 +199,7 @@ export default class CreateAppointment extends Component {
 
     return (
       <div className="row">
-        <div className="col-lg-12">
+        <div className="col-lg-12 col-sm-12">
           <div className="card">
             {/* Sends props in to the Searchform */}
             <SearchForm

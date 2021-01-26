@@ -169,7 +169,7 @@ label {
 }
 
 .jumbotron {
-  background-color: #315c6e00;
+  background-color: #315c6e;
   padding: 1rem 1rem !important;
 }
 .bg-dark {
@@ -179,6 +179,12 @@ label {
   width: 100%;
   z-index: 1;
   border: none;
+  height: 100px;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+  margin-left: 20px;
+  font-size: large;
 }
 .navbar-dark .navbar-nav .nav-link {
   margin-left: 20px;
@@ -267,4 +273,9 @@ label {
 }
 .hideCss {
   display: none;
+}
+
+.container-xl,
+container-md {
+  margin-top: 120px;
 }

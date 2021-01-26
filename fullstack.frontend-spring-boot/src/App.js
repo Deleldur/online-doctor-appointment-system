@@ -50,7 +50,7 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-light bg-dark">
           <div className="header">
             <h4 className="Doctor booking">Doctor booking</h4>
           </div>
