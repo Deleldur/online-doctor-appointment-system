@@ -11,6 +11,7 @@ import BoardDoctorComponent from "./components/AppointmentHistory";
 import EditUserComponent from "./components/EditUserComponent";
 import CreateAppointment from "./components/CreateAppointment";
 import AppointmentComponent from "./components/AppointmentComponent";
+import MenuComponent from "./MenuComponent"
 
 class App extends Component {
   constructor(props) {
@@ -125,7 +126,9 @@ class App extends Component {
         <div className="container container-bg">
    
           
+          <MenuComponent/>
           <Switch>
+
             {showDoctorBoard && (
               <Route exact path={["/", "/home"]} component={HomeDoctor} />
             )}
