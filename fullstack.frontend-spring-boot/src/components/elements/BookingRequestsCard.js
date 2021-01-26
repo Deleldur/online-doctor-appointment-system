@@ -14,27 +14,90 @@ class BookingRequests extends Component {
       feedback: "Test",
       name: "Doctor",
       email: "msten75@gmail.com",
-      reload: false
+      reload: false,
+      subject: "",
+      patientName: "",
+      date: "",
+      time: "",
+      doctorName: "",
+      phone: "555-555-5555"
     };
   }
 
-  refreshPage = () => {
-    this.setState({ reload: true }, () => this.setState({ reload: false }));
-  };
-  handleSubmit = (appointmentInformation) => {
-    const templateId = "template_dxz5cj6";
+  handleDeny = (appointmentInformation) => {
+    const templateId = "template_jaqy5ui";
 
-    this.sendFeedback(
+    const patientName =
+      appointmentInformation.patientInformation.patientFirstName +
+      " " +
+      appointmentInformation.patientInformation.patientLastName;
+
+    this.sendFeedbackDeniedVersion(
       templateId,
       {
-        message: this.state.feedback,
         from_name: this.state.name,
         reply_to: this.state.email,
-        from_email: this.state.email
+        from_email: this.state.email,
+        patientName: patientName,
+        phone: this.state.phone
       },
       appointmentInformation
     );
   };
+
+  sendFeedbackDeniedVersion = (
+    templateId,
+    variables,
+    appointmentInformation
+  ) => {
+    window.emailjs
+      .send("service_q8gzh52", templateId, variables)
+      .then((res) => {
+        console.log("Email successfully sent!");
+        UserService.deleteAppointment(appointmentInformation.id).then(() =>
+          window.location.reload()
+        );
+      })
+      // Handle errors here however you like, or use a React error boundary
+      .catch((err) =>
+        console.error(
+          "Oh well, you failed. Here some thoughts on the error that occured:",
+          err
+        )
+      );
+  };
+
+  handleSubmit = (appointmentInformation) => {
+    const templateId = "template_dxz5cj6";
+
+    const patientName =
+      appointmentInformation.patientInformation.patientFirstName +
+      " " +
+      appointmentInformation.patientInformation.patientLastName;
+
+    const time = appointmentInformation.bookingStartTime;
+    const date = appointmentInformation.bookingDate;
+    const doctorName =
+      appointmentInformation.doctorInformation.doctorFirstName +
+      " " +
+      appointmentInformation.doctorInformation.doctorLastName;
+
+    this.sendFeedback(
+      templateId,
+      {
+        from_name: this.state.name,
+        reply_to: this.state.email,
+        from_email: this.state.email,
+        patientName: patientName,
+        time: time,
+        date: date,
+        doctorName: doctorName,
+        phone: this.state.phone
+      },
+      appointmentInformation
+    );
+  };
+
   sendFeedback = (templateId, variables, appointmentInformation) => {
     window.emailjs
       .send("service_q8gzh52", templateId, variables)
@@ -122,7 +185,7 @@ class BookingRequests extends Component {
                           "Are you sure you wish to delete this appointment?"
                         )
                       )
-                        this.deleteAppointment(e, currentAppointments.id);
+                        this.handleDeny(currentAppointments);
                     }}
                   />
                 </td>
