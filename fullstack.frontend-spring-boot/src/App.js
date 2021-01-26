@@ -11,6 +11,7 @@ import BoardDoctorComponent from "./components/AppointmentHistory";
 import EditUserComponent from "./components/EditUserComponent";
 import CreateAppointment from "./components/CreateAppointment";
 import AppointmentComponent from "./components/AppointmentComponent";
+import MenuComponent from "./MenuComponent"
 
 class App extends Component {
   constructor(props) {
@@ -26,8 +27,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-
     // imports the userinformation based on the logged in user.
     const user = AuthService.getCurrentUser();
 
@@ -52,9 +51,9 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-      <div className="header">
-          <h4 className="Doctor booking">Doctor booking</h4>
+        <nav className="navbar navbar-expand navbar-light bg-dark">
+          <div className="header">
+            <h4 className="Doctor booking">Doctor booking</h4>
           </div>
 
           <div className="navbar-nav mr-auto">
@@ -121,11 +120,10 @@ class App extends Component {
             </div>
           )}
         </nav>
-
-        <div className="container container-bg">
-   
-          
+          <MenuComponent/>
+        <div className="container-xl container-md">
           <Switch>
+
             {showDoctorBoard && (
               <Route exact path={["/", "/home"]} component={HomeDoctor} />
             )}
@@ -151,9 +149,9 @@ class App extends Component {
             </React.StrictMode>
             {/*<Route path="/appointment" component={AppointmentComponent} />*/}
           </Switch>
-  
         </div>
       </div>
+   
     );
   }
 }

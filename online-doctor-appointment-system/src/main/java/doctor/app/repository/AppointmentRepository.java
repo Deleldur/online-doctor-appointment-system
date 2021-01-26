@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import doctor.app.models.Appointment;
-import doctor.app.models.AppointmentHistory;
+
 
 @Repository
 public interface AppointmentRepository extends MongoRepository<Appointment, String>{
@@ -18,6 +18,7 @@ public interface AppointmentRepository extends MongoRepository<Appointment, Stri
 	
 	@Query("{ 'doctorInformation.doctorId' : ?0}") //NOSQL QUERY
 	List<Appointment> findByDoctorId(@Param("id") String id);
+	
 	@Query("{ 'id' : ?0}") //NOSQL QUERY
 	Appointment findAppointmentById(@Param("id") String id);
 	

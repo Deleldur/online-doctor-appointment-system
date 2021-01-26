@@ -90,7 +90,15 @@ class AppointmentComponent extends Component {
     return (
       <>
         <div className="card">
-          <h2 className="text-center">Edit appointment</h2>
+          <h2 className="text-center">
+            {/* {journal === "feedback" ? "Leave feedback" : "Write Journal"} */}
+
+            {journal === "feedback"
+              ? "Leave Feedback"
+              : journal === "edit"
+              ? "Edit appointment"
+              : "Write Journal Entry"}
+          </h2>
 
           <form>
             <div className="row">

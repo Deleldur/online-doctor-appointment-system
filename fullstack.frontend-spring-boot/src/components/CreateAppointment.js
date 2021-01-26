@@ -4,6 +4,7 @@ import UserService from "../service/UserService";
 import SearchForm from "./SearchForm";
 import SearchDoctorResult from "./SearchDoctorResult";
 import Calendar from "./Calendar";
+import format from "date-fns/format";
 export default class CreateAppointment extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +15,7 @@ export default class CreateAppointment extends Component {
       bookingStartTime: "",
       bookingEndTime: "",
       bookingDate: "",
-      doctorId: "5ffeeee09407e72bb837a737",
+      doctorId: "",
       patientId: "",
       patientFirstName: "",
       patientLastName: "",
@@ -25,13 +26,17 @@ export default class CreateAppointment extends Component {
       ailmentsDropDownValue: "",
       locationDropDownValue: "",
       finalDoctorList: "",
-      showAilmentList: false
+      showAilmentList: false,
+      chosenDoctor: "",
+      chosenDoctorId: "",
+      allAppointmentsWithDoctorId: []
     };
   }
   componentDidMount() {
     this.loadUser();
 
     this.getDoctorLocations();
+    // this.getAllAppointmentsWithDoctorId(this.state.chosenDoctor.id);
   }
 
   loadUser = () => {
@@ -40,6 +45,30 @@ export default class CreateAppointment extends Component {
         patientId: response.data.id,
         patientFirstName: response.data.firstName,
         patientLastName: response.data.lastName
+      });
+    });
+  };
+  getAllAppointmentsWithDoctorId = async (id) => {
+    let appointments = await UserService.getAppointmentsFromDoctorId(id);
+
+    for (let index = 0; index < appointments.data.length; index++) {
+      this.setState({
+        allAppointmentsWithDoctorId: [
+          ...this.state.allAppointmentsWithDoctorId,
+          appointments.data[index].bookingDate +
+            "T" +
+            appointments.data[index].bookingStartTime
+        ]
+      });
+    }
+  };
+
+  searchDoctorResultSubmit = async (id) => {
+    UserService.getDoctorInfoById(id).then((res) => {
+      const chosenDoctor = res.data;
+      this.getAllAppointmentsWithDoctorId(chosenDoctor.id).then((res2) => {});
+      this.setState({
+        chosenDoctor: res.data
       });
     });
   };
@@ -58,7 +87,42 @@ export default class CreateAppointment extends Component {
       });
     });
   };
+  onSubmit = (e) => {
+    e.preventDefault();
 
+    // console.log(
+    //   "BOOKING REQUEST  std: " + format(e.target.value, "yyyy-MM-dd")
+    // );
+
+    //    console.log("BOOKING REQUEST  std: " + format(startDate, "HH:mm"));
+    // const newAppointment = {
+    //   bookingStartTime: this.state.bookingStartTime,
+    //   bookingEndTime: this.state.bookingEndTime,
+    //   bookingDate: this.state.bookingDate,
+    //   doctorInformation: {
+    //     doctorId: this.state.chosenDoctor.id,
+    //     doctorFirstName: this.state.chosenDoctor.firstName,
+    //     doctorLastName: this.state.chosenDoctor.lastName
+    //   },
+    //   patientInformation: {
+    //     patientId: this.state.patientId,
+    //     patientFirstName: this.state.patientFirstName,
+    //     patientLastName: this.state.patientLastName
+    //   },
+    //   active: this.state.active,
+    //   ailmentsDropDownValue: this.state.ailmentsDropDownValue
+    // };
+    // console.log(newAppointment);
+    // axios.post("http://localhost:3000/api/appointment/create/", newAppointment);
+    // this.setState({
+    //   bookingStartTime: "",
+    //   bookingEndTime: "",
+    //   bookingDate: "",
+    //   chosenDoctorId: "",
+    //   patientId: "",
+    //   active: false
+    // });
+  };
   onSearchSubmit = (e) => {
     let { locationDropDownValue, ailmentsDropDownValue } = this.state;
     e.preventDefault();
@@ -70,6 +134,18 @@ export default class CreateAppointment extends Component {
       this.setState({
         finalDoctorList: response.data
       });
+    });
+  };
+
+  onChangeBookingTime = (e) => {
+    this.setState({
+      bookingStartTime: e.target.value
+    });
+  };
+
+  onChangeBookingDate = (e) => {
+    this.setState({
+      bookingDate: e.target.value
     });
   };
   onChangeLocation = (e) => {
@@ -85,28 +161,6 @@ export default class CreateAppointment extends Component {
       ailmentsDropDownValue: e.target.value
     });
   };
-  onSubmit = (e) => {
-    e.preventDefault();
-
-    const newAppointment = {
-      bookingStartTime: this.state.bookingStartTime,
-      bookingEndTime: this.state.bookingEndTime,
-      bookingDate: this.state.bookingDate,
-      doctorId: this.state.doctorId,
-      patientId: this.state.patientId,
-      active: this.state.active
-    };
-
-    axios.post("http://localhost:3000/api/appointment/create/", newAppointment);
-    this.setState({
-      bookingStartTime: "",
-      bookingEndTime: "",
-      bookingDate: "",
-      doctorId: "5ffeeee09407e72bb837a737",
-      patientId: "",
-      active: false
-    });
-  };
 
   // Create "alert" for user if something went wrong
 
@@ -119,7 +173,9 @@ export default class CreateAppointment extends Component {
       bookingEndTime,
       dropDownLocation,
       finalDoctorList,
-      showAilmentList
+      showAilmentList,
+      allAppointmentsWithDoctorId,
+      chosenDoctor
     } = this.state;
     // Removes null values (filter) and duplicates from the location list (the cities)
     let result2 = doctorLocationlist.map((result) => result.address.city);
@@ -139,28 +195,50 @@ export default class CreateAppointment extends Component {
         result.flat().map((item) => [JSON.stringify(item), item])
       ).values()
     ];
+    //    console.log(this.state.chosenDoctor);
 
     return (
-      <div>
-        {/* Sends props in to the Searchform */}
-        <SearchForm
-          onChangeAilments={this.onChangeAilments}
-          onSearchSubmit={this.onSearchSubmit}
-          onChangeLocation={this.onChangeLocation}
-          bookingStartTime={bookingStartTime}
-          bookingEndTime={bookingEndTime}
-          bookingDate={bookingDate}
-          finalDoctorLocationList={finalDoctorLocationList}
-          flattedAilmentList={flattedAilmentList}
-          dropDownLocation={dropDownLocation}
-          showAilmentList={showAilmentList}
-        />
-        {/* Checks if the final doctor list is empty or not */}
-        {/* If it is not empty it shows the SearchDoctorResult component */}
-        {!!finalDoctorList ? (
-          <SearchDoctorResult finalDoctorList={finalDoctorList} />
-        ) : null}
-        <Calendar />
+      <div className="row">
+        <div className="col-lg-12 col-sm-12">
+          <div className="card">
+            {/* Sends props in to the Searchform */}
+            <SearchForm
+              onChangeAilments={this.onChangeAilments}
+              onSearchSubmit={this.onSearchSubmit}
+              onChangeLocation={this.onChangeLocation}
+              bookingStartTime={bookingStartTime}
+              bookingEndTime={bookingEndTime}
+              bookingDate={bookingDate}
+              finalDoctorLocationList={finalDoctorLocationList}
+              flattedAilmentList={flattedAilmentList}
+              dropDownLocation={dropDownLocation}
+              showAilmentList={showAilmentList}
+            />
+            {/* Checks if the final doctor list is empty or not */}
+            {/* If it is not empty it shows the SearchDoctorResult component */}
+            {!!finalDoctorList ? (
+              <SearchDoctorResult
+                searchDoctorResultSubmit={this.searchDoctorResultSubmit}
+                finalDoctorList={finalDoctorList}
+              />
+            ) : null}
+            {!!chosenDoctor ? (
+              <Calendar
+                // bookingStartTime={bookingStartTime}
+                // bookingEndTime={bookingEndTime}
+                // onChangeBookingDate={this.onChangeBookingDate}
+                // onChangeBookingTime={this.onChangeBookingTime}
+                chosenDoctor={this.state.chosenDoctor}
+                patientId={this.state.patientId}
+                patientFirstName={this.state.patientFirstName}
+                patientLastName={this.state.patientLastName}
+                active={this.state.active}
+                ailmentsDropDownValue={this.state.ailmentsDropDownValue}
+                allAppointmentsWithDoctorId={allAppointmentsWithDoctorId}
+              />
+            ) : null}
+          </div>
+        </div>
       </div>
     );
   }
