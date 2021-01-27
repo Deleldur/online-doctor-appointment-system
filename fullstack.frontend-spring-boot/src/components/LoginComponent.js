@@ -85,6 +85,7 @@ export default class LoginComponent extends Component {
     return (
       
       <div className="login-page">
+        <div className="card">
         <div className="form">
          <h1>Welcome</h1>
 
@@ -125,6 +126,7 @@ export default class LoginComponent extends Component {
               }}
             />
           </Form>
+          </div>
         </div>
       </div>
     );
