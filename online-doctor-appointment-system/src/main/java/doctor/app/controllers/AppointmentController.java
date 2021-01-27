@@ -19,6 +19,8 @@ import doctor.app.models.User;
 import doctor.app.repository.AppointmentRepository;
 import doctor.app.services.AppointmentService;
 
+
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(value = "/api/appointment")
 @RestController
