@@ -1,5 +1,6 @@
 // import React from 'react';
 
+<<<<<<< HEAD
 // export default class extends React.Component {
 //   constructor(props) {
 // 	super(props);
@@ -7,6 +8,20 @@
 // 	this.handleChange = this.handleChange.bind(this);
 // 	this.handleSubmit = this.handleSubmit.bind(this);
 //   }
+=======
+export default class extends React.Component {
+  constructor(props) {
+	super(props);
+	this.state = { 
+		feedback: '',
+		 name: '', 
+		 email: '' 
+		};
+		
+	this.handleChange = this.handleChange.bind(this);
+	this.handleSubmit = this.handleSubmit.bind(this);
+  }
+>>>>>>> 4c62f80186fd3b72671312c3db5ef5d6fcd75da5
 
 //   render() {
 // 	return (

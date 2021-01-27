@@ -159,7 +159,11 @@ background-attachment: fixed;
 
 /*---------------------------- Header of the pages ---------------------------- */
 .jumbotron {
+<<<<<<< HEAD
   background-color: #00000000;
+=======
+  background-color: #315c6e;
+>>>>>>> 4c62f80186fd3b72671312c3db5ef5d6fcd75da5
   padding: 1rem 1rem !important;
 }
 /*---------------------------- Header of the pages end ---------------------------- */
@@ -172,7 +176,16 @@ background-attachment: fixed;
   width: 100%;
   z-index: 1;
   border: none;
+<<<<<<< HEAD
   
+=======
+  height: 100px;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+  margin-left: 20px;
+  font-size: large;
+>>>>>>> 4c62f80186fd3b72671312c3db5ef5d6fcd75da5
 }
 
 /* Links on the right side of the header */
@@ -201,7 +214,19 @@ background-attachment: fixed;
 
 /*---------------------------- Hamburger Menu ---------------------------- */
 
+<<<<<<< HEAD
 /* this is background collor for the open the burger menu*/
+=======
+.btn {
+  /* margin-top: 1rem; */
+  margin-right: 1rem;
+  color: white !important;
+  /*  background-color: rgb(15, 15, 219);*/
+}
+
+/* this is background collor for the open the burger menu
+*/
+>>>>>>> 4c62f80186fd3b72671312c3db5ef5d6fcd75da5
 
 .erLTYI {
   background: rgb(19, 19, 179) !important;
@@ -270,6 +295,7 @@ background-attachment: fixed;
   display: none;
 }
 
+<<<<<<< HEAD
 
 /*---------------------------- button styles---------------------------- */
 
@@ -319,3 +345,9 @@ background-attachment: fixed;
 }
 
 /*---------------------------- button styles end ---------------------------- */
+=======
+.container-xl,
+container-md {
+  margin-top: 120px;
+}
+>>>>>>> 4c62f80186fd3b72671312c3db5ef5d6fcd75da5

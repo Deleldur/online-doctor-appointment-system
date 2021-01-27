@@ -11,6 +11,7 @@ import BoardDoctorComponent from "./components/AppointmentHistory";
 import EditUserComponent from "./components/EditUserComponent";
 import CreateAppointment from "./components/CreateAppointment";
 import AppointmentComponent from "./components/AppointmentComponent";
+import MenuComponent from "./MenuComponent"
 
 class App extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-light bg-dark">
           <div className="header">
             <h4 className="Doctor booking">Doctor booking</h4>
           </div>
@@ -119,9 +120,10 @@ class App extends Component {
             </div>
           )}
         </nav>
-
+          <MenuComponent/>
         <div className="container-xl container-md">
           <Switch>
+
             {showDoctorBoard && (
               <Route exact path={["/", "/home"]} component={HomeDoctor} />
             )}
@@ -149,6 +151,7 @@ class App extends Component {
           </Switch>
         </div>
       </div>
+   
     );
   }
 }

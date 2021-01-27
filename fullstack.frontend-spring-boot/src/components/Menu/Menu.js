@@ -2,53 +2,70 @@ import React from 'react';
 import { bool } from 'prop-types';
 import { StyledMenu } from './Menu.styled';
 
+import AuthService from '../../service/AuthService';
 
 const Menu = ({ open, ...props }) => {
-  
-  const isHidden = open ? true : false;
-  const tabIndex = isHidden ? 0 : -1;
+const isHidden = open ? true : false;
+const tabIndex = isHidden ? 0 : -1;
+let showDoctorBoard= false;
+let showPatientBoard= false;
+let currentUser = undefined;
+
+const user = AuthService.getCurrentUser();
+currentUser = user;
+
+function logOut() {
+AuthService.logout();
+}
+if(user){
+ if (user.roles == "ROLE_DOCTOR"){
+  showDoctorBoard = true;
+   console.log("doctor");
+}   else if  (user.roles == "ROLE_PATIENT"){
+showPatientBoard = true;
+ console.log("patient");
+}
+
+}
 
   return (
-
     <StyledMenu className="side-links" open={open} aria-hidden={!isHidden} {...props}>
-            <a href="/login" tabIndex={tabIndex}>
-        <span aria-hidden="true">💸</span>
-        Login
-        </a>
-        <a href="/register" tabIndex={tabIndex}>
-        <span aria-hidden="true">💁🏻‍♂️</span>
-        Sign Up
-     </a>  
- 
-
-       <a href="/home" tabIndex={tabIndex}>
+           {currentUser ? ( 
+            <>
+     <a href="/home" tabIndex={tabIndex}>
         <span aria-hidden="true">🏠</span>
         Home
-     </a>
-     <a href="/createappointment" tabIndex={tabIndex}>
-        <span aria-hidden="true">📅</span>
-        Create appointment
-      </a>
-   
- 
-      <a href="/doctor" tabIndex={tabIndex}>
-        <span aria-hidden="true">📝</span>
-      Appointment history
-      </a>
-
-      <a href="/profile" tabIndex={tabIndex}>
+     </a>   <a href="/profile" tabIndex={tabIndex}>
         <span aria-hidden="true">🚪</span>
         Profile
         </a>
-
-      <a href="/logout" tabIndex={tabIndex}>
+        <a href="/login" tabIndex={tabIndex} onClick={logOut}>
         <span aria-hidden="true">🚪</span>
         Logout
-        </a>
-  
+        </a></>
+             ) : ( <>
+              <a href="/login" tabIndex={tabIndex} >
+                <span aria-hidden="true">💸</span>
+                Login
+                </a>
+                <a href="/register" tabIndex={tabIndex}>
+                <span aria-hidden="true">💁🏻‍♂️</span>
+                Sign Up
+             </a> </> ) }
 
-    </StyledMenu>
+     {showPatientBoard &&
+     <a href="/createappointment" tabIndex={tabIndex}>
+        <span aria-hidden="true">📅</span>
+        Create appointment
+      </a>}
+      {showDoctorBoard &&
+      <a href="/doctor" tabIndex={tabIndex}>
+        <span aria-hidden="true">📝</span>
+      Appointment history
+      </a>}
     
+     
+    </StyledMenu>   
   )
 }
 

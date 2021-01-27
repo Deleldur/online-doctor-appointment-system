@@ -47,27 +47,35 @@ export default class HomeComponent extends Component {
 
     return (
       <>
-        <div className="card">
-          <h2>Booking requests</h2>
-          <BookingRequests
-            //              approveBookingRequest={this.approveBookingRequest}
-            appointments={appointments}
-            currentDate={currentDate}
-          />
-        </div>
-        <div className="card">
-          <h2>Upcoming appointments</h2>
-          <CurrentAppointmentsPatientCard
-            appointments={appointments}
-            currentDate={currentDate}
-          />
-        </div>
-        <div className="card">
-          <h2>Finished appointments</h2>
-          <FinishedAppointmentsPatientCard
-            appointments={appointments}
-            currentDate={currentDate}
-          />
+        <div className="row">
+          <div className="col-lg-12 col-sm-12">
+            <header className="jumbotron">
+              <h1>Patient page</h1>
+            </header>
+
+            <div className="card">
+              <h2>Booking requests</h2>
+              <BookingRequests
+                //              approveBookingRequest={this.approveBookingRequest}
+                appointments={appointments}
+                currentDate={currentDate}
+              />
+            </div>
+            <div className="card">
+              <h2>Upcoming appointments</h2>
+              <CurrentAppointmentsPatientCard
+                appointments={appointments}
+                currentDate={currentDate}
+              />
+            </div>
+            <div className="card">
+              <h2>Finished appointments</h2>
+              <FinishedAppointmentsPatientCard
+                appointments={appointments}
+                currentDate={currentDate}
+              />
+            </div>
+          </div>
         </div>
       </>
     );

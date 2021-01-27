@@ -74,13 +74,13 @@ export default function Calendar(props) {
     // );
   }
 
-  const allExcludeTimes = [
-    parseISO("2021-01-27T12:00:00.000Z"),
-    parseISO("2021-01-28T13:00:00.000Z"),
-    parseISO("2021-01-28T14:00:00.000Z"),
-    parseISO("2021-01-29T08:00:00.000Z"),
-    parseISO("2021-01-29T15:00:00.000Z")
-  ];
+  // const allExcludeTimes = [
+  //   parseISO("2021-01-27T12:00:00.000Z"),
+  //   parseISO("2021-01-28T13:00:00.000Z"),
+  //   parseISO("2021-01-28T14:00:00.000Z"),
+  //   parseISO("2021-01-29T08:00:00.000Z"),
+  //   parseISO("2021-01-29T15:00:00.000Z")
+  // ];
 
   let results = props.allAppointmentsWithDoctorId.map(
     (date) => new Date(parseISO(date))
