@@ -29,8 +29,10 @@ public class AppointmentHistoryController {
 	public List<AppointmentHistory> findAppointmentsByDoctorId(@PathVariable(value="id") String id) {		
 		return appointmentHistoryService.findAppointmentsByDoctorId(id);
 	}
-	
-	// Endpoint to get specific appointment history  for a patient
+	/**
+	 * This is a Javadoc
+	 */
+
 	@GetMapping(value="/patient/{id}")
 	public List<AppointmentHistory> findAppointmentsByPatientId(@PathVariable(value="id") String id) {	
 		return appointmentHistoryService.findAppointmentsByPatientId(id);
