@@ -13,7 +13,7 @@ class BookingRequests extends Component {
       appointments: this.props.appointments,
       feedback: "Test",
       name: "Doctor",
-      email: "msten75@gmail.com",
+      email: "nathalieolsson123321@outlook.com",
       reload: false,
       subject: "",
       patientName: "",
