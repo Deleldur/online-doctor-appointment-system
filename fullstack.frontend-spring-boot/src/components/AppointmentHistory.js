@@ -42,9 +42,11 @@ export default class BoardDoctorComponent extends Component {
     let { appointmentHistory } = this.state;
     return (
       <div className="row">
-        <div className="col-lg-12 col-sm-12">
+        <div className="col-12">
+          <header className="jumbotron">
+            <h1 className="logo3"></h1>
+          </header>
           <div className="card">
-            <h2>Appointment History</h2>
             <AppointmentHistoryList
               appointmentHistory={appointmentHistory}
               // currentDate={currentDate}

@@ -14,6 +14,11 @@ body {
   padding-left: 40%;
   display: block;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 h1 {
   color: black;
   font-size: 2rem;
@@ -58,6 +63,7 @@ table {
 label {
   display: block;
   margin-top: 10px;
+  color: white;
 }
 
 .card-container.card {
@@ -201,6 +207,7 @@ body {
   background-color: #00000000;
   padding: 1rem 1rem !important;
 }
+
 /*---------------------------- Header of the pages end ---------------------------- */
 
 /*---------------------------- Header Menu ---------------------------- */
@@ -213,6 +220,18 @@ body {
   border: none;
 }
 
+/*---------------------------- Link styles ---------------------------- */
+
+a {
+  color: white !important;
+  font-size: 18px;
+}
+
+a:hover {
+  transition: all 0.5s ease-in-out;
+  font-size: 24px;
+}
+
 /* Links on the right side of the header */
 
 .navbar-dark .navbar-nav .nav-link {
@@ -221,11 +240,49 @@ body {
   font-size: large;
 }
 
-.navbar-light .navbar-nav .nav-link {
-  color: rgba(255, 255, 255, 1);
-  font-size: large;
-  margin-left: 20px;
+/*---------------------------- Link syles end ---------------------------- */
+
+/*---------------------------- Logos ---------------------------- */
+.logo {
+  background-image: url(../Doctor.png);
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 60px;
+  margin-right: 20px;
 }
+
+.logo2 {
+  background-image: url(../Bookings.png);
+  background-repeat: no-repeat;
+  width: 195px;
+  height: 55px;
+  margin: 0 auto;
+}
+
+.logo3 {
+  background-image: url(../Appointment\ History.png);
+  background-repeat: no-repeat;
+  width: 270px;
+  height: 115px;
+  margin: 0 auto;
+}
+
+.logo4 {
+  background-image: url(../Patient\ page.png);
+  background-repeat: no-repeat;
+  width: 270px;
+  height: 85px;
+  margin: 0 auto;
+}
+
+.logo5 {
+  background-image: url(../Welcome.png);
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 80px;
+}
+/*---------------------------- Logos end ---------------------------- */
+
 /*---------------------------- Header Menu end ---------------------------- */
 
 .navbar-dark .navbar-brand {
@@ -247,7 +304,7 @@ body {
 /* this is background collor for the open the burger menu*/
 
 .erLTYI {
-  background: rgb(19, 19, 179) !important;
+  background: rgb(27, 27, 165) !important;
   max-width: 30vh !important;
   z-index: 1;
   color: #fff !important;
@@ -270,7 +327,7 @@ body {
 /* this hides the burger menu when the screen gets to big  */
 
 @media screen and (min-width: 800px) {
-  .gLulYg {
+  .hYDvSO {
     display: none !important;
   }
 }
@@ -287,6 +344,13 @@ body {
     display: none !important;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .logo {
+    margin-left: 70%;
+  }
+}
+
 /*---------------------------- Media queries end ---------------------------- */
 
 .table {
@@ -319,16 +383,19 @@ body {
   margin-right: 1rem;
   color: white !important;
   background-color: blue;
+  border-radius: 2em;
 }
 
 .btn-success {
   width: 160px;
   height: 50px;
+  border-radius: 2em;
 }
 
 .btn-danger {
   width: 160px;
   height: 50px;
+  border-radius: 2em;
 }
 
 .form button {
@@ -344,6 +411,7 @@ body {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   cursor: pointer;
+  border-radius: 2em;
 }
 .form button:hover,
 .form button:active {
