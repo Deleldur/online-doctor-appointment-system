@@ -87,7 +87,7 @@ export default class LoginComponent extends Component {
       <div className="login-page">
         <div className="card">
         <div className="form">
-         <h1>Welcome</h1>
+        <h1 className ="logo5"></h1>
 
           <Form
             onSubmit={this.handleLogin}

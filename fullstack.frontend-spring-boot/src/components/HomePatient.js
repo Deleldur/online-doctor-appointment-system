@@ -50,7 +50,7 @@ export default class HomeComponent extends Component {
         <div className="row">
           <div className="col-lg-12 col-sm-12">
             <header className="jumbotron">
-              <h1>Patient page</h1>
+            <h1 className ="logo4"></h1>
             </header>
 
             <div className="card">

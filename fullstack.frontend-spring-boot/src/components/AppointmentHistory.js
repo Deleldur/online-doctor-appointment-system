@@ -60,7 +60,7 @@ export default class BoardDoctorComponent extends Component {
       <div className="row">
         <div className="col-12">
           <header className="jumbotron">
-            <h1>Appointment history</h1>
+          <h1 className ="logo3"></h1>
             {this.appointmentHistoryList()}
           </header>
         </div>
