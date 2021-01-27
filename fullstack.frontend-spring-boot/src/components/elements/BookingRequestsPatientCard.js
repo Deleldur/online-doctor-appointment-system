@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Popup from "reactjs-popup";
 import UserService from "../../service/UserService";
 class BookingRequests extends Component {
   constructor(props) {
@@ -43,12 +44,64 @@ class BookingRequests extends Component {
                 </td>
                 <td>
                   <form>
-                    <input
-                      key={currentAppointments.id}
-                      type="submit"
-                      value="View appointment"
-                      className="btn btn-success"
-                    />
+                    <Popup
+                      trigger={(open) => (
+                        <span className="button btn btn-success">
+                          Booking info
+                        </span>
+                      )}
+                      position="top left"
+                      on={["hover", "focus"]}
+                      closeOnDocumentClick
+                    >
+                      <div className="tooltipBoundary">
+                        <span>
+                          {" "}
+                          <span>
+                            <p>
+                              <strong>Date: </strong>
+                              {" " + currentAppointments.bookingDate}
+                            </p>
+                            <p>
+                              <strong>Time: </strong>{" "}
+                              {currentAppointments.bookingStartTime}
+                            </p>
+                            <p>
+                              <strong>Doctor name:</strong>{" "}
+                              {currentAppointments.doctorInformation
+                                .doctorFirstName +
+                                " " +
+                                currentAppointments.doctorInformation
+                                  .doctorLastName}
+                            </p>{" "}
+                            <p>
+                              <strong>
+                                Email:{" "}
+                                {
+                                  currentAppointments.doctorInformation
+                                    .doctorEmail
+                                }
+                              </strong>
+                            </p>
+                            <p>
+                              <strong>
+                                Phone:{" "}
+                                {
+                                  currentAppointments.doctorInformation
+                                    .doctorPhone
+                                }
+                              </strong>
+                            </p>
+                            <p>
+                              <strong>
+                                Ailment: {currentAppointments.treatedAilment}
+                              </strong>
+                            </p>
+                          </span>
+                        </span>
+                      </div>
+                    </Popup>
+
                     <input
                       type="submit"
                       value="Cancel"

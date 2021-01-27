@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Popup from "reactjs-popup";
 import UserService from "../../service/UserService";
 
 class BookingRequests extends Component {
@@ -13,7 +13,7 @@ class BookingRequests extends Component {
       appointments: this.props.appointments,
       feedback: "Test",
       name: "Doctor",
-      email: "nathalieolsson123321@outlook.com",
+      email: "nathalieolsson123321@outlook55543434.com",
       reload: false,
       subject: "",
       patientName: "",
@@ -104,6 +104,8 @@ class BookingRequests extends Component {
       .then((res) => {
         console.log("Email successfully sent!");
         let feedback = {
+          feedbackHistory: false,
+          journalHistory: false,
           active: true,
           bookingDate: appointmentInformation.bookingDate,
           bookingStartTime: appointmentInformation.bookingStartTime,
@@ -126,6 +128,8 @@ class BookingRequests extends Component {
 
   approveBookingRequest = (appointmentInformation) => {
     let feedback = {
+      feedbackHistory: false,
+      journalHistory: false,
       active: true,
       bookingDate: appointmentInformation.bookingDate,
       bookingStartTime: appointmentInformation.bookingStartTime,
@@ -161,8 +165,53 @@ class BookingRequests extends Component {
                 <td>{currentAppointments.bookingDate}</td>
                 <td>{currentAppointments.bookingStartTime}</td>
                 <td>
-                  {currentAppointments.patientInformation.patientFirstName}{" "}
-                  {currentAppointments.patientInformation.patientLastName}
+                  <Popup
+                    trigger={(open) => (
+                      <span className="button">
+                        {" "}
+                        {
+                          currentAppointments.patientInformation
+                            .patientFirstName
+                        }{" "}
+                        {currentAppointments.patientInformation.patientLastName}
+                      </span>
+                    )}
+                    position="top left"
+                    on={["hover", "focus"]}
+                    closeOnDocumentClick
+                  >
+                    <div className="tooltipBoundary">
+                      <span>
+                        {" "}
+                        <span>
+                          <p>
+                            <strong>Patient name:</strong>
+                            {" " +
+                              currentAppointments.patientInformation
+                                .patientFirstName}{" "}
+                            {
+                              currentAppointments.patientInformation
+                                .patientLastName
+                            }
+                          </p>
+                          <p>
+                            <strong>Patient phone:</strong>{" "}
+                            {
+                              currentAppointments.patientInformation
+                                .patientPhone
+                            }
+                          </p>
+                          <p>
+                            <strong>Patient email:</strong>{" "}
+                            {
+                              currentAppointments.patientInformation
+                                .patientEmail
+                            }
+                          </p>{" "}
+                        </span>
+                      </span>
+                    </div>
+                  </Popup>
                 </td>
                 <td>
                   <input

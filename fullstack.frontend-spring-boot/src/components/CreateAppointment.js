@@ -22,6 +22,8 @@ export default class CreateAppointment extends Component {
       doctorFirstName: "",
       doctorLastName: "",
       active: false,
+      feedbackHistory: false,
+      journalHistory: false,
       dropDownLocation: "",
       ailmentsDropDownValue: "",
       locationDropDownValue: "",
@@ -29,7 +31,9 @@ export default class CreateAppointment extends Component {
       showAilmentList: false,
       chosenDoctor: "",
       chosenDoctorId: "",
-      allAppointmentsWithDoctorId: []
+      allAppointmentsWithDoctorId: [],
+      patientPhone: "",
+      patientEmail: ""
     };
   }
   componentDidMount() {
@@ -44,7 +48,9 @@ export default class CreateAppointment extends Component {
       this.setState({
         patientId: response.data.id,
         patientFirstName: response.data.firstName,
-        patientLastName: response.data.lastName
+        patientLastName: response.data.lastName,
+        patientPhone: response.data.phoneNumber,
+        patientEmail: response.data.email
       });
     });
   };
@@ -233,8 +239,12 @@ export default class CreateAppointment extends Component {
                 patientFirstName={this.state.patientFirstName}
                 patientLastName={this.state.patientLastName}
                 active={this.state.active}
+                feedbackHistory={this.state.feedbackHistory}
+                journalHistory={this.state.journalHistory}
                 ailmentsDropDownValue={this.state.ailmentsDropDownValue}
                 allAppointmentsWithDoctorId={allAppointmentsWithDoctorId}
+                patientPhone={this.state.patientPhone}
+                patientEmail={this.state.patientEmail}
               />
             ) : null}
           </div>

@@ -7,7 +7,7 @@ class SearchDoctorResult extends Component {
     return (
       <>
         <h3>Doctor list</h3>
-        <div style={{ overflowX: "auto" }}>
+        <div>
           <table className="table">
             <thead>
               <tr>

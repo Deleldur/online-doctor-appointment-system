@@ -14,7 +14,9 @@ public interface AppointmentService {
 	
 	Appointment findAppointmentByAppointmentId(String id);
 	Appointment updateAppointmentDetails(Appointment orgAppointment, Appointment newAppointment);
-	List<Appointment> findAppointmentsByDoctorId(String id);
+	Appointment updateAppointmentFeedbackHistory(Appointment orgAppointment, Appointment newAppointment);
+	Appointment updateAppointmentJournalHistory(Appointment orgAppointment, Appointment newAppointment);
+	List<Appointment> findAppointmentsByDoctorId(String id, Boolean journalHistory);
 	List<Appointment> findAppointmentsByPatientId(String id);
 	Appointment saveAppointmentHistory(Appointment information);
 	Appointment updateAppointmentHistoryDetailsDoctor(Appointment orgAppointment, Appointment newAppointment);

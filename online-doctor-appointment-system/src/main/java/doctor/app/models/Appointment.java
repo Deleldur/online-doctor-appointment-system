@@ -27,6 +27,9 @@ public class Appointment {
 	private String doctorFeedback;
 	private String patientFeedback;
 	private String treatedAilment;
+	private Boolean feedbackHistory;
+	private Boolean journalHistory;
+	
 	@Field("patientInformation")
 	private Map<String, String> patientInformation = new HashMap<>();
 	
@@ -112,6 +115,22 @@ public class Appointment {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public Boolean getFeedbackHistory() {
+		return feedbackHistory;
+	}
+
+	public void setFeedbackHistory(Boolean feedbackHistory) {
+		this.feedbackHistory = feedbackHistory;
+	}
+
+	public Boolean getJournalHistory() {
+		return journalHistory;
+	}
+
+	public void setJournalHistory(Boolean journalHistory) {
+		this.journalHistory = journalHistory;
 	}
 
 	public String getBookingDate() {

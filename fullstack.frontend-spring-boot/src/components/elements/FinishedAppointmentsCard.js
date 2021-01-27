@@ -11,8 +11,7 @@ class FinishedAppointmentsCard extends Component {
       patientInformation: "",
       currentDate: this.props.currentDate,
       posts: [],
-      appointments: this.props.appointments,
-      test: []
+      appointments: this.props.appointments
     };
   }
 
@@ -32,7 +31,10 @@ class FinishedAppointmentsCard extends Component {
         // Active = current active appointments
         // else is not yet confirmed booking requests
 
-        if (currentAppointments.active === true) {
+        if (
+          currentAppointments.active === true &&
+          currentAppointments.journalHistory === false
+        ) {
           if (currentAppointments.bookingDate < currentDate) {
             return (
               <tr key={i}>

@@ -73,10 +73,27 @@ public class AppointmentController {
 		return appointmentService.updateAppointmentDetails(appointment, appointmentDetails);
 	}
 
+	// Endpoint to update specific appointment details
+	@PutMapping(value = "/updateappointment/feedbackhistory/{id}")
+	public Appointment updateApointmentFeedbackHistory(@PathVariable(value = "id") String id,
+			@RequestBody Appointment appointmentDetails) throws Exception {
+		Appointment appointment = appointmentService.findAppointmentByAppointmentId(id);
+		return appointmentService.updateAppointmentFeedbackHistory(appointment, appointmentDetails);
+	}
+	
+	// Endpoint to update specific appointment details
+	@PutMapping(value = "/updateappointment/journalhistory/{id}")
+	public Appointment updateApointmentJournalHistory(@PathVariable(value = "id") String id,
+			@RequestBody Appointment appointmentDetails) throws Exception {
+		Appointment appointment = appointmentService.findAppointmentByAppointmentId(id);
+		return appointmentService.updateAppointmentJournalHistory(appointment, appointmentDetails);
+	}
+	
+	
 	// Endpoint to get specific appointment history for a doctor
-	@GetMapping(value = "/appointmenthistory/doctor/{id}")
-	public List<Appointment> findAppointmentsByDoctorId(@PathVariable(value = "id") String id) {
-		return appointmentService.findAppointmentsByDoctorId(id);
+	@GetMapping(value = "/appointmenthistory/doctor/{id}/{journalhistory}")
+	public List<Appointment> findAppointmentsByDoctorId(@PathVariable(value = "id") String id, @PathVariable(value="journalhistory") Boolean journalHistory) {
+		return appointmentService.findAppointmentsByDoctorId(id, journalHistory);
 	}
 
 	// Endpoint to get specific appointment history for a patient

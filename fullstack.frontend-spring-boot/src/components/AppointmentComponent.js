@@ -16,7 +16,9 @@ class AppointmentComponent extends Component {
       patientId: "",
       journal: this.props.match.params.journal,
       patientFirstName: "",
-      patientLastname: ""
+      patientLastname: "",
+      journalHistory: false,
+      feedbackHistory: false
     };
   }
 
@@ -34,7 +36,9 @@ class AppointmentComponent extends Component {
           doctorFeedback: response.data.doctorFeedback,
           bookingStartTime: response.data.bookingStartTime,
           bookingDate: response.data.bookingDate,
-          treatedAilment: response.data.treatedAilment
+          treatedAilment: response.data.treatedAilment,
+          feedbackHistory: response.data.feedbackHistory,
+          journalHistory: response.data.journalHistory
         });
       },
       (error) => {
@@ -52,6 +56,18 @@ class AppointmentComponent extends Component {
 
   onChange = (e) => {
     const value = e.target.value;
+
+    if (e.target.name === "doctorFeedback") {
+      this.setState({
+        journalHistory: true
+      });
+    }
+
+    if (e.target.name === "patientFeedback") {
+      this.setState({
+        feedbackHistory: true
+      });
+    }
     this.setState({
       [e.target.name]: value
       // doctorFeedback: e.target.value,
@@ -62,13 +78,19 @@ class AppointmentComponent extends Component {
   saveFeedback = (e) => {
     let { id } = this.state;
     e.preventDefault();
+
+    // feedbackHistory;
+    // journalHistory;
+
     let feedback = {
       patientFeedback: this.state.patientFeedback,
       doctorFeedback: this.state.doctorFeedback,
       bookingDate: this.state.bookingDate,
       bookingStartTime: this.state.bookingStartTime,
       treatedAilment: this.state.treatedAilment,
-      active: true
+      active: true,
+      feedbackHistory: this.state.feedbackHistory,
+      journalHistory: this.state.journalHistory
     };
     UserService.editAppointment(id, feedback);
   };
@@ -153,6 +175,7 @@ class AppointmentComponent extends Component {
               <div className={journal === "feedback" ? "col patient" : "col"}>
                 <label>Patient Feedback</label>
                 {/* Patient entry is disabled for the doctor and enabled for the patient*/}
+                {/* This is checked on the incoming http link*/}
                 {journal === "feedback" ? (
                   <textarea
                     placeholder="Patient feedback"

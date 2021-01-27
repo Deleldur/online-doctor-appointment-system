@@ -45,9 +45,13 @@ class UserService {
     });
   }
   // fetches all appointment history from the end point
-  getDoctorAppointmentHistory(doctorId) {
+  getDoctorAppointmentHistory(doctorId, journalHistory) {
     return axios.get(
-      API_URL + "appointment/appointmenthistory/doctor/" + doctorId,
+      API_URL +
+        "appointment/appointmenthistory/doctor/" +
+        doctorId +
+        "/" +
+        journalHistory,
       {
         headers: authHeader()
       }
@@ -63,6 +67,26 @@ class UserService {
         console.log(res);
         console.log(res.data);
       });
+  }
+
+  updateAppointmentFeedbackBoolean(id, data) {
+    return axios.put(
+      API_URL + "appointment/updateappointment/feedbackhistory/" + id,
+      data,
+      {
+        headers: authHeader()
+      }
+    );
+  }
+
+  updateAppointmentJournalBoolean(id, data) {
+    return axios.put(
+      API_URL + "appointment/updateappointment/journalhistory/" + id,
+      data,
+      {
+        headers: authHeader()
+      }
+    );
   }
 
   editAppointment(id, data) {

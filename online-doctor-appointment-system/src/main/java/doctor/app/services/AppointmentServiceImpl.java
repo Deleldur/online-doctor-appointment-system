@@ -36,6 +36,20 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
+	public Appointment updateAppointmentFeedbackHistory(Appointment orgAppointment, Appointment newAppointment) {
+        final Appointment updatedAppointment = appointmentRepository.save(orgAppointment);
+        orgAppointment.setFeedbackHistory(newAppointment.getFeedbackHistory());
+		return updatedAppointment;
+	}
+	@Override
+	public Appointment updateAppointmentJournalHistory(Appointment orgAppointment, Appointment newAppointment) {
+        final Appointment updatedAppointment = appointmentRepository.save(orgAppointment);
+        orgAppointment.setJournalHistory(newAppointment.getJournalHistory());
+		return updatedAppointment;
+	}
+	
+	
+	@Override
 	public Appointment updateAppointmentDetails(Appointment orgAppointment, Appointment newAppointment) {	
 		
 		orgAppointment.setBookingDate(newAppointment.getBookingDate());
@@ -45,13 +59,15 @@ public class AppointmentServiceImpl implements AppointmentService {
 		orgAppointment.setPatientFeedback(newAppointment.getPatientFeedback());
 		orgAppointment.setTreatedAilment(newAppointment.getTreatedAilment());
 		orgAppointment.setActive(newAppointment.getActive());
+		orgAppointment.setJournalHistory(newAppointment.getJournalHistory());
+		orgAppointment.setFeedbackHistory(newAppointment.getFeedbackHistory());
         final Appointment updatedAppointment = appointmentRepository.save(orgAppointment);
        
 		return updatedAppointment;
 	}
 
-	public List<Appointment> findAppointmentsByDoctorId(String id) {
-		return appointmentRepository.findAppointmentsByDoctorId(id);
+	public List<Appointment> findAppointmentsByDoctorId(String id, Boolean journalHistory) {
+		return appointmentRepository.findAppointmentsByDoctorId(id, journalHistory);
 	}
 	
 	public List<Appointment> findAppointmentsByPatientId(String id) {

@@ -32,7 +32,10 @@ class FinishedAppointmentsPatientCard extends Component {
         // Active = current active appointments
         // else is not yet confirmed booking requests
 
-        if (currentAppointments.active === true) {
+        if (
+          currentAppointments.active === true &&
+          currentAppointments.feedbackHistory === false
+        ) {
           if (currentAppointments.bookingDate < currentDate) {
             return (
               <tr key={i}>

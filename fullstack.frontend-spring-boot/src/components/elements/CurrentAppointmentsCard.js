@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Popup from "reactjs-popup";
 import UserService from "../../service/UserService";
 //This is for the edit or cancel buttons on the current appointments
 class UpcomingAppointmentsCard extends Component {
@@ -41,8 +42,53 @@ class UpcomingAppointmentsCard extends Component {
                 <td>{currentAppointments.bookingDate}</td>
                 <td>{currentAppointments.bookingStartTime}</td>
                 <td>
-                  {currentAppointments.patientInformation.patientFirstName}{" "}
-                  {currentAppointments.patientInformation.patientLastName}
+                  <Popup
+                    trigger={(open) => (
+                      <span className="button">
+                        {" "}
+                        {
+                          currentAppointments.patientInformation
+                            .patientFirstName
+                        }{" "}
+                        {currentAppointments.patientInformation.patientLastName}
+                      </span>
+                    )}
+                    position="top left"
+                    on={["hover", "focus"]}
+                    closeOnDocumentClick
+                  >
+                    <div className="tooltipBoundary">
+                      <span>
+                        {" "}
+                        <span>
+                          <p>
+                            <strong>Patient name:</strong>
+                            {" " +
+                              currentAppointments.patientInformation
+                                .patientFirstName}{" "}
+                            {
+                              currentAppointments.patientInformation
+                                .patientLastName
+                            }
+                          </p>
+                          <p>
+                            <strong>Patient phone:</strong>{" "}
+                            {
+                              currentAppointments.patientInformation
+                                .patientPhone
+                            }
+                          </p>
+                          <p>
+                            <strong>Patient email:</strong>{" "}
+                            {
+                              currentAppointments.patientInformation
+                                .patientEmail
+                            }
+                          </p>{" "}
+                        </span>
+                      </span>
+                    </div>
+                  </Popup>
                 </td>
                 <td>
                   <form>

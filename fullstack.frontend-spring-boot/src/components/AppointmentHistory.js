@@ -1,21 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import AppointmentHistoryList from "./AppointmentHistoryList";
 import UserService from "../service/UserService";
 import AuthService from "../service/AuthService";
-const AppointmentHistory = (props) => (
-  <div>
-    <div className="card">
-      <Link to="">Patient name</Link>
-      <p>
-        bookingdate: {props.appointments.bookingDate} - bookingtime:{" "}
-        {props.appointments.bookingStartTime} - Treated ailment:{" "}
-        {props.appointments.treatedAilment}
-      </p>
-      <p>Doctor feedback: {props.appointments.doctorFeedback}</p>
-      <p>Patient feedback: {props.appointments.patientFeedback}</p>
-    </div>
-  </div>
-);
+
 export default class BoardDoctorComponent extends Component {
   constructor(props) {
     super(props);
@@ -25,15 +13,10 @@ export default class BoardDoctorComponent extends Component {
     };
   }
 
-  appointmentHistoryList = () => {
-    return this.state.appointmentHistory.map((appointmentHistory, i) => {
-      return <AppointmentHistory appointments={appointmentHistory} key={i} />;
-    });
-  };
-
   getDoctorAppointmentList = () => {
     const doctorId = AuthService.getCurrentUserId();
-    UserService.getDoctorAppointmentHistory(doctorId).then(
+    const journalHistory = true;
+    UserService.getDoctorAppointmentHistory(doctorId, journalHistory).then(
       (response) => {
         this.setState({
           appointmentHistory: response.data
@@ -56,13 +39,17 @@ export default class BoardDoctorComponent extends Component {
   }
 
   render() {
+    let { appointmentHistory } = this.state;
     return (
       <div className="row">
-        <div className="col-12">
-          <header className="jumbotron">
-            <h1>Appointment history</h1>
-            {this.appointmentHistoryList()}
-          </header>
+        <div className="col-lg-12 col-sm-12">
+          <div className="card">
+            <h2>Appointment History</h2>
+            <AppointmentHistoryList
+              appointmentHistory={appointmentHistory}
+              // currentDate={currentDate}
+            />
+          </div>
         </div>
       </div>
     );
