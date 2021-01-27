@@ -99,15 +99,9 @@ export default class HomeComponent extends Component {
           <header className="jumbotron">
             <h1>Bookings</h1>
           </header>
-<<<<<<< HEAD
-          
-          <div className="card">
-          <h2>Booking requests</h2>
-=======
 
           <div className="card">
             <h2>Booking requests</h2>
->>>>>>> 4c62f80186fd3b72671312c3db5ef5d6fcd75da5
             <BookingRequests
               appointments={appointments}
               currentDate={currentDate}
