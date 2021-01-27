@@ -9,11 +9,11 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-   // display: flex;
-     justify-content: center;
+   
+   //  justify-content: center;
      align-items: center;
-    height: 100vh;
- text-rendering: optimizeLegibility;
+     height: 100vh;
+     text-rendering: optimizeLegibility;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
   h1 {
@@ -27,7 +27,6 @@ border-radius: 5px;
     width: 10rem;
   }
   div {
-    max-width: 2000px;
     text-align: center;
   }
  small {

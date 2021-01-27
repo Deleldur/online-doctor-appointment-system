@@ -4,9 +4,11 @@
   padding-left: 40%;
   display: block;
 }
-div {
-  max-width: 5000px !important;
+
+html {
+  scroll-behavior: smooth;
 }
+
 h1 {
   color: black;
 }
@@ -28,6 +30,7 @@ table {
 label {
   display: block;
   margin-top: 10px;
+  color: white;
 }
 
 .card-container.card {
@@ -159,7 +162,12 @@ body {
   background-color: #00000000;
   padding: 1rem 1rem !important;
 }
+
 /*---------------------------- Header of the pages end ---------------------------- */
+
+
+
+
 
 /*---------------------------- Header Menu ---------------------------- */
 .bg-dark {
@@ -171,6 +179,20 @@ body {
   border: none;
 }
 
+/*---------------------------- Link styles ---------------------------- */
+
+a {
+  color: white !important;
+  font-size: 18px;
+}
+
+a:hover {
+  transition: all .5s ease-in-out; 
+  font-size: 24px;
+}
+
+
+
 /* Links on the right side of the header */
 
 .navbar-dark .navbar-nav .nav-link {
@@ -178,6 +200,25 @@ body {
   color: rgb(255, 255, 255);
   font-size: large;
 }
+
+/*---------------------------- Link syles end ---------------------------- */
+
+
+
+
+/*---------------------------- Logo ---------------------------- */
+.logo {
+   background-image: url(../Doctor.png);
+   background-repeat: no-repeat;
+   width: 100px;
+   height: 60px;
+   margin-right: 20px;
+}
+/*---------------------------- Logo end ---------------------------- */
+
+
+
+
 
 /*---------------------------- Header Menu end ---------------------------- */
 
@@ -200,7 +241,7 @@ body {
 /* this is background collor for the open the burger menu*/
 
 .erLTYI {
-  background: rgb(19, 19, 179) !important;
+  background: rgb(27, 27, 165) !important;
   max-width: 30vh !important;
   z-index: 1;
   color: #fff !important;
@@ -218,6 +259,10 @@ body {
 }
 
 /*---------------------------- Hamburger Menu end ---------------------------- */
+
+
+
+
 
 /*---------------------------- Media queries ---------------------------- */
 /* this hides the burger menu when the screen gets to big  */
@@ -240,6 +285,13 @@ body {
     display: none !important;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .logo {
+    margin-left: 70%;
+  }
+}
+
 /*---------------------------- Media queries end ---------------------------- */
 
 .table {
@@ -272,16 +324,19 @@ body {
   margin-right: 1rem;
   color: white !important;
   background-color: blue;
+  border-radius:2em;
 }
 
 .btn-success {
   width: 160px;
   height: 50px;
+  border-radius:2em;
 }
 
 .btn-danger {
   width: 160px;
   height: 50px;
+  border-radius:2em;
 }
 
 .form button {
@@ -297,6 +352,7 @@ body {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
   cursor: pointer;
+  border-radius:2em;
 }
 .form button:hover,
 .form button:active {
