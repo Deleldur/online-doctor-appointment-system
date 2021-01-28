@@ -20,6 +20,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function Calendar(props) {
   const [startDate, setStartDate] = useState(null);
   const [messageActive, setMessageActive] = useState(false);
+  const [enterTime, setEnterTime] = useState(false);
+
   const isWeekday = (date) => {
     const day = getDay(date);
     return day !== 0 && day !== 6;
@@ -42,42 +44,43 @@ export default function Calendar(props) {
     //    currentDate: format(new Date(), "yyyy-MM-dd"),
     // console.log("BOOKING REQUEST  std: " + format(startDate, "yyyy-MM-dd"));
     // console.log("BOOKING REQUEST  std: " + format(startDate, "HH:mm"));
-    const newAppointment = {
-      bookingStartTime: format(startDate, "HH:mm"),
-      //      bookingEndTime: this.state.bookingEndTime,
-      bookingDate: format(startDate, "yyyy-MM-dd"),
-      doctorInformation: {
-        doctorId: props.chosenDoctor.id,
-        doctorFirstName: props.chosenDoctor.firstName,
-        doctorLastName: props.chosenDoctor.lastName,
-        doctorPhone: props.chosenDoctor.phoneNumber,
-        doctorEmail: props.chosenDoctor.email
-      },
-      patientInformation: {
-        patientId: props.patientId,
-        patientFirstName: props.patientFirstName,
-        patientLastName: props.patientLastName,
-        patientPhone: props.patientPhone,
-        patientEmail: props.patientEmail
-      },
-      active: props.active,
-      feedbackHistory: props.feedbackHistory,
-      journalHistory: props.journalHistory,
-      treatedAilment: props.ailmentsDropDownValue
-    };
-    axios
-      .post("http://localhost:3000/api/appointment/create/", newAppointment)
-      .then((res) => {
-        setMessageActive(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (format(startDate, "HH:mm") === format(startDate, "00:00")) {
+      setEnterTime(true);
+    } else {
+      setEnterTime(false);
 
-    // console.log("BOOKING REQUEST  format iso: " + formatISO(startDate));
-    // console.log(
-    //   "BOOKING REQUEST  parse iso:  " + parseISO(formatISO(startDate))
-    // );
+      const newAppointment = {
+        bookingStartTime: format(startDate, "HH:mm"),
+        //      bookingEndTime: this.state.bookingEndTime,
+        bookingDate: format(startDate, "yyyy-MM-dd"),
+        doctorInformation: {
+          doctorId: props.chosenDoctor.id,
+          doctorFirstName: props.chosenDoctor.firstName,
+          doctorLastName: props.chosenDoctor.lastName,
+          doctorPhone: props.chosenDoctor.phoneNumber,
+          doctorEmail: props.chosenDoctor.email
+        },
+        patientInformation: {
+          patientId: props.patientId,
+          patientFirstName: props.patientFirstName,
+          patientLastName: props.patientLastName,
+          patientPhone: props.patientPhone,
+          patientEmail: props.patientEmail
+        },
+        active: props.active,
+        feedbackHistory: props.feedbackHistory,
+        journalHistory: props.journalHistory,
+        treatedAilment: props.ailmentsDropDownValue
+      };
+      axios
+        .post("http://localhost:3000/api/appointment/create/", newAppointment)
+        .then((res) => {
+          setMessageActive(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   // const allExcludeTimes = [
@@ -133,12 +136,20 @@ export default function Calendar(props) {
         />
         <input
           type="submit"
-          className="btn btn-success"
+          className={`btn btn-success ${
+            startDate && messageActive === false ? "showButton" : "hideCss"
+          }`}
+          // className="btn btn-success"
           value="Book appointment"
         />
       </form>
+      <div className={`failure-message ${enterTime ? "showCss" : "hideCss"}`}>
+        <span>Please select a time</span>
+      </div>
       <div
-        className={`success-message ${messageActive ? "showCss" : "hideCss"}`}
+        className={`success-message ${
+          messageActive && enterTime === false ? "showCss" : "hideCss"
+        }`}
       >
         <span>Appointment booked successfully</span>
       </div>

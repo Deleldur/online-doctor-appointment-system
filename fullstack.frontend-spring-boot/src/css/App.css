@@ -190,8 +190,6 @@ body {
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-
-
 /* ---------- adding the space between header and the first card ----------*/
 .container-xl,
 .container-md {
@@ -241,7 +239,7 @@ a:hover {
 
 /*---------------------------- Logos ---------------------------- */
 .logo {
-  background-image: url(../Doctor.png);
+  background-image: url(../images/Doctor.png);
   background-repeat: no-repeat;
   width: 100px;
   height: 60px;
@@ -249,7 +247,7 @@ a:hover {
 }
 
 .logo2 {
-  background-image: url(../Bookings.png);
+  background-image: url(../images/Bookings.png);
   background-repeat: no-repeat;
   width: 195px;
   height: 55px;
@@ -257,7 +255,7 @@ a:hover {
 }
 
 .logo3 {
-  background-image: url(../Appointment\ History.png);
+  background-image: url(../images/apphistory.png);
   background-repeat: no-repeat;
   width: 270px;
   height: 115px;
@@ -265,7 +263,7 @@ a:hover {
 }
 
 .logo4 {
-  background-image: url(../Patient\ page.png);
+  background-image: url(../images/patientpage.png);
   background-repeat: no-repeat;
   width: 270px;
   height: 85px;
@@ -273,7 +271,7 @@ a:hover {
 }
 
 .logo5 {
-  background-image: url(../Welcome.png);
+  background-image: url(../images/Welcome.png);
   background-repeat: no-repeat;
   width: 300px;
   height: 80px;
@@ -354,9 +352,19 @@ a:hover {
   margin-top: 20px;
 }
 
+.failure-message {
+  margin-top: 20px;
+  width: 100%;
+  padding-bottom: 2px;
+}
+
+.failure-message span {
+  font-size: 2rem;
+  font-weight: 500;
+  color: rgb(255, 0, 0);
+}
 .success-message {
   margin-top: 20px;
-  background-color: transparent;
   width: 100%;
   padding-bottom: 2px;
 }
@@ -371,6 +379,9 @@ a:hover {
 }
 .hideCss {
   display: none;
+}
+.showButton {
+  display: inline-block;
 }
 
 /*---------------------------- button styles---------------------------- */
