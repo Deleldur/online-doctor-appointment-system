@@ -152,8 +152,24 @@ class App extends Component {
             </React.StrictMode>
             {/*<Route path="/appointment" component={AppointmentComponent} />*/}
           </Switch>
+
+       
+
         </div>
+
+        <div className="padding"></div>
+
+        <div className="footer">
+            <div className="footer-content">
+            </div>
+            <div className="footer-bottom">
+              &copy; Docktor Booking system | Made and Designed by Team BDSM... aka Team 1
+            </div>
+        </div>
+
       </div>
+
+      
    
     );
   }
