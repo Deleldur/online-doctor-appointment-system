@@ -15,10 +15,6 @@ body {
   display: block;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 h1 {
   color: black;
   font-size: 2rem;
@@ -179,15 +175,13 @@ label {
   outline: 0 none;
 }
 
+/* ---------- the 2 doctors in the background ----------*/
 body {
   background-image: url("../images/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-}
-
-body {
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -196,7 +190,9 @@ body {
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-/* adding the space between header and the first card*/
+
+
+/* ---------- adding the space between header and the first card ----------*/
 .container-xl,
 .container-md {
   margin-top: 125px;
@@ -219,6 +215,7 @@ body {
   z-index: 1;
   border: none;
 }
+/*---------------------------- Header Menu end ---------------------------- */
 
 /*---------------------------- Link styles ---------------------------- */
 
