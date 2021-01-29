@@ -45,9 +45,9 @@ class CurrentAppointmentsPatientCard extends Component {
                 </td>
                 <td>
                   <form>
-                    <Link to={"/appointment/edit/" + currentAppointments.id}>
+                    <Link to={"/appointment/view/" + currentAppointments.id}>
                       <button className="btn btn-success">
-                        <span>Edit</span>
+                        <span>View</span>
                       </button>
                     </Link>
                     <input

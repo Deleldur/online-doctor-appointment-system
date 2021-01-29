@@ -25,6 +25,7 @@ public class Appointment {
 	private String treatedAilment;
 	private Boolean feedbackHistory;
 	private Boolean journalHistory;
+	private String doctorExtraInformation;
 	
 	@Field("patientInformation")
 	private Map<String, String> patientInformation = new HashMap<>();
@@ -151,6 +152,14 @@ public class Appointment {
 
 	public void setDoctorInformation(Map<String, String> doctorInformation) {
 		this.doctorInformation = doctorInformation;
+	}
+
+	public String getDoctorExtraInformation() {
+		return doctorExtraInformation;
+	}
+
+	public void setDoctorExtraInformation(String doctorExtraInformation) {
+		this.doctorExtraInformation = doctorExtraInformation;
 	}
 
 }

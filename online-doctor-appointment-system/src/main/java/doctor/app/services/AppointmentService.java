@@ -20,5 +20,6 @@ public interface AppointmentService {
 	Appointment saveAppointmentHistory(Appointment information);
 	Appointment updateAppointmentHistoryDetailsDoctor(Appointment orgAppointment, Appointment newAppointment);
 	Appointment updateAppointmentHistoryFeedbackPatient(Appointment orgAppointment, Appointment newAppointment);
+	Appointment updateDoctorExtraInformation(Appointment orgAppointment, Appointment newAppointment);
 	
 }
