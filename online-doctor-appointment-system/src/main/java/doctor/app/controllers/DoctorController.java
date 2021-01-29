@@ -20,70 +20,106 @@ import doctor.app.models.User;
 import doctor.app.repository.UserRepository;
 import doctor.app.services.DoctorService;
 
+/**
+ * 
+ * @author Team One
+ * 
+ * Controller class to handle any requests coming from the client having URI "/api/doctor".
+ * The methods annotated with @GetMapping will be invoked if the client sends a GET request to the "/api/doctor" URI.
+ * The methods annotated with @PostMapping will be invoked if the client sends a POST request to the "/api/doctor" URI.
+ * The methods annotated with @PutMapping will be invoked if the client sends a PUT request to the "/api/doctor" URI.
+ *
+ */
+
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/doctor")
 @RestController
-//@Validated
+
 public class DoctorController {
 
 	@Autowired
-	private DoctorService doctorService;
-	
-//	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-//		@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-//		@GetMapping(value = "/doctor")
-//		public String getAllDoctors() {
-//			return "hello";
-//		}
-//	public List<Doctor> getAllDoctors() {
-//		return doctorService.getAllDoctors();
-//	}
-	
-//	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	
+	private DoctorService doctorService;		
+	 
+	/**
+	 * Endpoint to get doctor based on ailment
+	 * @param ailment
+	 * @return
+	 */	
 	@PostMapping(value="/")
 	public List<Doctor> findDoctorByAilment(String ailment) {
 		return doctorService.findDoctorByAilment(ailment);
 	}
-	@GetMapping(value="/doctor/finddoctor/{id}")
+	
+	/**
+	 * Endpoint to get specific doctor
+	 * @param id
+	 * @return
+	 */
+	@GetMapping(value="/finddoctor/{id}")
 	public Optional<Doctor> findDoctorById(@PathVariable(value= "id") String id) {
 		return doctorService.findDoctorById(id);
 	}
-//	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@GetMapping(value="/doctor/findbylocation/{location}/{role}")
+	
+	/**
+	 * Endpoint to get doctor based on location
+	 * @param location
+	 * @param role
+	 * @return
+	 */
+	@GetMapping(value="/findbylocation/{location}/{role}")
 	public List<Doctor> findDoctorByLocation(@PathVariable String location, @PathVariable String role) {
 		return doctorService.findDoctorByLocation(location, role);
 	}
 	
+	/**
+	 * Endpoint to get all doctor locations
+	 * @param role
+	 * @return
+	 */
 	@GetMapping(value="/doctorlocations/{role}")
 	public List<Doctor> findAllDoctorLocations(@PathVariable(value="role") String role) {
 		return doctorService.findAllDoctorLocations(role);
 	}
-
-	@GetMapping(value="/doctor/findbyailmentandlocation/{location}/{ailment}")
+	
+	/**
+	 * Endpoint to get all doctors based on location and ailment
+	 * @param location
+	 * @param ailment
+	 * @return
+	 */
+	@GetMapping(value="/findbyailmentandlocation/{location}/{ailment}")
 	public List<Doctor> findDoctorsByAilmentAndLocation(@PathVariable String location, @PathVariable String ailment) {
 		return doctorService.findDoctorsByAilmentAndLocation(location, ailment);
 	}
-
-//	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-    @PutMapping(value="/doctor/updatedoctor/{id}")
+	
+	/**
+	 * Endpoint to update doctor
+	 * @param id
+	 * @param doctorDetails
+	 * @return
+	 * @throws Exception
+	 */
+	@PutMapping(value="/updatedoctor/{id}")
     public User updateDoctor(@PathVariable(value = "id") String id,
         @RequestBody User doctorDetails) throws Exception   {
     	User doctor = doctorService.findDoctorById(id).orElseThrow(() -> new Exception("Doctor not found for this id :: " + id));
     	return doctorService.updateDoctorProfile(doctor, doctorDetails);
-     //   return ResponseEntity.ok(updatedDoctor);
     } 
-
-	@PreAuthorize("hasAuthority('USER') OR hasAuthority('ADMIN')")
-	@PostMapping(value="/test")
-	public List<Doctor> findDoctorAndLocation(String firstName, String location) {
-		return doctorService.findDoctorAndLocation(firstName, location);
-	}
 	
+	/**
+	 * Endpoint to get all distinct citys
+	 * @param sort
+	 * @return
+	 */
 	@GetMapping(value="/doctorlocations")
 	public List<Doctor> findAllDistinctCity(Sort sort) {
 		return doctorService.findAllDistinctCity();
 	}
+	
+	/**
+	 * Endpoint to get all distinct ailment
+	 * @return
+	 */
 	@GetMapping(value="/doctorailment")
 	public List<Doctor> findAllDistinctAilment() {
 		return doctorService.findAllDistinctAilment();

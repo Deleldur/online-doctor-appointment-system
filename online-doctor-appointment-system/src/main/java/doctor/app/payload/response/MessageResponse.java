@@ -1,5 +1,9 @@
 package doctor.app.payload.response;
 
+/**
+ * Model for message response.
+ */
+
 public class MessageResponse {
 	private String message;
 

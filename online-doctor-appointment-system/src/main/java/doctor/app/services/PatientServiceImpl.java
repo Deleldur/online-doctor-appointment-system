@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import doctor.app.models.AppointmentHistory;
+import doctor.app.models.Patient;
 import doctor.app.models.User;
 import doctor.app.repository.AppointmentHistoryRepository;
 import doctor.app.repository.UserRepository;
@@ -12,23 +13,10 @@ import doctor.app.repository.UserRepository;
 public class PatientServiceImpl implements PatientService {
 	
 	@Autowired
-	private UserRepository userRepository;
+    UserRepository userRepository;
 	
-//	@Autowired
-//	private AppointmentHistoryRepository appointmentHistoryRepository;
-
 	@Override
-	public Optional<User> findPatientById(String id) {
-		return userRepository.findById(id);
+	public Optional<Patient> findPatientById(String id) {
+		return userRepository.findPatientById(id);
 	}
-	
-	// Update feedback in appointment history patient
-//	@Override
-//	public AppointmentHistory updateAppointmentHistoryFeedbackPatient(AppointmentHistory orgAppointment, AppointmentHistory newAppointment) {	
-//		orgAppointment.setPatientFeedback(newAppointment.getPatientFeedback());
-//
-//        final AppointmentHistory updatedAppointment = appointmentHistoryRepository.save(orgAppointment);
-//       
-//		return updatedAppointment;
-//	}
 }

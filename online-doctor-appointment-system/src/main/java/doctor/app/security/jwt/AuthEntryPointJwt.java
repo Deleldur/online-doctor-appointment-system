@@ -12,6 +12,14 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+/**
+ * 
+ * @author Team one 
+ * After authentication and user credential authorization, 
+ * this class is to handle exception during these processes. 
+ *
+ */
+
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 

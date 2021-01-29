@@ -11,7 +11,13 @@ import org.springframework.stereotype.Component;
 import doctor.app.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 
-
+/**
+ * 
+ * @author Team one 
+ * 
+ * To help the token validation, we have inject the io.jsonwebtoken dependency and created a token validator.
+ *
+ */
 
 @Component
 public class JwtUtils {

@@ -3,6 +3,10 @@ package doctor.app.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Model for feedback.
+ */
+
 @Document
 public class Feedback {
 
@@ -17,6 +21,13 @@ public class Feedback {
 		
 	}
 	
+	/**
+	 * Feedback model constructor
+	 * @param doctorId
+	 * @param patientId
+	 * @param appointmentId
+	 * @param feedbackMessage
+	 */
 	public Feedback(String doctorId, String patientId, String appointmentId, String feedbackMessage) {
 		super();
 		this.doctorId = doctorId;

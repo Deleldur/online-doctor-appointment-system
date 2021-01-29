@@ -35,7 +35,14 @@ import doctor.app.repository.UserRepository;
 import doctor.app.security.jwt.JwtUtils;
 import doctor.app.security.services.UserDetailsImpl;
 
-
+/**
+ * 
+ * @author Team One
+ * 
+ * Controller class to handle any requests coming from the client having URI "/api/auth".
+ * The methods annotated with @PostMapping will be invoked if the client sends a POST request to the "/api/auth" URI.
+ * 
+ */
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -57,6 +64,11 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 
+	/**
+	 * Endpoint to signin
+	 * @param loginRequest
+	 * @return
+	 */
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -77,7 +89,12 @@ public class AuthController {
 												 userDetails.getEmail(), 
 												 roles));
 	}
-
+	
+	/**
+	 * Endpoint to signup
+	 * @param signUpRequest
+	 * @return
+	 */
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -98,7 +115,6 @@ public class AuthController {
 
 		ailmentList = signUpRequest.getAilmentList();
 		
-		// Create new user's account
 		Doctor doctor = new Doctor(
 				signUpRequest.getUsername(),  
 				signUpRequest.getEmail(),

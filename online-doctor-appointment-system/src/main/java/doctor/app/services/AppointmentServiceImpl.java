@@ -24,12 +24,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public List<Appointment> findAppointmentByPatientId(String id) {
 		return appointmentRepository.findByPatientId(id);
 	}
+	
 	@Override
 	public List<Appointment> findAppointmentByDoctorId(String id) {
 		return appointmentRepository.findByDoctorId(id);
 	}
 	
-
 	@Override
 	public Appointment findAppointmentByAppointmentId(String id) {
 		return appointmentRepository.findAppointmentById(id);
@@ -41,6 +41,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         orgAppointment.setFeedbackHistory(newAppointment.getFeedbackHistory());
 		return updatedAppointment;
 	}
+	
 	@Override
 	public Appointment updateAppointmentJournalHistory(Appointment orgAppointment, Appointment newAppointment) {
         final Appointment updatedAppointment = appointmentRepository.save(orgAppointment);
@@ -48,7 +49,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return updatedAppointment;
 	}
 	
-	
+	/** 
+	 * Update appointment details
+	 */
 	@Override
 	public Appointment updateAppointmentDetails(Appointment orgAppointment, Appointment newAppointment) {	
 		
@@ -79,9 +82,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return appointmentRepository.save(information);
 	}
 
-
-
-	// Update details in appointment history as a doctor
+	/**
+	 * Update details in appointment history as a doctor
+	 */
 	@Override
 	public Appointment updateAppointmentHistoryDetailsDoctor(Appointment orgAppointment, Appointment newAppointment) {	
 				
@@ -95,7 +98,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return updatedAppointment;
 	}
 	
-	// Update feedback in appointment history as a patient patient
+	/**
+	 * Update feedback in appointment history as a patient patient
+	 */
 	@Override
 	public Appointment updateAppointmentHistoryFeedbackPatient(Appointment orgAppointment, Appointment newAppointment) {	
 				

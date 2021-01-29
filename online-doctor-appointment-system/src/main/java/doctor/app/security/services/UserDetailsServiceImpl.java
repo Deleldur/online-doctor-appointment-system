@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import doctor.app.models.User;
 import doctor.app.repository.UserRepository;
 
-
-
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
@@ -25,5 +23,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		return UserDetailsImpl.build(user);
 	}
-
 }

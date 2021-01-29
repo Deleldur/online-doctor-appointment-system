@@ -1,6 +1,5 @@
 package doctor.app.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,29 +9,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import doctor.app.models.Doctor;
 import doctor.app.models.Patient;
-import doctor.app.repository.UserRepository;
 import doctor.app.services.PatientService;
 
-@RequestMapping(value = "/api")
+/**
+ * 
+ * @author Team One
+ * 
+ * Controller class to handle any requests coming from the client having URI "/api/patient".
+ * The methods annotated with @GetMapping will be invoked if the client sends a POST request to the "/api/patient URI.
+ * 
+ */ 
+
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping(value = "/api/patient")
 @RestController
 
-//@Validated
 public class PatientsController {
 
 	@Autowired
 	private PatientService patientService;
-
-	@Autowired
-	UserRepository userRepository;
 	
-	@GetMapping(value="/patient/findpatient/{id}")
+	/**
+	 * Endpoint to get specific patient
+	 * @param id
+	 * @return
+	 */
+	@GetMapping(value="/findpatient/{id}")
 	public Optional<Patient> findPatientById(@PathVariable(value= "id") String id) {
-		return userRepository.findPatientById(id);
+		return patientService.findPatientById(id);
 	}
-
-
 }
 
 

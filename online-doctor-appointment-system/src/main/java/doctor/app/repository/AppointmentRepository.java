@@ -8,8 +8,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import doctor.app.models.Appointment;
-import doctor.app.models.Doctor;
 
+/**
+ * 
+ * @author Team one
+ * This class provides the mechanism for storage, retrieval, search, update and delete operation on objects.
+ *
+ */
 
 @Repository
 public interface AppointmentRepository extends MongoRepository<Appointment, String>{
@@ -29,11 +34,7 @@ public interface AppointmentRepository extends MongoRepository<Appointment, Stri
 	@Query("{ 'doctorInformation.doctorId' : ?0, 'journalHistory': ?1}") //NOSQL QUERY
 	List<Appointment> findAppointmentsByDoctorId(String id, Boolean journalHistory);
 	
-	
 	@Query("{ 'patientInformation.patientId' : ?0}") //NOSQL QUERY
 	List<Appointment> findAppointmentsByPatientId(@Param("id") String id);
-	
 
-
-	
 }

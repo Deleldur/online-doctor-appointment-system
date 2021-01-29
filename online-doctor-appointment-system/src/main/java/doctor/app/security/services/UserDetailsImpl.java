@@ -13,6 +13,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import doctor.app.models.User;
 
+/**
+ * 
+ * @author Team one 
+ * 
+ * After the authentication, this class is to check if the user credential are correct in case any hacker tries to steal a validated token by MID attack and inject it to a mallious request.
+ * UsernamePasswordAuthenticationFilter is provided by Spring Security to help conduct credential validation.
+ *
+ */
+
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
