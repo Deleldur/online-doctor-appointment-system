@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import AppointmentHistoryList from "./AppointmentHistoryList";
+import AppointmentHistoryList from "../components/AppointmentHistoryList";
 import UserService from "../service/UserService";
 import AuthService from "../service/AuthService";
 
@@ -49,7 +48,6 @@ export default class BoardDoctorComponent extends Component {
           <div className="card">
             <AppointmentHistoryList
               appointmentHistory={appointmentHistory}
-              // currentDate={currentDate}
             />
           </div>
         </div>

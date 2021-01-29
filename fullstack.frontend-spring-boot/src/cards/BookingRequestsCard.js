@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Popup from "reactjs-popup";
-import UserService from "../../service/UserService";
+import UserService from "../service/UserService";
 
 class BookingRequests extends Component {
   constructor(props) {
