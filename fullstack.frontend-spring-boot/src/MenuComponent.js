@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { useOnClickOutside } from './hooks';
-import { GlobalStyles } from './gobal';
+import { GlobalStyles } from './components/gobal';
 import { theme } from './theme';
 import {Menu, Burger} from './components';
 import FocusLock from 'react-focus-lock';
