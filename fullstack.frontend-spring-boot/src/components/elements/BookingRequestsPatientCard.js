@@ -130,20 +130,18 @@ class BookingRequests extends Component {
   componentDidMount() {}
   render() {
     return (
-      <div className="row">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Doctor name</th>
-              <th>Approve / Deny appointment</th>
-            </tr>
-          </thead>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Doctor name</th>
+            <th>Approve / Deny appointment</th>
+          </tr>
+        </thead>
 
-          <tbody>{this.bookingRequestList()}</tbody>
-        </table>
-      </div>
+        <tbody>{this.bookingRequestList()}</tbody>
+      </table>
     );
   }
 }
