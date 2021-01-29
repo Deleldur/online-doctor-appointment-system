@@ -61,6 +61,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		orgAppointment.setActive(newAppointment.getActive());
 		orgAppointment.setJournalHistory(newAppointment.getJournalHistory());
 		orgAppointment.setFeedbackHistory(newAppointment.getFeedbackHistory());
+		orgAppointment.setDoctorExtraInformation(newAppointment.getDoctorExtraInformation());
         final Appointment updatedAppointment = appointmentRepository.save(orgAppointment);
        
 		return updatedAppointment;
@@ -105,5 +106,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return updatedAppointment;
 	}
 	
+	@Override
+	public Appointment updateDoctorExtraInformation(Appointment orgAppointment, Appointment newAppointment) {	
+				
+	orgAppointment.setDoctorExtraInformation(newAppointment.getDoctorExtraInformation());
 
+        final Appointment updatedAppointment = appointmentRepository.save(orgAppointment);
+       
+		return updatedAppointment;
+	}
+	
 }

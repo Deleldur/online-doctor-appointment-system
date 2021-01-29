@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { CSVLink, CSVDownload } from "react-csv";
-
+import format from "date-fns/format";
+import subMonths from "date-fns/subMonths";
 class AppointmentHistoryList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
-      tempArray: []
+      tempArray: [],
+      lastThirtyDays: format(subMonths(new Date(), 1), "yyyy-MM-dd")
     };
   }
 
@@ -17,7 +19,8 @@ class AppointmentHistoryList extends Component {
         <>
           <p>
             Patient name:
-            {history.patientInformation.patientFirstName +
+            {" " +
+              history.patientInformation.patientFirstName +
               " " +
               history.patientInformation.patientLastName}{" "}
           </p>
@@ -50,17 +53,19 @@ class AppointmentHistoryList extends Component {
       ]
     ];
     this.props.appointmentHistory.map((array, i) => {
-      tempArray.push([
-        array.patientInformation.patientFirstName,
-        array.patientInformation.patientLastName,
-        array.bookingDate,
-        array.bookingStartTime,
-        array.treatedAilment,
-        array.patientInformation.patientPhone,
-        array.patientInformation.patientEmail,
-        array.doctorFeedback,
-        array.patientFeedback
-      ]);
+      if (array.bookingDate > this.state.lastThirtyDays) {
+        tempArray.push([
+          array.patientInformation.patientFirstName,
+          array.patientInformation.patientLastName,
+          array.bookingDate,
+          array.bookingStartTime,
+          array.treatedAilment,
+          array.patientInformation.patientPhone,
+          array.patientInformation.patientEmail,
+          array.doctorFeedback,
+          array.patientFeedback
+        ]);
+      }
     });
 
     // const headers = [
@@ -76,8 +81,8 @@ class AppointmentHistoryList extends Component {
     // ];
     return (
       <>
-        <div>{this.appointmentHistoryList()}</div>;
-        <CSVLink data={tempArray}>Download Summary</CSVLink>;
+        <div>{this.appointmentHistoryList()}</div>
+        <CSVLink data={tempArray}>Download Montly Summary</CSVLink>
       </>
     );
   }

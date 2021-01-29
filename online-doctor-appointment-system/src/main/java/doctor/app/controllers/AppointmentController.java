@@ -91,6 +91,13 @@ public class AppointmentController {
 		return appointmentService.updateAppointmentJournalHistory(appointment, appointmentDetails);
 	}
 	
+	// Endpoint to update specific appointment history details by a doctor
+	@PutMapping(value = "/updateappointment/extrainformation/doctor/{id}")
+	public Appointment updateDoctorExtraInformation(@PathVariable(value = "id") String id,
+			@RequestBody Appointment appointmentDetails) throws Exception {
+		Appointment appointment = appointmentService.findAppointmentByAppointmentId(id);
+		return appointmentService.updateDoctorExtraInformation(appointment, appointmentDetails);
+	}	
 	
 	// Endpoint to get specific appointment history for a doctor
 	@GetMapping(value = "/appointmenthistory/doctor/{id}/{journalhistory}")
@@ -110,6 +117,10 @@ public class AppointmentController {
 		return appointmentService.saveAppointmentHistory(information);
 	}
 
+	
+
+	
+	
 	// Endpoint to update specific appointment history details by a doctor
 	@PutMapping(value = "/appointmenthistory/update/appointmenthistory/doctor/{id}")
 	public Appointment updateApointmentHistoryDoctor(@PathVariable(value = "id") String id,

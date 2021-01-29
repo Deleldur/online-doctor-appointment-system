@@ -18,7 +18,8 @@ class AppointmentComponent extends Component {
       patientFirstName: "",
       patientLastname: "",
       journalHistory: false,
-      feedbackHistory: false
+      feedbackHistory: false,
+      doctorExtraInformation: ""
     };
   }
 
@@ -38,7 +39,8 @@ class AppointmentComponent extends Component {
           bookingDate: response.data.bookingDate,
           treatedAilment: response.data.treatedAilment,
           feedbackHistory: response.data.feedbackHistory,
-          journalHistory: response.data.journalHistory
+          journalHistory: response.data.journalHistory,
+          doctorExtraInformation: response.data.doctorExtraInformation
         });
       },
       (error) => {
@@ -90,7 +92,8 @@ class AppointmentComponent extends Component {
       treatedAilment: this.state.treatedAilment,
       active: true,
       feedbackHistory: this.state.feedbackHistory,
-      journalHistory: this.state.journalHistory
+      journalHistory: this.state.journalHistory,
+      doctorExtraInformation: this.state.doctorExtraInformation
     };
     UserService.editAppointment(id, feedback);
   };
@@ -106,7 +109,8 @@ class AppointmentComponent extends Component {
       doctorFeedback,
       treatedAilment,
       patientFirstName,
-      patientLastName
+      patientLastName,
+      doctorExtraInformation
     } = this.state;
 
     return (
@@ -200,7 +204,9 @@ class AppointmentComponent extends Component {
             <div className="row">
               <div className={journal === "feedback" ? "col" : "col doctor"}>
                 <label>Doctors journal entry</label>
-                {journal === "feedback" ? (
+                {journal === "feedback" ||
+                journal === "view" ||
+                journal === "edit" ? (
                   <textarea
                     disabled
                     placeholder="Journal entry"
@@ -221,7 +227,44 @@ class AppointmentComponent extends Component {
               </div>
             </div>
 
-            <button onClick={this.saveFeedback} className="btn btn-success">
+            <div className="row">
+              <div className={journal === "feedback" ? "col" : "col doctor"}>
+                <label>Important notes to patient</label>
+                {journal === "feedback" || journal === "view" ? (
+                  <textarea
+                    disabled
+                    placeholder="Extra information entry"
+                    name="doctorExtraInformation"
+                    className="form-control"
+                    value={
+                      doctorExtraInformation !== null
+                        ? doctorExtraInformation
+                        : ""
+                    }
+                    onChange={this.onChange}
+                  />
+                ) : (
+                  <textarea
+                    placeholder="Extra information entry"
+                    name="doctorExtraInformation"
+                    className="form-control"
+                    value={
+                      doctorExtraInformation !== null
+                        ? doctorExtraInformation
+                        : ""
+                    }
+                    onChange={this.onChange}
+                  />
+                )}
+              </div>
+            </div>
+
+            <button
+              onClick={this.saveFeedback}
+              className={`btn btn-success ${
+                journal === "view" ? "hideCss" : "showButton"
+              }`}
+            >
               Save
             </button>
           </form>
