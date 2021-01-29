@@ -22,10 +22,21 @@ import doctor.app.security.jwt.AuthEntryPointJwt;
 import doctor.app.security.jwt.AuthTokenFilter;
 import doctor.app.security.services.UserDetailsServiceImpl;
 
+/**
+ * 
+ * @author Team one 
+ * 
+ * configure(HttpSecurity http): a method where we can define which resources are public and which are secured. In our case, we set the SIGN_UP_URL endpoint as being public and everything else as being secured. We also configure CORS (Cross-Origin Resource Sharing) support through
+ * configure(AuthenticationManagerBuilder auth): a method where we defined a custom implementation of UserDetailsService to load user-specific data in the security framework. We have also used this method to set the encrypt method used by our application (BCryptPasswordEncoder).
+ * SessionCreationPolicy.STATELESS indicates that request is not session-based therefore no cookies will be returned to the client side thus avoiding cookies hack.
+ * With addFilterBefore() method, it tells that jwtAuthenticationFilter will triggered before UsernamePasswordAuthenticationFilter.
+ *
+ */
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-		 securedEnabled = true,
+		securedEnabled = true,
 		jsr250Enabled = true,
 		prePostEnabled = true)
 
@@ -69,6 +80,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		return new BCryptPasswordEncoder();
 	}
 
+	/**
+	 *  This configures the request routes so that the backend server will handle the security checking.
+	 */
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable()

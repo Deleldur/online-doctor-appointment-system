@@ -2,6 +2,10 @@ package doctor.app.payload.response;
 
 import java.util.List;
 
+/**
+ * Model for json web token response.
+ */
+
 public class JwtResponse {
 	private String token;
 	private String type = "Bearer";
@@ -10,6 +14,14 @@ public class JwtResponse {
 	private String email;
 	private List<String> roles;
 
+	/**
+	 * JwtResponse constructor
+	 * @param accessToken
+	 * @param id
+	 * @param username
+	 * @param email
+	 * @param roles
+	 */
 	public JwtResponse(String accessToken, String id, String username, String email, List<String> roles) {
 		this.token = accessToken;
 		this.id = id;

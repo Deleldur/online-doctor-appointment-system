@@ -19,6 +19,15 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import doctor.app.security.services.UserDetailsServiceImpl;
 
+/**
+ * 
+ * @author Team one 
+ * 
+ * Class responsible for the authentication process.
+ * When the user request routes to the server side, this filter will be triggerd. 
+ * This code is to check whether the jwt token is valid.
+ *
+ */
 
 
 public class AuthTokenFilter extends OncePerRequestFilter {
