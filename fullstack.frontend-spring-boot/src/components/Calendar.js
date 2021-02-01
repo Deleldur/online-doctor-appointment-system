@@ -31,11 +31,13 @@ export default function Calendar(props) {
 
   function onFormSubmit(e) {
     e.preventDefault();
+    // Checks if the user forgot to pick a time. Shows an error message if they forgot
     if (format(startDate, "HH:mm") === format(startDate, "00:00")) {
       setEnterTime(true);
     } else {
       setEnterTime(false);
 
+      // Constant with all of the information that is gonna get put in to the database.
       const newAppointment = {
         bookingStartTime: format(startDate, "HH:mm"),
         //      bookingEndTime: this.state.bookingEndTime,
@@ -70,14 +72,7 @@ export default function Calendar(props) {
     }
   }
 
-  // const allExcludeTimes = [
-  //   parseISO("2021-01-27T12:00:00.000Z"),
-  //   parseISO("2021-01-28T13:00:00.000Z"),
-  //   parseISO("2021-01-28T14:00:00.000Z"),
-  //   parseISO("2021-01-29T08:00:00.000Z"),
-  //   parseISO("2021-01-29T15:00:00.000Z")
-  // ];
-
+  // Functions to exclude the time slots that the doctor already has an appointment
   let results = props.allAppointmentsWithDoctorId.map(
     (date) => new Date(parseISO(date))
   );

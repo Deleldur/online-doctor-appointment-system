@@ -11,6 +11,7 @@ class AppointmentHistoryList extends Component {
     };
   }
 
+  // The list that get rendered in the appointment history
   appointmentHistoryList = () => {
     let { appointmentHistory } = this.props;
     return appointmentHistory.map((history, i) => {
@@ -54,6 +55,8 @@ class AppointmentHistoryList extends Component {
     ];
 
     // The data for the CSV file
+    // Loops through and array and checks if the date is within the last 30 days.
+    // If true it pushes that data in to a new array
     this.props.appointmentHistory.forEach((array) => {
       if (array.bookingDate > this.state.lastThirtyDays) {
         tempArray.push([

@@ -24,14 +24,18 @@ class BookingRequests extends Component {
     };
   }
 
+  // Handles the "deny appointment".
   handleDeny = (appointmentInformation) => {
+    // Template id for the email service template
     const templateId = "template_jaqy5ui";
 
+    // Patient full name in to one constant
     const patientName =
       appointmentInformation.patientInformation.patientFirstName +
       " " +
       appointmentInformation.patientInformation.patientLastName;
 
+    // Fires a second function to actually send an email and update the database.
     this.sendFeedbackDeniedVersion(
       templateId,
       {
@@ -45,6 +49,7 @@ class BookingRequests extends Component {
     );
   };
 
+  // Emails the user when the deny button has been pushed. Also deletes the appointment from the database
   sendFeedbackDeniedVersion = (
     templateId,
     variables,
@@ -67,13 +72,16 @@ class BookingRequests extends Component {
   };
 
   handleSubmit = (appointmentInformation) => {
+    // Template id for the email service template
     const templateId = "template_dxz5cj6";
 
+    // Patient full name in to one constant
     const patientName =
       appointmentInformation.patientInformation.patientFirstName +
       " " +
       appointmentInformation.patientInformation.patientLastName;
 
+    // Time, date and doctorname from the appointment
     const time = appointmentInformation.bookingStartTime;
     const date = appointmentInformation.bookingDate;
     const doctorName =
@@ -81,6 +89,7 @@ class BookingRequests extends Component {
       " " +
       appointmentInformation.doctorInformation.doctorLastName;
 
+    // Fires a second function to actually send an email and update the database.
     this.sendFeedback(
       templateId,
       {
@@ -98,6 +107,7 @@ class BookingRequests extends Component {
   };
 
   sendFeedback = (templateId, variables, appointmentInformation) => {
+    // Emails the user when the deny button has been pushed. Also deletes the appointment from the database
     window.emailjs
       .send("service_q8gzh52", templateId, variables)
       .then((res) => {
@@ -124,22 +134,10 @@ class BookingRequests extends Component {
       );
   };
 
-  approveBookingRequest = (appointmentInformation) => {
-    let feedback = {
-      feedbackHistory: false,
-      journalHistory: false,
-      active: true,
-      bookingDate: appointmentInformation.bookingDate,
-      bookingStartTime: appointmentInformation.bookingStartTime,
-      treatedAilment: appointmentInformation.treatedAilment
-    };
-
-    UserService.editAppointment(appointmentInformation.id, feedback);
-  };
-
   deleteAppointment = (e, id) => {
     UserService.deleteAppointment(id);
   };
+
   bookingRequestList = () => {
     let { appointments } = this.props;
     let { currentDate } = this.state;
@@ -157,12 +155,14 @@ class BookingRequests extends Component {
         // else is not yet confirmed booking requests
 
         if (currentAppointments.active === false) {
+          // Checks the booking date against current date(todays date). Old dates don't get shown
           if (currentAppointments.bookingDate >= currentDate) {
             return (
               <tr key={i}>
                 <td>{currentAppointments.bookingDate}</td>
                 <td>{currentAppointments.bookingStartTime}</td>
                 <td>
+                  {/* Shows information if you hover your mouse over the name on the webpage */}
                   <Popup
                     trigger={(open) => (
                       <span className="button">
@@ -220,10 +220,7 @@ class BookingRequests extends Component {
                     type="submit"
                     value="Approve"
                     className="btn btn-success"
-                    onClick={
-                      () => this.handleSubmit(currentAppointments)
-                      //this.approveBookingRequest(currentAppointments)
-                    }
+                    onClick={() => this.handleSubmit(currentAppointments)}
                   />
 
                   <input
