@@ -151,7 +151,7 @@ export default function Calendar(props) {
           messageActive && enterTime === false ? "showCss" : "hideCss"
         }`}
       >
-        <span>Appointment booked successfully</span>
+        <span> Your appointment request has been successfully sent</span>
       </div>
     </>
   );

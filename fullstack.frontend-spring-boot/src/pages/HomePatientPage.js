@@ -4,7 +4,7 @@ import UserService from "../service/UserService";
 import AuthService from "../service/AuthService";
 import FinishedAppointmentsPatientCard from "../cards/FinishedAppointmentsPatientCard";
 import CurrentAppointmentsPatientCard from "../cards/CurrentAppointmentsPatientCard";
-import BookingRequests from "../cards/BookingRequestsCard";
+import BookingRequests from "../cards/BookingRequestsPatientCard";
 import format from "date-fns/format";
 
 export default class HomeComponent extends Component {
