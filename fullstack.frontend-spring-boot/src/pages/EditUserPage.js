@@ -12,7 +12,8 @@ class EditUserComponent extends Component {
       zipCode: "",
       phoneNumber: "",
       streetAddress: "",
-      city: ""
+      city: "",
+      showDiv: false
     };
     //        this.saveUser = this.saveUser.bind(this);
     this.loadUser = this.loadUser.bind(this);
@@ -62,7 +63,13 @@ class EditUserComponent extends Component {
       city: this.state.city
     };
 
-    UserService.editUser(user);
+    UserService.editUser(user)
+      .then(() => {
+        this.setState({ showDiv: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -145,6 +152,13 @@ class EditUserComponent extends Component {
               Save
             </button>
           </form>
+          <div
+            className={`success-message ${
+              this.state.showDiv === true ? "showButton" : "hideCss"
+            }`}
+          >
+            <span>Saved Successfully</span>
+          </div>
         </div>
       </>
     );

@@ -13,7 +13,7 @@ class BookingRequests extends Component {
       appointments: this.props.appointments,
       feedback: "Test",
       name: "Doctor",
-      email: "nathalieolsson123321@outlook55543434.com",
+      email: "msten75@gmail.com",
       reload: false,
       subject: "",
       patientName: "",
@@ -36,8 +36,8 @@ class BookingRequests extends Component {
       templateId,
       {
         from_name: this.state.name,
-        reply_to: this.state.email,
-        from_email: this.state.email,
+        reply_to: appointmentInformation.patientInformation.patientEmail,
+        from_email: appointmentInformation.patientInformation.patientEmail,
         patientName: patientName,
         phone: this.state.phone
       },
@@ -86,8 +86,8 @@ class BookingRequests extends Component {
       templateId,
       {
         from_name: this.state.name,
-        reply_to: this.state.email,
-        from_email: this.state.email,
+        reply_to: appointmentInformation.patientInformation.patientEmail,
+        from_email: appointmentInformation.patientInformation.patientEmail,
         patientName: patientName,
         time: time,
         date: date,
@@ -207,6 +207,10 @@ class BookingRequests extends Component {
                               currentAppointments.patientInformation
                                 .patientEmail
                             }
+                          </p>{" "}
+                          <p>
+                            <strong>Patient Ailment:</strong>{" "}
+                            {currentAppointments.treatedAilment}
                           </p>{" "}
                         </span>
                       </span>

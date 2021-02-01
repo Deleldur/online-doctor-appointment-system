@@ -4,7 +4,7 @@ import UserService from "../service/UserService";
 import AuthService from "../service/AuthService";
 import FinishedAppointmentsPatientCard from "../cards/FinishedAppointmentsPatientCard";
 import CurrentAppointmentsPatientCard from "../cards/CurrentAppointmentsPatientCard";
-import BookingRequests from "../cards/BookingRequestsCard";
+import BookingRequests from "../cards/BookingRequestsPatientCard";
 import format from "date-fns/format";
 
 export default class HomeComponent extends Component {
@@ -50,7 +50,7 @@ export default class HomeComponent extends Component {
         <div className="row">
           <div className="col-lg-12 col-sm-12">
             <header className="jumbotron">
-            <h1 className ="logo4"></h1>
+              <h1 className="logo4"></h1>
             </header>
 
             <div className="card">
