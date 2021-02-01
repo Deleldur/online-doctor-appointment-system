@@ -22,50 +22,10 @@ export default class HomeComponent extends Component {
     this.setState({ reload: true }, () => this.setState({ reload: false }));
   };
 
-  currentBookingRequests = () => {
-    return this.state.appointments.map((currentAppointments, i) => {
-      // Renders the appointment list based on the active boolean
-      // Active = current active appointments
-      // else is not yet confirmed booking requests
-      if (currentAppointments.active === false) {
-        return (
-          <BookingRequests
-            approveBookingRequest={this.approveBookingRequest}
-            appointments={currentAppointments}
-            key={i}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
-
-  finishedAppointmentList = () => {
-    let { currentDate } = this.state;
-
-    return this.state.appointments.map((currentAppointments, i) => {
-      // Renders the appointment list based on the active boolean
-      // Active = current active appointments
-      // else is not yet confirmed booking requests
-      if (currentAppointments.active === true) {
-        if (currentAppointments.bookingDate < currentDate) {
-          return (
-            <FinishedAppointments appointments={currentAppointments} key={i} />
-          );
-        } else {
-          return null;
-        }
-      } else {
-        return null;
-      }
-    });
-  };
-
   // Gets an array of all appointsments in the database for the currently logged in doctor.
   getAllAppointments = async () => {
     const doctorId = AuthService.getCurrentUserId();
-    console.log("doctor ID: " + doctorId);
+
     // fetches all appointments from mongodb based on the logged in doctors ID
     await UserService.getAppointmentsFromDoctorId(doctorId).then(
       (response) => {
@@ -97,9 +57,7 @@ export default class HomeComponent extends Component {
       <div className="row">
         <div className="col-lg-12 col-sm-12">
           <header className="jumbotron">
-
-          <h1 className ="logo2"></h1>
-
+            <div className="logo2"></div>
           </header>
 
           <div className="card">

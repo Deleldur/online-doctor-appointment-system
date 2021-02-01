@@ -53,7 +53,6 @@ class BookingRequests extends Component {
     window.emailjs
       .send("service_q8gzh52", templateId, variables)
       .then((res) => {
-        console.log("Email successfully sent!");
         UserService.deleteAppointment(appointmentInformation.id).then(() =>
           window.location.reload()
         );
@@ -102,7 +101,6 @@ class BookingRequests extends Component {
     window.emailjs
       .send("service_q8gzh52", templateId, variables)
       .then((res) => {
-        console.log("Email successfully sent!");
         let feedback = {
           feedbackHistory: false,
           journalHistory: false,

@@ -91,7 +91,6 @@ export default class CreateAppointment extends Component {
   };
   onSubmit = (e) => {
     e.preventDefault();
-
   };
   onSearchSubmit = (e) => {
     let { locationDropDownValue, ailmentsDropDownValue } = this.state;
@@ -165,7 +164,6 @@ export default class CreateAppointment extends Component {
         result.flat().map((item) => [JSON.stringify(item), item])
       ).values()
     ];
-    //    console.log(this.state.chosenDoctor);
 
     return (
       <div className="row">

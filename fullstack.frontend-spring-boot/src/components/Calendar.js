@@ -3,14 +3,7 @@ import DatePicker from "react-datepicker";
 import format from "date-fns/format";
 import axios from "axios";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
-import {
-  addDays,
-  getDay,
-  setHours,
-  isSameDay,
-  formatISO,
-  parseISO
-} from "date-fns";
+import { addDays, getDay, setHours, isSameDay, parseISO } from "date-fns";
 // import { parseJSON, parse } from "date-fns";
 import eng from "date-fns/locale/en-GB";
 
@@ -38,12 +31,6 @@ export default function Calendar(props) {
 
   function onFormSubmit(e) {
     e.preventDefault();
-    // a few consolelogs to see how the date string is formatted by default,
-    // an how it needs to be formatted in allExcludeTimes.
-    // Conclusion: ISO string
-    //    currentDate: format(new Date(), "yyyy-MM-dd"),
-    // console.log("BOOKING REQUEST  std: " + format(startDate, "yyyy-MM-dd"));
-    // console.log("BOOKING REQUEST  std: " + format(startDate, "HH:mm"));
     if (format(startDate, "HH:mm") === format(startDate, "00:00")) {
       setEnterTime(true);
     } else {
@@ -116,7 +103,6 @@ export default function Calendar(props) {
           onChange={(date) => {
             setStartDate(date);
             setExcludeTimes(getExcludeTimesForDate(date));
-            //console.log("SELECTED DAY: " + date);
           }}
           inline
           disabledKeyboardNavigation

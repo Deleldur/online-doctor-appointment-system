@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 import format from "date-fns/format";
 import subMonths from "date-fns/subMonths";
 class AppointmentHistoryList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
       tempArray: [],
       lastThirtyDays: format(subMonths(new Date(), 1), "yyyy-MM-dd")
     };
@@ -16,7 +15,7 @@ class AppointmentHistoryList extends Component {
     let { appointmentHistory } = this.props;
     return appointmentHistory.map((history, i) => {
       return (
-        <>
+        <React.Fragment key={i}>
           <p>
             Patient name:
             {" " +
@@ -33,12 +32,13 @@ class AppointmentHistoryList extends Component {
           <p>Doctor feedback: {history.doctorFeedback}</p>
           <p>Patient feedback: {history.patientFeedback}</p>
           <hr className="solid-divider" />
-        </>
+        </React.Fragment>
       );
     });
   };
   render() {
-    let { data, tempArray } = this.state;
+    let { tempArray } = this.state;
+    // The headers for the CSV file
     tempArray = [
       [
         "Patient firstName",
@@ -52,7 +52,9 @@ class AppointmentHistoryList extends Component {
         "Patient feedback"
       ]
     ];
-    this.props.appointmentHistory.map((array, i) => {
+
+    // The data for the CSV file
+    this.props.appointmentHistory.forEach((array) => {
       if (array.bookingDate > this.state.lastThirtyDays) {
         tempArray.push([
           array.patientInformation.patientFirstName,
@@ -68,17 +70,6 @@ class AppointmentHistoryList extends Component {
       }
     });
 
-    // const headers = [
-    //   { label: "Patient firstName", key: "patientFirstName" },
-    //   { label: "Patient lastName", key: "patientLastName" },
-    //   { label: "Date", key: "bookingDate" },
-    //   { label: "Time", key: "bookingStartTime" },
-    //   { label: "Treated ailment", key: "treatedAilment" },
-    //   { label: "Phone", key: "patientPhone" },
-    //   { label: "Email", key: "patientEmail" },
-    //   { label: "Doctor journal", key: "doctorFeedback" },
-    //   { label: "Patient feedback", key: "patientFeedback" }
-    // ];
     return (
       <>
         <div>{this.appointmentHistoryList()}</div>
