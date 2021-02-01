@@ -36,12 +36,15 @@ class UpcomingAppointmentsCard extends Component {
         // else is not yet confirmed booking requests
 
         if (currentAppointments.active === true) {
+          // Checks the booking date against current date(todays date). Old dates don't get shown
+
           if (currentAppointments.bookingDate >= currentDate) {
             return (
               <tr key={i}>
                 <td>{currentAppointments.bookingDate}</td>
                 <td>{currentAppointments.bookingStartTime}</td>
                 <td>
+                  {/* Shows information if you hover your mouse over the name on the webpage */}
                   <Popup
                     trigger={(open) => (
                       <span className="button">

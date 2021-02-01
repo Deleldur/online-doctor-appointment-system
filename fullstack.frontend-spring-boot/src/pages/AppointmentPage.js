@@ -19,7 +19,8 @@ class AppointmentComponent extends Component {
       patientLastname: "",
       journalHistory: false,
       feedbackHistory: false,
-      doctorExtraInformation: ""
+      doctorExtraInformation: "",
+      messageActive: false
     };
   }
 
@@ -95,7 +96,11 @@ class AppointmentComponent extends Component {
       journalHistory: this.state.journalHistory,
       doctorExtraInformation: this.state.doctorExtraInformation
     };
-    UserService.editAppointment(id, feedback);
+    UserService.editAppointment(id, feedback).then(() => {
+      this.setState({
+        messageActive: true
+      });
+    });
   };
   componentDidMount() {
     this.appointmentInformation();
@@ -110,7 +115,8 @@ class AppointmentComponent extends Component {
       treatedAilment,
       patientFirstName,
       patientLastName,
-      doctorExtraInformation
+      doctorExtraInformation,
+      messageActive
     } = this.state;
 
     return (
@@ -123,7 +129,7 @@ class AppointmentComponent extends Component {
               ? "Leave Feedback"
               : journal === "edit"
               ? "Edit appointment"
-              : "Write Journal Entry"}
+              : "Appointment Information"}
           </h2>
 
           <form>
@@ -267,6 +273,13 @@ class AppointmentComponent extends Component {
             >
               Save
             </button>
+            <div
+              className={`success-message ${
+                messageActive === false ? "hideCss" : "showCss"
+              }`}
+            >
+              <span>Saved successfully</span>
+            </div>
           </form>
         </div>
       </>

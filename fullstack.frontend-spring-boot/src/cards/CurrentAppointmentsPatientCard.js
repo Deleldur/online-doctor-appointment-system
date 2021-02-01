@@ -34,6 +34,7 @@ class CurrentAppointmentsPatientCard extends Component {
         // else is not yet confirmed booking requests
 
         if (currentAppointments.active === true) {
+          // Checks the booking date against current date(todays date). Old dates don't get shown
           if (currentAppointments.bookingDate >= currentDate) {
             return (
               <tr key={i}>

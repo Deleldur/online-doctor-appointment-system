@@ -80,49 +80,50 @@ export default class LoginComponent extends Component {
 
   render() {
     return (
-      
       <div className="login-page">
         <div className="card">
-        <div className="form">
-        <h1 className ="logo5"></h1>
+          <div className="form">
+            <div className="logo5"></div>
 
-          <Form
-            onSubmit={this.handleLogin}
-            ref={(c) => {
-              this.form = c;
-            }}
-          >
-            <div className="login-form acrylic">
-              <span>Login to your account</span>
-
-              <Input
-                type="text"
-                placeholder="Username"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                validations={[required]}
-              />
-
-              <Input
-                type="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                validations={[required]}
-              />
-
-              <button id="SignIn" disabled={this.state.loading}>
-                Login
-              </button>
-            <a className ="create" href="register">Want to create a account?</a>
-            </div>
-            <CheckButton
-              style={{ display: "none" }}
+            <Form
+              onSubmit={this.handleLogin}
               ref={(c) => {
-                this.checkBtn = c;
+                this.form = c;
               }}
-            />
-          </Form>
+            >
+              <div className="login-form acrylic">
+                <span>Login to your account</span>
+
+                <Input
+                  type="text"
+                  placeholder="Username"
+                  value={this.state.username}
+                  onChange={this.onChangeUsername}
+                  validations={[required]}
+                />
+
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.onChangePassword}
+                  validations={[required]}
+                />
+
+                <button id="SignIn" disabled={this.state.loading}>
+                  Login
+                </button>
+                <a className="create" href="register">
+                  Want to create a account?
+                </a>
+              </div>
+              <CheckButton
+                style={{ display: "none" }}
+                ref={(c) => {
+                  this.checkBtn = c;
+                }}
+              />
+            </Form>
           </div>
         </div>
       </div>

@@ -3,14 +3,7 @@ import DatePicker from "react-datepicker";
 import format from "date-fns/format";
 import axios from "axios";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
-import {
-  addDays,
-  getDay,
-  setHours,
-  isSameDay,
-  formatISO,
-  parseISO
-} from "date-fns";
+import { addDays, getDay, setHours, isSameDay, parseISO } from "date-fns";
 // import { parseJSON, parse } from "date-fns";
 import eng from "date-fns/locale/en-GB";
 
@@ -38,17 +31,13 @@ export default function Calendar(props) {
 
   function onFormSubmit(e) {
     e.preventDefault();
-    // a few consolelogs to see how the date string is formatted by default,
-    // an how it needs to be formatted in allExcludeTimes.
-    // Conclusion: ISO string
-    //    currentDate: format(new Date(), "yyyy-MM-dd"),
-    // console.log("BOOKING REQUEST  std: " + format(startDate, "yyyy-MM-dd"));
-    // console.log("BOOKING REQUEST  std: " + format(startDate, "HH:mm"));
+    // Checks if the user forgot to pick a time. Shows an error message if they forgot
     if (format(startDate, "HH:mm") === format(startDate, "00:00")) {
       setEnterTime(true);
     } else {
       setEnterTime(false);
 
+      // Constant with all of the information that is gonna get put in to the database.
       const newAppointment = {
         bookingStartTime: format(startDate, "HH:mm"),
         //      bookingEndTime: this.state.bookingEndTime,
@@ -83,14 +72,7 @@ export default function Calendar(props) {
     }
   }
 
-  // const allExcludeTimes = [
-  //   parseISO("2021-01-27T12:00:00.000Z"),
-  //   parseISO("2021-01-28T13:00:00.000Z"),
-  //   parseISO("2021-01-28T14:00:00.000Z"),
-  //   parseISO("2021-01-29T08:00:00.000Z"),
-  //   parseISO("2021-01-29T15:00:00.000Z")
-  // ];
-
+  // Functions to exclude the time slots that the doctor already has an appointment
   let results = props.allAppointmentsWithDoctorId.map(
     (date) => new Date(parseISO(date))
   );
@@ -116,7 +98,6 @@ export default function Calendar(props) {
           onChange={(date) => {
             setStartDate(date);
             setExcludeTimes(getExcludeTimesForDate(date));
-            //console.log("SELECTED DAY: " + date);
           }}
           inline
           disabledKeyboardNavigation

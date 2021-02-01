@@ -43,12 +43,10 @@ export default class BoardDoctorComponent extends Component {
       <div className="row">
         <div className="col-12">
           <header className="jumbotron">
-            <h1 className="logo3"></h1>
+            <div className="logo3"></div>
           </header>
           <div className="card">
-            <AppointmentHistoryList
-              appointmentHistory={appointmentHistory}
-            />
+            <AppointmentHistoryList appointmentHistory={appointmentHistory} />
           </div>
         </div>
       </div>

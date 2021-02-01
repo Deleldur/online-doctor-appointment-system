@@ -17,6 +17,7 @@ export default class HomeComponent extends Component {
     };
   }
 
+  // Gets an array of all appointsments in the database for the currently logged in patient.
   getAllAppointments = () => {
     const patientId = AuthService.getCurrentUserId();
     UserService.getAppointmentsFromPatientId(patientId).then(
@@ -50,7 +51,7 @@ export default class HomeComponent extends Component {
         <div className="row">
           <div className="col-lg-12 col-sm-12">
             <header className="jumbotron">
-            <h1 className ="logo4"></h1>
+              <div className="logo4"></div>
             </header>
 
             <div className="card">

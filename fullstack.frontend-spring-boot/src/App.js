@@ -11,7 +11,7 @@ import AppointmentHistory from "./pages/AppointmentHistoryPage";
 import EditUserComponent from "./pages/EditUserPage";
 import CreateAppointment from "./pages/CreateAppointmentPage";
 import AppointmentComponent from "./pages/AppointmentPage";
-import MenuComponent from "./components/MenuComponent"
+import MenuComponent from "./components/MenuComponent";
 
 class App extends Component {
   constructor(props) {
@@ -51,9 +51,9 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-light bg-dark">          
+        <nav className="navbar navbar-expand navbar-light bg-dark">
           <div className="header">
-           <h1 className ="logo"></h1>        
+            <div className="logo"></div>
           </div>
 
           <div className="navbar-nav mr-auto">
@@ -72,7 +72,7 @@ class App extends Component {
                 </li>
               </div>
             )}
-
+            {/* Shows the appropriate links depending on who is logged in (doctor or patient) */}
             {showDoctorBoard && (
               <div className="navbar-nav mr-auto">
                 <li className="nav-item">
@@ -120,10 +120,9 @@ class App extends Component {
             </div>
           )}
         </nav>
-          <MenuComponent/>
+        <MenuComponent />
         <div className="container-xl container-md">
           <Switch>
-
             {showDoctorBoard && (
               <Route exact path={["/", "/home"]} component={HomeDoctor} />
             )}
@@ -135,31 +134,30 @@ class App extends Component {
             <Route path="/profile" component={EditUserComponent} />
             <Route path="/createappointment" component={CreateAppointment} />
             <Route path="/doctor" component={AppointmentHistory} />
-            <React.StrictMode>
-              <Route
-                exact
-                path="/appointment/:id"
-                render={(props) => <AppointmentComponent {...props} />}
-              />
-              <Route
-                exact
-                path="/appointment/:journal/:id"
-                render={(props) => <AppointmentComponent {...props} />}
-              />
-            </React.StrictMode>
-            {/*<Route path="/appointment" component={AppointmentComponent} />*/}
-          </Switch>      
 
+            <Route
+              exact
+              path="/appointment/:id"
+              render={(props) => <AppointmentComponent {...props} />}
+            />
+            <Route
+              exact
+              path="/appointment/:journal/:id"
+              render={(props) => <AppointmentComponent {...props} />}
+            />
+
+            {/*<Route path="/appointment" component={AppointmentComponent} />*/}
+          </Switch>
         </div>
         <div className="padding"></div>
         <div className="footer">
-            <div className="footer-content">
-            </div>
-            <div className="footer-bottom">
-              &copy; Docktor Booking system | Made and Designed by Team BDSM... aka Team 1
-            </div>
+          <div className="footer-content"></div>
+          <div className="footer-bottom">
+            &copy; Docktor Booking system | Made and Designed by Team BDSM...
+            aka Team 1
+          </div>
         </div>
-      </div>   
+      </div>
     );
   }
 }

@@ -10,7 +10,6 @@ class SearchForm extends Component {
     let {
       finalDoctorLocationList,
       flattedAilmentList,
-      finalDoctorList,
       showAilmentList
     } = this.props;
 

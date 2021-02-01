@@ -3,9 +3,8 @@ import authHeader from "./AuthHeader";
 import authService from "./AuthService";
 
 const API_URL = "http://localhost:3000/api/";
-//const API_URL2 = 'http://localhost:3000/';
 
-//let userId = "5ffc712295f0dd3932d7b593";
+// All the calls to the backend.
 class UserService {
   getPublicContent() {
     return axios.get(API_URL + "all");
