@@ -10,29 +10,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-@DisplayName("APPOINTMENT MODEL TESTS")
+@DisplayName("APPOINTMENT  MODEL TESTS")
 class AppointmentModelTest extends DummyDataForTest {
 	
-	@Test
-	@DisplayName("Console log all data used in the tests")
-	@Disabled
-	void echoTestData() {
-		System.out.println("DATA USED IN TEST: ");
-		System.out.println("      patientInfo: " + usePatientInfo);
-		System.out.println("       doctorInfo: " + useDoctorInfo);
-		System.out.println("           active: " + useActive);
-		System.out.println("      bookingDate: " + useBookingDate);
-		System.out.println(" bookingStartTime: " + useBookingStartTime);
-		System.out.println("   bookingEndTime: " + useBookingEndTime);
-		System.out.println("   doctorFeedback: " + useDoctorFeedback);
-		System.out.println("  patientFeedback: " + usePatientFeedback);
-		System.out.println("   treatedAilment: " + useTreatedAilment);
-	}
+//	@Test
+//	@DisplayName("Console log all data used in the tests")
+//	void echoTestData() {
+//		System.out.println("DATA USED IN TEST: (appointment model tests)");
+//		System.out.println("      patientInfo: " + usePatientInfo);
+//		System.out.println("       doctorInfo: " + useDoctorInfo);
+//		System.out.println("           active: " + useActive);
+//		System.out.println("      bookingDate: " + useBookingDate);
+//		System.out.println(" bookingStartTime: " + useBookingStartTime);
+//		System.out.println("   bookingEndTime: " + useBookingEndTime);
+//		System.out.println("   doctorFeedback: " + useDoctorFeedback);
+//		System.out.println("  patientFeedback: " + usePatientFeedback);
+//		System.out.println("   treatedAilment: " + useTreatedAilment);
+//	}
 
 	
 	@Test
 	@DisplayName("Create an appointment")
-	void createAppointmentViaClassConstructor() {
+	void testCreateAppointmentViaClassConstructor() {
 		Appointment appointmentTest = new Appointment(usePatientInfo, useDoctorInfo, useActive, useBookingDate, useBookingStartTime, useBookingEndTime, useDoctorFeedback, usePatientFeedback, useTreatedAilment);
 		assertAll(
 			() -> assertEquals(usePatientInfo.toString(), appointmentTest.getPatientInformation().toString()),  // "{patientId=600ac6855d8f627ceca18610, patientFirstName=Mikael, patientLastName=Sten}"
@@ -45,13 +44,6 @@ class AppointmentModelTest extends DummyDataForTest {
 			() -> assertEquals(usePatientFeedback, appointmentTest.getPatientFeedback()),
 			() -> assertEquals(useTreatedAilment, appointmentTest.getTreatedAilment())
 		);
-	}
-	
-
-	@Test
-	@DisplayName("something")
-	void testSomething() {
-		
 	}
 
 }

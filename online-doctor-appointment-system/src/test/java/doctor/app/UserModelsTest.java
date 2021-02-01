@@ -11,29 +11,28 @@ import doctor.app.models.User;
 
 
 @SpringBootTest
-@DisplayName("USER MODEL TESTS")
+@DisplayName("USER  MODELS TESTS")
 class UserModelsTest extends DummyDataForTest {
 	
-	@Test
-	@DisplayName("Console log all data used in the tests")
-	@Disabled
-	void echoTestData() {
-		System.out.println("DATA USED IN TEST: ");
-		System.out.println("         userName: " + useUsername);
-		System.out.println("            email: " + useEmail);
-		System.out.println("         password: " + usePassword);
-		System.out.println("        firstName: " + useFirstName);
-		System.out.println("         lastName: " + useLastName);
-		System.out.println("          address: " + useAddress);
-		System.out.println("      phoneNumber: " + usePhoneNumber);
-		System.out.println("         verified: " + useVerified);
-		System.out.println("      ailmentList: " + useAilmentList);
-	}
+//	@Test
+//	@DisplayName("Console log all data used in the tests")
+//	void echoTestData() {
+//		System.out.println("DATA USED IN TEST: (user model tests)");
+//		System.out.println("         userName: " + useUsername);
+//		System.out.println("            email: " + useEmail);
+//		System.out.println("         password: " + usePassword);
+//		System.out.println("        firstName: " + useFirstName);
+//		System.out.println("         lastName: " + useLastName);
+//		System.out.println("          address: " + useAddress);
+//		System.out.println("      phoneNumber: " + usePhoneNumber);
+//		System.out.println("         verified: " + useVerified);
+//		System.out.println("      ailmentList: " + useAilmentList);
+//	}
 
 	
 	@Test
-	@DisplayName("Create a new user via the business logic")
-	void createUserViaClassConstructor() {
+	@DisplayName("Create a new user")
+	void testCreateUserViaClassConstructor() {
 		User userTest = new User(useUsername, useEmail, usePassword, useFirstName, useLastName, useAddress, usePhoneNumber);
 
 		assertEquals(useUsername, userTest.getUsername());
@@ -47,9 +46,8 @@ class UserModelsTest extends DummyDataForTest {
 
 	
 	@Test
-	@DisplayName("Create a new patient via the business logic")
-	void createPatientViaClassConstructor() {
-//		Patient patientTest = new Patient("Håkan", "Björk", address, "+46703237740", "hakbjo@gmail.com", true);
+	@DisplayName("Create a new patient")
+	void testCreatePatientViaClassConstructor() {
 		Patient patientTest = new Patient();
 
 		patientTest.setFirstName(useFirstName);
@@ -72,8 +70,7 @@ class UserModelsTest extends DummyDataForTest {
 	
 	@Test
 	@DisplayName("Create a new doctor")
-	void createDoctorViaClassConstructor() {
-//		Doctor doctorTest = new Doctor("hakbjo", "hakbjo@gmail.com", "password", "Håkan", "Björk", address, "+46703237740", Arrays.asList("acne", "allergies"));
+	void testCreateDoctorViaClassConstructor() {
 		Doctor doctorTest = new Doctor();
 
 		doctorTest.setUsername(useUsername);
