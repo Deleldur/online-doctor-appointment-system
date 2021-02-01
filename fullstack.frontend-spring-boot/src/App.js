@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./css/App.css";
+import "./styles/App.css";
 import AuthService from "./service/AuthService";
-import LoginComponent from "./components/LoginComponent";
-import RegisterComponent from "./components/RegisterComponent";
-import HomeDoctor from "./components/HomeDoctor";
-import HomePatient from "./components/HomePatient";
-import BoardDoctorComponent from "./components/AppointmentHistory";
-import EditUserComponent from "./components/EditUserComponent";
-import CreateAppointment from "./components/CreateAppointment";
-import AppointmentComponent from "./components/AppointmentComponent";
-import MenuComponent from "./MenuComponent"
+import LoginComponent from "./pages/LoginPage";
+import RegisterComponent from "./pages/RegisterPage";
+import HomeDoctor from "./pages/HomeDoctorPage";
+import HomePatient from "./pages/HomePatientPage";
+import AppointmentHistory from "./pages/AppointmentHistoryPage";
+import EditUserComponent from "./pages/EditUserPage";
+import CreateAppointment from "./pages/CreateAppointmentPage";
+import AppointmentComponent from "./pages/AppointmentPage";
+import MenuComponent from "./components/MenuComponent"
 
 class App extends Component {
   constructor(props) {
@@ -51,12 +51,9 @@ class App extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-light bg-dark">
-          
+        <nav className="navbar navbar-expand navbar-light bg-dark">          
           <div className="header">
-
-           <h1 className ="logo"></h1>
-          
+           <h1 className ="logo"></h1>        
           </div>
 
           <div className="navbar-nav mr-auto">
@@ -137,7 +134,7 @@ class App extends Component {
             <Route path="/register" component={RegisterComponent} />
             <Route path="/profile" component={EditUserComponent} />
             <Route path="/createappointment" component={CreateAppointment} />
-            <Route path="/doctor" component={BoardDoctorComponent} />
+            <Route path="/doctor" component={AppointmentHistory} />
             <React.StrictMode>
               <Route
                 exact
@@ -151,14 +148,10 @@ class App extends Component {
               />
             </React.StrictMode>
             {/*<Route path="/appointment" component={AppointmentComponent} />*/}
-          </Switch>
-
-       
+          </Switch>      
 
         </div>
-
         <div className="padding"></div>
-
         <div className="footer">
             <div className="footer-content">
             </div>
@@ -166,11 +159,7 @@ class App extends Component {
               &copy; Docktor Booking system | Made and Designed by Team BDSM... aka Team 1
             </div>
         </div>
-
-      </div>
-
-      
-   
+      </div>   
     );
   }
 }

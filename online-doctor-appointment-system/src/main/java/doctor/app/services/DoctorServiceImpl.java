@@ -19,54 +19,17 @@ public class DoctorServiceImpl implements DoctorService {
 	
 	@Autowired
 	UserRepository userRepository;
-
-	
-
-	//----------------- 
-	
-	
-//	@Autowired
-//	AppointmentHistoryRepository appointmentHistoryRepository;
-		
-//	// Update details in appointment history doctor
-//	@Override
-//	public AppointmentHistory updateAppointmentHistoryDetails(AppointmentHistory orgAppointment, AppointmentHistory newAppointment) {	
-//				
-//		orgAppointment.setTreatedAilment(newAppointment.getTreatedAilment());	
-//		orgAppointment.setAppointmentDate(newAppointment.getAppointmentDate());
-//		orgAppointment.setAppointmentTime(newAppointment.getAppointmentTime());
-//		orgAppointment.setDoctorFeedback(newAppointment.getDoctorFeedback());
-//
-//        final AppointmentHistory updatedAppointment = appointmentHistoryRepository.save(orgAppointment);
-//       
-//		return updatedAppointment;
-//	}
-	
-	
-	
-	//-----------------
-	
-	
-	
-	
-//	@Override
-//	public List<User> getAllDoctors() { 
-//		return userRepository.findAll();
-//	}
 	
 	@Override
 	public List<Doctor> findDoctorByAilment(String ailment) {
 		return userRepository.findDoctorByAilment(ailment.toLowerCase());
 	}
 	
-//	@Override
-//	public Optional<User> findDoctorInformation(String id) {
-//		return userRepository.findById(id);
-//	}
-	
+	/**
+	 * Converts the first letter in a search to an upper case letter (example östersund becomes Östersund)
+	 */
 	@Override
 	public List<Doctor> findDoctorByLocation(String location, String role) {
-		// Converts the first letter in a search to an upper case letter (example östersund becomes Östersund)
 		String firstLetterByUpperCase = location.substring(0, 1).toUpperCase() + location.substring(1);
 		return userRepository.findDoctorByLocation(firstLetterByUpperCase, role);
 	}
@@ -76,18 +39,16 @@ public class DoctorServiceImpl implements DoctorService {
 		return userRepository.findDoctorById(id);
 	}
 	
+	/**
+	 * Update doctor profile
+	 */
 	@Override
 	public User updateDoctorProfile(User orgDoctor, User newDoctor) {
 		Map<String, String> address = new HashMap<>();
 		
-		//		orgDoctor.setEmail(newDoctor.getEmail());
 		orgDoctor.setLastName(newDoctor.getLastName());
 		orgDoctor.setFirstName(newDoctor.getFirstName());
 		orgDoctor.setPhoneNumber(newDoctor.getPhoneNumber());
-
-//		String zipCode = newDoctor.getZipCode();
-//		String streetAddress = newDoctor.getStreetAddress();
-//		String city = newDoctor.getCity();
 		
 		address.put("zipCode", newDoctor.getZipCode());
 		address.put("streetAddress", newDoctor.getStreetAddress());
@@ -97,10 +58,8 @@ public class DoctorServiceImpl implements DoctorService {
         final User updatedDoctor = userRepository.save(orgDoctor);
 
 		return updatedDoctor;
-	}
-	
-	
-	
+	}	
+		
 	@Override
 	public List<Doctor> findDoctorAndLocation(String firstName, String location) {
 		return userRepository.findDoctorAndLocation(firstName, location);
@@ -118,13 +77,9 @@ public class DoctorServiceImpl implements DoctorService {
 	
 	return userRepository.findAllDistinctAilment();
 	}
-	
-	//List<Passenger> passengers = repository.findAll(Sort.by(Sort.Direction.ASC, "seatNumber"));
 
 	@Override
 	public List<Doctor> findAllDistinctCity() {
 		return userRepository.findAllDistinctCity();
 	}
-	
-	
 }

@@ -1,17 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { useOnClickOutside } from './hooks';
+import { useOnClickOutside } from './functions/hooks';
 import { GlobalStyles } from './gobal';
-import { theme } from './theme';
-import {Menu, Burger} from './components';
+import { theme } from '../styles/theme';
+import {Menu, Burger} from './';
 import FocusLock from 'react-focus-lock';
 
 function MenuComponent() {
   const [open, setOpen] = useState(false);
   const node = useRef();
   const menuId = "main-menu";
-
- 
 
   useOnClickOutside(node, () => setOpen(false));
 

@@ -139,7 +139,7 @@ class UserService {
   getDoctorLocations() {
     // This is the id for the ROLE_DOCTOR in the database
     let role = "5ff86007480a2c4b6d697909";
-    return axios.get(API_URL + "doctorlocations/" + role, {
+    return axios.get(API_URL + "doctor/doctorlocations/" + role, {
       headers: authHeader()
     });
   }
@@ -147,7 +147,7 @@ class UserService {
   // fetches all ailments from the end point
   // this is used to render the drop down menu in the search function for the booking requests.
   getAilmentList() {
-    return axios.get(API_URL + "doctorailment/", {
+    return axios.get(API_URL + "doctor/doctorailment/", {
       headers: authHeader()
     });
   }

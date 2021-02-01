@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Popup from "reactjs-popup";
-import UserService from "../../service/UserService";
+import UserService from "../service/UserService";
 //This is for the edit or cancel buttons on the current appointments
-class UpcomingAppointmentsCard extends Component {
+class CurrentAppointmentsPatientCard extends Component {
   constructor(props) {
     super(props);
 
@@ -11,9 +10,8 @@ class UpcomingAppointmentsCard extends Component {
       patientId: "",
       patientInformation: "",
       currentDate: this.props.currentDate,
-      posts: [],
-      appointments: this.props.appointments,
-      test: []
+
+      appointments: this.props.appointments
     };
   }
   deleteAppointment = (e, id) => {
@@ -42,62 +40,16 @@ class UpcomingAppointmentsCard extends Component {
                 <td>{currentAppointments.bookingDate}</td>
                 <td>{currentAppointments.bookingStartTime}</td>
                 <td>
-                  <Popup
-                    trigger={(open) => (
-                      <span className="button">
-                        {" "}
-                        {
-                          currentAppointments.patientInformation
-                            .patientFirstName
-                        }{" "}
-                        {currentAppointments.patientInformation.patientLastName}
-                      </span>
-                    )}
-                    position="top left"
-                    on={["hover", "focus"]}
-                    closeOnDocumentClick
-                  >
-                    <div className="tooltipBoundary">
-                      <span>
-                        {" "}
-                        <span>
-                          <p>
-                            <strong>Patient name:</strong>
-                            {" " +
-                              currentAppointments.patientInformation
-                                .patientFirstName}{" "}
-                            {
-                              currentAppointments.patientInformation
-                                .patientLastName
-                            }
-                          </p>
-                          <p>
-                            <strong>Patient phone:</strong>{" "}
-                            {
-                              currentAppointments.patientInformation
-                                .patientPhone
-                            }
-                          </p>
-                          <p>
-                            <strong>Patient email:</strong>{" "}
-                            {
-                              currentAppointments.patientInformation
-                                .patientEmail
-                            }
-                          </p>{" "}
-                        </span>
-                      </span>
-                    </div>
-                  </Popup>
+                  {currentAppointments.doctorInformation.doctorFirstName}{" "}
+                  {currentAppointments.doctorInformation.doctorLastName}
                 </td>
                 <td>
                   <form>
-                    <Link to={"/appointment/edit/" + currentAppointments.id}>
+                    <Link to={"/appointment/view/" + currentAppointments.id}>
                       <button className="btn btn-success">
-                        <span>Edit</span>
+                        <span>View</span>
                       </button>
                     </Link>
-
                     <input
                       type="submit"
                       value="Cancel"
@@ -129,22 +81,22 @@ class UpcomingAppointmentsCard extends Component {
 
   render() {
     return (
-      <>
+      <div className="row">
         <table className="table">
           <thead>
             <tr>
               <th>Date</th>
               <th>Time</th>
-              <th>Patient name</th>
+              <th>Doctor name</th>
               <th>Edit / Cancel appointment</th>
             </tr>
           </thead>
 
           <tbody>{this.currentAppointmentList()}</tbody>
         </table>
-      </>
+      </div>
     );
   }
 }
 
-export default UpcomingAppointmentsCard;
+export default CurrentAppointmentsPatientCard;

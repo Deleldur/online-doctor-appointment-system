@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import UserService from "../../service/UserService";
+import Popup from "reactjs-popup";
+import UserService from "../service/UserService";
 //This is for the edit or cancel buttons on the current appointments
-class CurrentAppointmentsPatientCard extends Component {
+class UpcomingAppointmentsCard extends Component {
   constructor(props) {
     super(props);
 
@@ -10,8 +11,9 @@ class CurrentAppointmentsPatientCard extends Component {
       patientId: "",
       patientInformation: "",
       currentDate: this.props.currentDate,
-
-      appointments: this.props.appointments
+      posts: [],
+      appointments: this.props.appointments,
+      test: []
     };
   }
   deleteAppointment = (e, id) => {
@@ -40,8 +42,53 @@ class CurrentAppointmentsPatientCard extends Component {
                 <td>{currentAppointments.bookingDate}</td>
                 <td>{currentAppointments.bookingStartTime}</td>
                 <td>
-                  {currentAppointments.doctorInformation.doctorFirstName}{" "}
-                  {currentAppointments.doctorInformation.doctorLastName}
+                  <Popup
+                    trigger={(open) => (
+                      <span className="button">
+                        {" "}
+                        {
+                          currentAppointments.patientInformation
+                            .patientFirstName
+                        }{" "}
+                        {currentAppointments.patientInformation.patientLastName}
+                      </span>
+                    )}
+                    position="top left"
+                    on={["hover", "focus"]}
+                    closeOnDocumentClick
+                  >
+                    <div className="tooltipBoundary">
+                      <span>
+                        {" "}
+                        <span>
+                          <p>
+                            <strong>Patient name:</strong>
+                            {" " +
+                              currentAppointments.patientInformation
+                                .patientFirstName}{" "}
+                            {
+                              currentAppointments.patientInformation
+                                .patientLastName
+                            }
+                          </p>
+                          <p>
+                            <strong>Patient phone:</strong>{" "}
+                            {
+                              currentAppointments.patientInformation
+                                .patientPhone
+                            }
+                          </p>
+                          <p>
+                            <strong>Patient email:</strong>{" "}
+                            {
+                              currentAppointments.patientInformation
+                                .patientEmail
+                            }
+                          </p>{" "}
+                        </span>
+                      </span>
+                    </div>
+                  </Popup>
                 </td>
                 <td>
                   <form>
@@ -50,6 +97,7 @@ class CurrentAppointmentsPatientCard extends Component {
                         <span>Edit</span>
                       </button>
                     </Link>
+
                     <input
                       type="submit"
                       value="Cancel"
@@ -81,22 +129,22 @@ class CurrentAppointmentsPatientCard extends Component {
 
   render() {
     return (
-      <div className="row">
+      <>
         <table className="table">
           <thead>
             <tr>
               <th>Date</th>
               <th>Time</th>
-              <th>Doctor name</th>
+              <th>Patient name</th>
               <th>Edit / Cancel appointment</th>
             </tr>
           </thead>
 
           <tbody>{this.currentAppointmentList()}</tbody>
         </table>
-      </div>
+      </>
     );
   }
 }
 
-export default CurrentAppointmentsPatientCard;
+export default UpcomingAppointmentsCard;

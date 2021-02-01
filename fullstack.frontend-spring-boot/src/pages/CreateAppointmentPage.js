@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
 import UserService from "../service/UserService";
-import SearchForm from "./SearchForm";
-import SearchDoctorResult from "./SearchDoctorResult";
-import Calendar from "./Calendar";
-import format from "date-fns/format";
+import SearchForm from "../components/SearchForm";
+import SearchDoctorResult from "../components/SearchDoctorResultComponent";
+import Calendar from "../components/Calendar";
 export default class CreateAppointment extends Component {
   constructor(props) {
     super(props);
@@ -38,9 +36,7 @@ export default class CreateAppointment extends Component {
   }
   componentDidMount() {
     this.loadUser();
-
     this.getDoctorLocations();
-    // this.getAllAppointmentsWithDoctorId(this.state.chosenDoctor.id);
   }
 
   loadUser = () => {
@@ -96,38 +92,6 @@ export default class CreateAppointment extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    // console.log(
-    //   "BOOKING REQUEST  std: " + format(e.target.value, "yyyy-MM-dd")
-    // );
-
-    //    console.log("BOOKING REQUEST  std: " + format(startDate, "HH:mm"));
-    // const newAppointment = {
-    //   bookingStartTime: this.state.bookingStartTime,
-    //   bookingEndTime: this.state.bookingEndTime,
-    //   bookingDate: this.state.bookingDate,
-    //   doctorInformation: {
-    //     doctorId: this.state.chosenDoctor.id,
-    //     doctorFirstName: this.state.chosenDoctor.firstName,
-    //     doctorLastName: this.state.chosenDoctor.lastName
-    //   },
-    //   patientInformation: {
-    //     patientId: this.state.patientId,
-    //     patientFirstName: this.state.patientFirstName,
-    //     patientLastName: this.state.patientLastName
-    //   },
-    //   active: this.state.active,
-    //   ailmentsDropDownValue: this.state.ailmentsDropDownValue
-    // };
-    // console.log(newAppointment);
-    // axios.post("http://localhost:3000/api/appointment/create/", newAppointment);
-    // this.setState({
-    //   bookingStartTime: "",
-    //   bookingEndTime: "",
-    //   bookingDate: "",
-    //   chosenDoctorId: "",
-    //   patientId: "",
-    //   active: false
-    // });
   };
   onSearchSubmit = (e) => {
     let { locationDropDownValue, ailmentsDropDownValue } = this.state;

@@ -15,6 +15,10 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+/**
+ * Model for user.
+ */
+
 @Document(collection = "users")
 public class User {
 
@@ -42,12 +46,9 @@ public class User {
 	private String zipCode;
 	private String streetAddress;
 	private String city;
-	
-
 
 	@Field("address")
 	private Map<String, String> address = new HashMap<>();
-
 	
 	@DBRef
 	private Set<Role> roles = new HashSet<>();
@@ -55,6 +56,16 @@ public class User {
 	public User() {
 	}
 
+	/**
+	 * User model constructor
+	 * @param username
+	 * @param email
+	 * @param password
+	 * @param firstName
+	 * @param lastName
+	 * @param address
+	 * @param phoneNumber
+	 */
 	public User(String username, String email, String password, String firstName, String lastName,
 			Map<String, String> address, String phoneNumber) {
 		this.firstName = firstName;
@@ -125,8 +136,6 @@ public class User {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	
-	
 	
 	public String getStreetAddress() {
 		return streetAddress;

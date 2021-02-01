@@ -2,6 +2,10 @@ package doctor.app.payload.request;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Model for login request.
+ */
+
 public class LoginRequest {
 	@NotBlank
 	private String username;

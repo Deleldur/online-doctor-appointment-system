@@ -2,9 +2,9 @@ import React, { Component } from "react";
 
 import UserService from "../service/UserService";
 import AuthService from "../service/AuthService";
-import CurrentAppointments from "./elements/CurrentAppointmentsCard";
-import FinishedAppointments from "./elements/FinishedAppointmentsCard";
-import BookingRequests from "./elements/BookingRequestsCard";
+import CurrentAppointments from "../cards/CurrentAppointmentsCard";
+import FinishedAppointments from "../cards/FinishedAppointmentsCard";
+import BookingRequests from "../cards/BookingRequestsCard";
 import format from "date-fns/format";
 export default class HomeComponent extends Component {
   constructor(props) {

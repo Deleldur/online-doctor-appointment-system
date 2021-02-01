@@ -3,6 +3,10 @@ package doctor.app.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Model for roles.
+ */
+
 @Document(collection = "roles")
 public class Role {
   @Id

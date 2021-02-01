@@ -4,6 +4,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 /**
  * Model for AppointmentHistory.
  */
@@ -33,6 +34,16 @@ public class AppointmentHistory {
 		
 	}
 	
+	/**
+	 * Appointment history constructor
+	 * @param patientId
+	 * @param doctorId
+	 * @param treatedAilment
+	 * @param appointmentTime
+	 * @param appointmentDate
+	 * @param doctorFeedback
+	 * @param patientFeedback
+	 */
 	public AppointmentHistory(String patientId, String doctorId, String treatedAilment, String appointmentTime,
 			String appointmentDate, String doctorFeedback, String patientFeedback) {
 		super();
@@ -116,6 +127,4 @@ public class AppointmentHistory {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-	
-	
 }

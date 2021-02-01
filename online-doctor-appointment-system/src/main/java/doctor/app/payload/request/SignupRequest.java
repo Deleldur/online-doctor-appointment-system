@@ -9,6 +9,10 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.mongodb.core.mapping.Field;
  
+/**
+ * Model for sign up request.
+ */ 
+
 public class SignupRequest {
     @NotBlank
     @Size(min = 3, max = 20)
@@ -31,9 +35,7 @@ public class SignupRequest {
     @Field("address")
     private Map<String, String> address = new HashMap<>();
     
-    private List<String> ailmentList;
-    
-    
+    private List<String> ailmentList;  
     
     public List<String> getAilmentList() {
 		return ailmentList;

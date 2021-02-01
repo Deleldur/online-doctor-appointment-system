@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Popup from "reactjs-popup";
-import UserService from "../../service/UserService";
+import UserService from "../service/UserService";
 class BookingRequests extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +33,7 @@ class BookingRequests extends Component {
         // else is not yet confirmed booking requests
 
         if (currentAppointments.active === false) {
-          if (currentAppointments.bookingDate > currentDate) {
+          if (currentAppointments.bookingDate >= currentDate) {
             return (
               <tr key={i}>
                 <td>{currentAppointments.bookingDate}</td>
@@ -128,6 +128,7 @@ class BookingRequests extends Component {
       });
   };
   componentDidMount() {}
+
   render() {
     return (
       <table className="table">

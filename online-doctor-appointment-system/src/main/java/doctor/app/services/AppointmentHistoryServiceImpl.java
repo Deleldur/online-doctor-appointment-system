@@ -32,7 +32,9 @@ public class AppointmentHistoryServiceImpl implements AppointmentHistoryService{
 		return appointmentHistoryRepository.findAppointmentById(id);
 	}
 
-	// Update details in appointment history as a doctor
+	/**
+	 *  Update details in appointment history as a doctor
+	 */
 	@Override
 	public AppointmentHistory updateAppointmentHistoryDetailsDoctor(AppointmentHistory orgAppointment, AppointmentHistory newAppointment) {	
 				
@@ -46,7 +48,9 @@ public class AppointmentHistoryServiceImpl implements AppointmentHistoryService{
 		return updatedAppointment;
 	}
 	
-	// Update feedback in appointment history as a patient patient
+	/**
+	 *  Update feedback in appointment history as a patient patient
+	 */
 	@Override
 	public AppointmentHistory updateAppointmentHistoryFeedbackPatient(AppointmentHistory orgAppointment, AppointmentHistory newAppointment) {	
 				
